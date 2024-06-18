@@ -1,0 +1,41 @@
+.order-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.order-detail-container {
+  cursor: pointer;
+  display: grid;
+  grid-template-columns: 20% 50% 30%;
+  width: 100%;
+  height: 70px;
+  border-radius: 12px;
+  background-color: var(--primary-bg-header-color-dark);
+}
+
+.order-detail-container .order-detail-img-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 10%;
+}
+
+.order-detail-container .order-detail-img-container img {
+  width: 80%;
+  height: 80%;
+  border-radius: 8px;
+}
+
+.order-detail-container .order-detail-description-container {
+  padding: 2px;
+  display: grid;
+  grid-template-rows: 50% auto;
+}
+
+.order-detail-container .order-detail-description-header {
+  font-size: large;
+}
+
+.order-detail-container .order-detail-description-desc {
+  font-size: small;
+}

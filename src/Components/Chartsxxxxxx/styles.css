@@ -1,0 +1,46 @@
+.chart-container {
+  margin: 5px;
+  background-color: #475569;
+  border-color: aquamarine;
+  border: solid 1px;
+  border-radius: 20px;
+  border-color: aquamarine;
+  height: 350px;
+}
+
+.chart-container .chart-header {
+  padding: 25px;
+  display: grid;
+  grid-template-columns: 70% 30%;
+  justify-content: space-around;
+}
+.chart-container .chart-header .chart-title {
+  font-size: large;
+}
+
+.chart-options-selector {
+  cursor: pointer;
+  background-color: #627186;
+  padding: 5px;
+  border-radius: 20px;
+  border: solid 1px aquamarine; /* Combine border properties */
+  color: white; /* Set text color */
+  width: 70%;
+}
+
+/* Style dropdown arrow */
+.chart-options-selector::-ms-expand {
+  display: none; /* Hide default arrow for IE */
+}
+
+.chart-options-selector::after {
+  content: "▼"; /* Use custom arrow */
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+}
+
+.chart-render {
+  padding: 5px;
+}

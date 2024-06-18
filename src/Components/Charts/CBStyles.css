@@ -1,0 +1,11 @@
+.chart-container {
+  /* background-color: var(--primary-bg-content-color-dark); */
+  background-color: var(--primary-bg-header-color-dark);
+  border-radius: 25px;
+  padding: 10px;
+}
+
+.chart-container.Dark {
+  background-color: var(--primary-bg-header-color-dark);
+  
+}

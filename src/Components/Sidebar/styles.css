@@ -1,0 +1,181 @@
+.sbar-container {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  flex-wrap: wrap;
+  /* height: calc(100vh - 100px); */
+  height: 100vh;
+  /* align-items: center; */
+  justify-content: center;
+  /* background-color: var(--primary-bg-color-light); */
+  
+}
+
+.content-container {
+  display: flex;
+  flex-direction: column;
+  margin-top: 25px;
+  /* padding: 30px; */
+  margin-left: 80px;
+  position: absolute;
+  /* height: calc(100vh - 100px); */
+}
+
+.side-bar {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-left: 5px;
+  margin-bottom: 50px;
+  margin-top: 25px;
+  padding-top: 5%;
+  gap: 20px;
+  /* height: 100%; */
+  border-radius: 15px;
+  /* background-color: #1f2937; */
+}
+
+.sidebar-logo-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.sidebar-logo-section img {
+  margin-top: 50px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50px;
+}
+
+.sidebar-account-settings {
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-top: solid 1px;
+  padding-top: 25px;
+}
+
+.sidebar-account-settings img {
+  margin-bottom: 20px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50px;
+}
+
+.sidebar-account-settings-drkMode {
+  margin-bottom: 20px;
+  border-radius: 50px;
+}
+
+.sidebar-content-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar-link-content {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  /* background-color: #1f2937; */
+}
+
+.sidebar-link-main-content {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  /* background-color: #1f2937; */
+}
+
+.collapsed-sidebar .sidebar-content-text {
+  visibility: hidden;
+  /* transition: visibility 0.1s ease; Optional: Add a smooth transition effect */
+  text-decoration: none;
+}
+
+.expanded-sidebar:hover .sidebar-content-text {
+  visibility: visible;
+  transition: visibility 0.5s ease; /* Optional: Add a smooth transition effect */
+  text-decoration: none;
+}
+
+.sidebar-content-icon {
+  padding-left: 20px;
+  margin-right: 10px;
+  align-self: center;
+  color: #f7f7f7;
+  /* background-color: #1f2937; */
+}
+
+.collapsed-sidebar {
+  width: 70px;
+  overflow: hidden;
+  transition: width 0.3s ease; /* Add smooth transition */
+  background-color: var(--primary-bg-header-color-light);
+}
+
+.collapsed-sidebar.Dark {
+  width: 70px;
+  overflow: hidden;
+  transition: width 0.3s ease; /* Add smooth transition */
+  background-color: var(--primary-bg-header-color-dark);
+}
+
+.expanded-sidebar {
+  width: 200px; /* Set your desired expanded width */
+  overflow: visible;
+  transition: width 0.3s ease; /* Add smooth transition */
+  z-index: 2;
+  text-decoration: none;
+}
+
+.expanded-sidebar.Dark {
+background-color: var(--primary-bg-color-light);
+  }
+
+.sidebar-content-container {
+  position: relative;
+  /* background-color: #1f2937; */
+}
+
+.sidebar-content-text {
+  text-decoration: underline;
+  transition: transform 0.25s ease-out, color 0.25s ease-out;
+  color: white;
+  overflow: hidden; /* Hide overflowing content */
+  background-color: #1f2937;
+}
+
+Link {
+  text-decoration: none;
+}
+
+.sidebar-content-text::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  margin-left: 10%;
+  bottom: -5px;
+  width: 0; /* Initial width is 0 */
+  height: 2px; /* Adjust the thickness of the line as needed */
+  background-color: #0d9488; /* or any other color you want */
+  transition: width 0.25s ease-out; /* Transition the width property */
+}
+
+.sidebar-content-text:hover::before {
+  width: 80%; /* Appear from left to right on hover */
+}
+
+.sidebar-link-content:hover .sidebar-submenu-container {
+  display: list-item;
+}
+
+.sidebar-submenu-container {
+  display: none;
+}
+
+.sidebar-link-submenu-content {
+  display: flex;
+  flex-direction: column;
+}

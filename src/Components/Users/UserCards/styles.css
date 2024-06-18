@@ -1,0 +1,67 @@
+.user-cards-container {
+  position: relative;
+  width: 150px;
+}
+
+.card-container {
+  display: flex;
+  flex-direction: column;
+  width: 150px;
+  border: solid 3px;
+  border-color: #1f2937;
+  background-color: #374151;
+  border-radius: 25px;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 15px;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.card-container:nth-child(1) {
+  z-index: 1; /* Bring the first card to the front */
+}
+
+.card-container:nth-child(2) {
+  z-index: 2; /* Bring the second card behind the first card */
+}
+
+.card-container:nth-child(3) {
+  z-index: 3; /* Bring the third card behind the first two cards */
+}
+
+.card-container:first-child {
+  margin-top: -20px;
+  margin-left: -20px;
+}
+.card-container:nth-child(2) {
+  margin-top: -30px;
+  margin-left: -30px;
+}
+
+.card-img-section img {
+  padding: 25px;
+  /* padding-bottom: 15px; */
+  display: flex;
+  width: 75px;
+  border-radius: 50%;
+  align-self: center;
+}
+
+.card-txt-section {
+  font-size: small;
+  text-align: center;
+}
+
+.card-cta-section {
+  font-size: larger;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 70%;
+}
+
+.card-cta-icon:hover {
+  cursor: pointer;
+}

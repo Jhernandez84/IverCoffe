@@ -1,0 +1,279 @@
+.coffemanager-container {
+  display: grid;
+  grid-template-rows: 10vh 90vh;
+  padding: 10px;
+  gap: 10px;
+  background-color: white;
+  height: 100%;
+}
+
+.coffemanager-container.Dark {
+  background-color: var(--primary-bg-color-dark);
+}
+
+.coffemanager-header {
+  display: grid;
+  grid-template-columns: 20% 60% 20%;
+  justify-content: center;
+  border-radius: 20px;
+  border: solid 1px;
+  padding: 10px;
+}
+
+.coffemanager-header div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  background-color: var(--primary-bg-header-color-dark);
+  border-radius: 18px;
+  margin: 5px;
+}
+
+.coffemanager-header .NewOrderEntry{
+  border-style:dotted;
+  border: dashed 2px;
+  /* border-color: var(--primary-bg-header-color-dark); */
+
+}
+
+.coffe-manager-body-container {
+  display: grid;
+  grid-template-columns: 70% 30%;
+  justify-content: center;
+  height: 100%;
+}
+
+.coffe-manager-body-container .coffe-manager-body-products-navigation {
+  display: grid;
+  grid-template-rows: 15% 55%;
+  border: solid 1px;
+  border-color: red;
+  box-sizing: border-box;
+  /* height: 70%; */
+}
+
+.coffe-manager-body-container
+  .coffe-manager-body-products-navigation
+  .coffe-manager-body-orders-navigation {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.coffe-manager-body-container
+  .coffe-manager-body-products-navigation
+  .coffe-manager-body-menu-container {
+  display: grid;
+  grid-template-rows: 7% 93%;
+  max-height: 100%;
+  padding: 10px;
+}
+
+.coffe-manager-body-container
+  .coffe-manager-body-products-navigation
+  .coffe-manager-body-menu-container
+  .menu-filter {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  text-align: center;
+  background-color: var(--primary-bg-header-color-dark);
+  border-radius: 18px;
+  margin: 5px;
+}
+
+.menu-list {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  justify-content: space-between;
+  padding: 10px 5px;
+  overflow: auto;
+  height: 100%;
+  gap: 10px;
+}
+
+.menu-list .products-card {
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.coffe-manager-body-order-details-container {
+  box-sizing: border-box;
+  padding: 5px;
+  height: 100%;
+  /* overflow: auto; */
+}
+
+.coffe-manager-body-order-details-container .products-invoice-details {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  border-color: aqua;
+  border: solid 1px;
+  /* max-height: 40%; */
+  padding: 0 5px 0 5px;
+  overflow: auto;
+  max-height: 70%;
+}
+
+.products-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-color: aqua;
+  border: solid 1px;
+}
+
+.products-header .header-visual {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 100%;
+}
+
+.products-view {
+  display: grid;
+  grid-template-columns: 30% auto;
+  gap: 10px;
+}
+
+.products-navigation {
+  display: grid;
+  grid-template-rows: 5% auto;
+}
+
+.products-navigation .products-tabs {
+  display: flex;
+  flex-direction: row;
+  border-color: aqua;
+  border: solid 1px;
+  margin-bottom: 10px;
+}
+
+.products-navigation .products-tabs .product-tab-selector {
+  cursor: pointer;
+  text-align: center;
+  /* height: 90%; */
+  width: 100%;
+  border-radius: 20px;
+  border: solid 1px;
+}
+
+.products-card {
+  display: grid;
+  grid-template-rows: 20% 40% 20% 10% 10%;
+  align-items: center;
+  width: 130px;
+  /* height: 220px; */
+  border: solid 0.5px;
+  border-radius: 10px;
+  margin: 5px;
+  padding: 10px;
+}
+
+.products-card img {
+  cursor: pointer;
+  width: 100px;
+  height: 100px;
+  border-radius: 25px;
+}
+
+.product-addToCart {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  border-radius: 20px;
+  border: solid 0.5px;
+  cursor: pointer;
+  width: 100%;
+  /* height: 120%; */
+  background: var(--primary-bg-header-color-dark);
+  transition: all 0.5s;
+  border-color: var(--primary-bg-header-color-dark);
+}
+
+.product-addToCart:hover {
+  background-color: var(--primary-bg-strong-color-dark);
+  transition: all 0.2s;
+}
+
+.product-addToCart-manualQty {
+  width: 50px;
+  background: none;
+  color: white;
+  border: none;
+}
+
+.product-addToCart-qty {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.invoice-detail-container {
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+  gap: 10px;
+}
+
+.invoice-detail-container .invoice-detail-img {
+  margin: 0 10px 0 10px;
+  width: 30px;
+  height: 30px;
+  border-radius: 25px;
+}
+
+/* configuraciones del modal */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999; /* Ensure the modal overlay appears above all other elements */
+}
+
+.modal {
+  background: #475569;
+  padding: 20px;
+  border-radius: 25px;
+  position: relative;
+  width: 50%;
+  min-height: 45%;
+  z-index: 10000; /* Ensure the modal appears above all other elements */
+}
+
+.modal-header-section {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding: 15px;
+}
+
+.modal-footer-section {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.close {
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+  font-size: 20px;
+  border-radius: 25px;
+  width: 30px;
+  background: #24857d;
+}

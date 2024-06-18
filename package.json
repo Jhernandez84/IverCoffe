@@ -1,0 +1,29 @@
+{
+  "name": "bdiver2",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "export": "next export"
+  },
+  "dependencies": {
+    "apexcharts": "^3.47.0",
+    "chart.js": "^4.4.3",
+    "firebase": "^10.12.2",
+    "next": "14.1.3",
+    "react": "^18",
+    "react-apexcharts": "^1.4.1",
+    "react-chartjs-2": "^5.2.0",
+    "react-dom": "^18",
+    "react-icons": "^5.0.1",
+    "sweetalert2": "^11.10.8",
+    "tools": "^0.0.0"
+  },
+  "devDependencies": {
+    "eslint": "^8",
+    "eslint-config-next": "14.1.3"
+  }
+}

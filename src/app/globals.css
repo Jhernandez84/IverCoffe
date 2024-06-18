@@ -1,0 +1,119 @@
+:root {
+  width: 100vw;
+  height: 100vh;
+  color: white;
+  /* font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif; */
+  /* Primary bg-colors */
+  --primary-bg-color-dark: #475569;
+  --primary-bg-header-color-dark: #293851;
+  --primary-bg-content-color-dark: #536379;
+  --primary-bg-strong-color-dark: #1c2535;
+  --primary-bg-second-strong-color-dark: #1e293b;
+
+  --primary-bg-color-light: white;
+  --primary-bg-header-color-light: #264e86;
+  --primary-bg-content-color-light: #536379;
+  --primary-bg-strong-color-light: #1c2535;
+  --primary-bg-second-strong-color-light: #1e293b;
+
+  /* White Mode Colors */
+  .first-color {
+    background: #eff0f4;
+  }
+
+  .second-color {
+    background: #74dbef;
+  }
+
+  .third-color {
+    background: #0074e4;
+  }
+
+  .fourth-color {
+    background: #264e86;
+  }
+
+  /* Dark Mode Colors */
+  /* .first-color { 
+    background: #dbd8e3; 
+  }
+    
+  .second-color { 
+    background: #5c5470; 
+  }
+  
+  .third-color { 
+    background: #352f44; 
+  }
+  
+  .fourth-color { 
+    background: #2a2438; 
+  } */
+}
+
+body {
+  background-color: var(--primary-bg-second-strong-color-dark);
+  margin: 0;
+}
+
+body.Dark {
+  background-color: var(--primary-bg-color-dark);
+}
+
+.main-container {
+  display: grid;
+  grid-template-columns: 100px calc(100% - 101px);
+  width: 100vw;
+  background-color: var(--primary-bg-color-light);
+  transition: all 0.5s ease-in-out;
+}
+
+.main-container.Dark {
+  /* background-color: var(--primary-bg-color-dark); */
+  background: var(--primary-bg-color-dark);
+  transition: all 0.5s ease-in-out;
+}
+
+.sbar-container {
+  background-color: var(--primary-bg-color-light);
+  transition: all 0.5s ease-in-out;
+}
+
+.sbar-container.Dark {
+  background-color: var(--primary-bg-color-dark);
+  transition: all 0.5s ease-in-out;
+}
+
+.table-container {
+  background-color: var(--primary-bg-color-light);
+  transition: all 0.5s ease-in-out;
+}
+
+.table-container.Dark {
+  background-color: var(--primary-bg-color-dark);
+  transition: all 0.5s ease-in-out;
+}
+
+/* 
+.theme-dark {
+  background-color: #475569;
+}
+
+.theme-white {
+  background-color: rgb(199, 188, 188);
+} */
+
+.default-button {
+  background-color: #475569;
+  color: #ffffff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.default-button:hover {
+  background-color: #2e3a4e;
+}

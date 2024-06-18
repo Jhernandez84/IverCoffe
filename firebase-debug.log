@@ -1,0 +1,1254 @@
+[debug] [2024-05-12T22:06:02.032Z] ----------------------------------------------------------------------
+[debug] [2024-05-12T22:06:02.035Z] Command:       /usr/local/bin/node /usr/local/bin/firebase deploy
+[debug] [2024-05-12T22:06:02.035Z] CLI Version:   13.7.4
+[debug] [2024-05-12T22:06:02.035Z] Platform:      darwin
+[debug] [2024-05-12T22:06:02.035Z] Node Version:  v20.13.1
+[debug] [2024-05-12T22:06:02.035Z] Time:          Sun May 12 2024 18:06:02 GMT-0400 (hora estándar de Chile)
+[debug] [2024-05-12T22:06:02.035Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2024-05-12T22:06:02.092Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2024-05-12T22:06:02.092Z] > authorizing via signed-in user (jonathan.a.hernandez.m@gmail.com)
+[debug] [2024-05-12T22:06:02.092Z] [iam] checking project bdiverchile for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2024-05-12T22:06:02.094Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/bdiverchile:testIamPermissions [none]
+[debug] [2024-05-12T22:06:02.094Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/bdiverchile:testIamPermissions x-goog-quota-user=projects/bdiverchile
+[debug] [2024-05-12T22:06:02.094Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/bdiverchile:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2024-05-12T22:06:03.566Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/bdiverchile:testIamPermissions 200
+[debug] [2024-05-12T22:06:03.567Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/bdiverchile:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2024-05-12T22:06:03.567Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/bdiverchile [none]
+[debug] [2024-05-12T22:06:03.863Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/bdiverchile 200
+[debug] [2024-05-12T22:06:03.863Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/bdiverchile {"projectId":"bdiverchile","projectNumber":"774329576244","displayName":"BDIverChile","name":"projects/bdiverchile","resources":{"hostingSite":"bdiverchile","storageBucket":"bdiverchile.appspot.com","locationId":"southamerica-east1"},"state":"ACTIVE","etag":"1_9fefa6b3-44f1-446e-8871-c2c5114bf7d5"}
+[debug] [2024-05-12T22:06:05.098Z] >>> [apiv2][query] GET https://firebasehosting.googleapis.com/v1beta1/projects/bdiverchile/sites pageToken=&pageSize=10
+[debug] [2024-05-12T22:06:06.533Z] <<< [apiv2][status] GET https://firebasehosting.googleapis.com/v1beta1/projects/bdiverchile/sites 200
+[debug] [2024-05-12T22:06:06.533Z] <<< [apiv2][body] GET https://firebasehosting.googleapis.com/v1beta1/projects/bdiverchile/sites {"sites":[{"name":"projects/bdiverchile/sites/bdiverchile","defaultUrl":"https://bdiverchile.web.app","appId":"1:774329576244:web:8f17540a9293899bc55361","type":"DEFAULT_SITE"}]}
+[debug] [2024-05-12T22:06:06.533Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/-/webApps/1:774329576244:web:8f17540a9293899bc55361/config [none]
+[debug] [2024-05-12T22:06:07.322Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/-/webApps/1:774329576244:web:8f17540a9293899bc55361/config 200
+[debug] [2024-05-12T22:06:07.322Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/-/webApps/1:774329576244:web:8f17540a9293899bc55361/config {"projectId":"bdiverchile","appId":"1:774329576244:web:8f17540a9293899bc55361","storageBucket":"bdiverchile.appspot.com","locationId":"southamerica-east1","apiKey":"AIzaSyAX9Pl_z_af8JSIsJJhq0ytRvZtAsBFjaY","authDomain":"bdiverchile.firebaseapp.com","messagingSenderId":"774329576244"}
+[info] 
+   Thank you for trying our early preview of Next.js support on Firebase Hosting.
+   During the preview, support is best-effort and breaking changes can be expected. Proceed with caution.
+   The integration is known to work with Next.js version 12 - 14.0. You may encounter errors.
+
+   Documentation: https://firebase.google.com/docs/hosting/frameworks/nextjs
+   File a bug: https://github.com/firebase/firebase-tools/issues/new?template=bug_report.md
+   Submit a feature request: https://github.com/firebase/firebase-tools/issues/new?template=feature_request.md
+
+   We'd love to learn from you. Express your interest in helping us shape the future of Firebase Hosting: https://goo.gle/41enW5X
+
+[debug] [2024-05-12T22:06:10.272Z] >>> [apiv2][query] GET https://firebasehosting.googleapis.com/v1beta1/projects/bdiverchile/sites/bdiverchile [none]
+[debug] [2024-05-12T22:06:10.510Z] <<< [apiv2][status] GET https://firebasehosting.googleapis.com/v1beta1/projects/bdiverchile/sites/bdiverchile 200
+[debug] [2024-05-12T22:06:10.510Z] <<< [apiv2][body] GET https://firebasehosting.googleapis.com/v1beta1/projects/bdiverchile/sites/bdiverchile {"name":"projects/bdiverchile/sites/bdiverchile","defaultUrl":"https://bdiverchile.web.app","appId":"1:774329576244:web:8f17540a9293899bc55361","type":"DEFAULT_SITE"}
+[info]    ▲ Next.js 14.1.3
+
+[info] 
+
+[info]    Creating an optimized production build ...
+
+[info]  ✓ Compiled successfully
+
+[info]    Linting and checking validity of types ...
+
+[info] 
+./src/Components/Calendar/CalendarDayView.jsx
+112:25  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./src/Components/CalendarComponent/CalendarComponent.jsx
+33:6  Warning: React Hook useEffect has a missing dependency: 'renderCalendar'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+./src/Components/CalendarComponent/CalendarWeeklyView.jsx
+62:6  Warning: React Hook useEffect has a missing dependency: 'renderCalendar'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+./src/Components/CardsCharts/ChartBuilder.jsx
+68:6  Warning: React Hook useEffect has a missing dependency: 'advance'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+./src/Components/Charts/ChartComponent.jsx
+73:6  Warning: React Hook useEffect has missing dependencies: 'ChartId' and 'options'. Either include them or remove the dependency array.  react-hooks/exhaustive-deps
+
+./src/Components/Firebase/AuthFunctions/GetDataSample.jsx
+28:6  Warning: React Hook useEffect has a missing dependency: 'fetchData'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+./src/Components/Firebase/DataManager/LocalStorage.jsx
+12:1  Warning: Assign object to a variable before exporting as module default  import/no-anonymous-default-export
+
+./src/Components/MainSettings/MainSettings.jsx
+305:23  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./src/Components/Sidebar/SideBar.jsx
+120:13  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+140:13  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./src/Components/SimpleCard/SimpleCard.jsx
+94:15  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+94:15  Warning: img elements must have an alt prop, either with meaningful text, or an empty string for decorative images.  jsx-a11y/alt-text
+
+./src/Components/Tables/TableData.jsx
+100:23  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./src/Components/Tables/lgTableComponent/lgTableComponent.jsx
+418:23  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./src/Components/Tables/lgTableComponent/lgTableModal.jsx
+201:13  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+307:23  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./src/Components/Tables/lgTableComponent/lgTableModalQuickEntry.jsx
+120:6  Warning: React Hook useEffect has a missing dependency: 'handleValueExists'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+295:25  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./src/Components/Tables/lgTableComponent/smTableComponent.jsx
+60:21  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./src/app/home/modal2.jsx
+122:13  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./src/app/home/page.jsx
+30:17  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+37:17  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+info  - Need to disable some ESLint rules? Learn more here: https://nextjs.org/docs/basic-features/eslint#disabling-rules
+
+[info]    Collecting page data ...
+
+[info]    Generating static pages (0/15) ...
+
+[info] Initializing Firebase...
+Firebase initialized.
+Auth object: <ref *1> eR {
+  app: K {
+    _isDeleted: false,
+    _options: {
+      apiKey: 'AIzaSyAX9Pl_z_af8JSIsJJhq0ytRvZtAsBFjaY',
+      authDomain: 'bdiverchile.firebaseapp.com',
+      projectId: 'bdiverchile',
+      storageBucket: 'bdiverchile.appspot.com',
+      messagingSenderId: '774329576244',
+      appId: '1:774329576244:web:8f17540a9293899bc55361'
+    },
+    _config: { name: '[DEFAULT]', automaticDataCollectionEnabled: false },
+    _name: '[DEFAULT]',
+    _automaticDataCollectionEnabled: false,
+    _container: l { name: '[DEFAULT]', providers: [Map] }
+  },
+  heartbeatServiceProvider: o {
+    name: 'heartbeat',
+    container: l { name: '[DEFAULT]', providers: [Map] },
+    component: i {
+      name: 'heartbeat',
+      instanceFactory: [Function (anonymous)],
+      type: 'PRIVATE',
+      multipleInstances: false,
+      serviceProps: {},
+      instantiationMode: 'LAZY',
+      onInstanceCreated: null
+    },
+    instances: Map(1) { '[DEFAULT]' => [eE] },
+    instancesDeferred: Map(0) {},
+    instancesOptions: Map(1) { '[DEFAULT]' => {} },
+    onInitCallbacks: Map(0) {}
+  },
+  appCheckServiceProvider: o {
+    name: 'app-check-internal',
+    container: l { name: '[DEFAULT]', providers: [Map] },
+    component: null,
+    instances: Map(0) {},
+    instancesDeferred: Map(0) {},
+    instancesOptions: Map(0) {},
+    onInitCallbacks: Map(0) {}
+  },
+  config: {
+    apiKey: 'AIzaSyAX9Pl_z_af8JSIsJJhq0ytRvZtAsBFjaY',
+    authDomain: 'bdiverchile.firebaseapp.com',
+    clientPlatform: 'Node',
+    apiHost: 'identitytoolkit.googleapis.com',
+    tokenApiHost: 'securetoken.googleapis.com',
+    apiScheme: 'https',
+    sdkClientVersion: 'Node/JsCore/10.11.1/FirebaseCore-web'
+  },
+  currentUser: null,
+  emulatorConfig: null,
+  operations: Promise {
+    <pending>,
+    [Symbol(async_id_symbol)]: 689,
+    [Symbol(trigger_async_id_symbol)]: 682,
+    [Symbol(kResourceStore)]: {
+      headers: [Getter],
+      cookies: [Getter],
+      mutableCookies: [Getter],
+      draftMode: [Getter]
+    },
+    [Symbol(kResourceStore)]: {
+      isStaticGeneration: true,
+      urlPathname: '/_not-found',
+      pagePath: '/_not-found',
+      incrementalCache: [IncrementalCache],
+      isRevalidate: undefined,
+      isPrerendering: true,
+      fetchCache: undefined,
+      isOnDemandRevalidate: undefined,
+      isDraftMode: undefined,
+      postpone: undefined,
+      fetchMetrics: []
+    },
+    [Symbol(kResourceStore)]: {
+      destination: null,
+      flushScheduled: false,
+      resumableState: [Object],
+      renderState: [Object],
+      rootFormatContext: [Object],
+      progressiveChunkSize: 12800,
+      status: 0,
+      fatalError: null,
+      nextSegmentId: 0,
+      allPendingTasks: 2,
+      pendingRootTasks: 2,
+      completedRootSegment: null,
+      abortableTasks: [Set],
+      pingedTasks: [Array],
+      clientRenderedBoundaries: [],
+      completedBoundaries: [],
+      partialBoundaries: [],
+      trackedPostpones: null,
+      onError: [Function (anonymous)],
+      onPostpone: [Function: nS],
+      onAllReady: [Function (anonymous)],
+      onShellReady: [Function: w],
+      onShellError: [Function: _],
+      onFatalError: [Function (anonymous)],
+      formState: null
+    },
+    [Symbol(kResourceStore)]: undefined
+  },
+  authStateSubscription: eT {
+    auth: [Circular *1],
+    observer: null,
+    addObserver: [Function: bound subscribe]
+  },
+  idTokenSubscription: eT {
+    auth: [Circular *1],
+    observer: null,
+    addObserver: [Function: bound subscribe]
+  },
+  beforeStateQueue: eb { auth: [Circular *1], queue: [] },
+  redirectUser: null,
+  isProactiveRefreshEnabled: false,
+  EXPECTED_PASSWORD_POLICY_SCHEMA_VERSION: 1,
+  _canInitEmulator: true,
+  _isInitialized: false,
+  _deleted: false,
+  _initializationPromise: Promise {
+    <pending>,
+    [Symbol(async_id_symbol)]: 689,
+    [Symbol(trigger_async_id_symbol)]: 682,
+    [Symbol(kResourceStore)]: {
+      headers: [Getter],
+      cookies: [Getter],
+      mutableCookies: [Getter],
+      draftMode: [Getter]
+    },
+    [Symbol(kResourceStore)]: {
+      isStaticGeneration: true,
+      urlPathname: '/_not-found',
+      pagePath: '/_not-found',
+      incrementalCache: [IncrementalCache],
+      isRevalidate: undefined,
+      isPrerendering: true,
+      fetchCache: undefined,
+      isOnDemandRevalidate: undefined,
+      isDraftMode: undefined,
+      postpone: undefined,
+      fetchMetrics: []
+    },
+    [Symbol(kResourceStore)]: {
+      destination: null,
+      flushScheduled: false,
+      resumableState: [Object],
+      renderState: [Object],
+      rootFormatContext: [Object],
+      progressiveChunkSize: 12800,
+      status: 0,
+      fatalError: null,
+      nextSegmentId: 0,
+      allPendingTasks: 2,
+      pendingRootTasks: 2,
+      completedRootSegment: null,
+      abortableTasks: [Set],
+      pingedTasks: [Array],
+      clientRenderedBoundaries: [],
+      completedBoundaries: [],
+      partialBoundaries: [],
+      trackedPostpones: null,
+      onError: [Function (anonymous)],
+      onPostpone: [Function: nS],
+      onAllReady: [Function (anonymous)],
+      onShellReady: [Function: w],
+      onShellError: [Function: _],
+      onFatalError: [Function (anonymous)],
+      formState: null
+    },
+    [Symbol(kResourceStore)]: undefined
+  },
+  _popupRedirectResolver: null,
+  _errorFactory: _ {
+    service: 'auth',
+    serviceName: 'Firebase',
+    errors: {
+      'dependent-sdk-initialized-before-auth': 'Another Firebase SDK was initialized and is trying to use Auth before Auth is initialized. Please be sure to call `initializeAuth` or `getAuth` before starting any other Firebase SDK.'
+    }
+  },
+  _agentRecaptchaConfig: null,
+  _tenantRecaptchaConfigs: {},
+  _projectPasswordPolicy: null,
+  _tenantPasswordPolicies: {},
+  lastNotifiedUid: undefined,
+  languageCode: null,
+  tenantId: null,
+  settings: { appVerificationDisabledForTesting: false },
+  frameworks: [],
+  name: '[DEFAULT]',
+  clientVersion: 'Node/JsCore/10.11.1/FirebaseCore-web'
+}
+GoogleAuthProvider object: e6 {
+  providerId: 'google.com',
+  defaultLanguageCode: null,
+  customParameters: {},
+  scopes: [ 'profile' ]
+}
+
+[info] Initializing Firebase...
+Firebase initialized.
+Auth object: <ref *1> eR {
+  app: K {
+    _isDeleted: false,
+    _options: {
+      apiKey: 'AIzaSyAX9Pl_z_af8JSIsJJhq0ytRvZtAsBFjaY',
+      authDomain: 'bdiverchile.firebaseapp.com',
+      projectId: 'bdiverchile',
+      storageBucket: 'bdiverchile.appspot.com',
+      messagingSenderId: '774329576244',
+      appId: '1:774329576244:web:8f17540a9293899bc55361'
+    },
+    _config: { name: '[DEFAULT]', automaticDataCollectionEnabled: false },
+    _name: '[DEFAULT]',
+    _automaticDataCollectionEnabled: false,
+    _container: l { name: '[DEFAULT]', providers: [Map] }
+  },
+  heartbeatServiceProvider: o {
+    name: 'heartbeat',
+    container: l { name: '[DEFAULT]', providers: [Map] },
+    component: i {
+      name: 'heartbeat',
+      instanceFactory: [Function (anonymous)],
+      type: 'PRIVATE',
+      multipleInstances: false,
+      serviceProps: {},
+      instantiationMode: 'LAZY',
+      onInstanceCreated: null
+    },
+    instances: Map(1) { '[DEFAULT]' => [eE] },
+    instancesDeferred: Map(0) {},
+    instancesOptions: Map(1) { '[DEFAULT]' => {} },
+    onInitCallbacks: Map(0) {}
+  },
+  appCheckServiceProvider: o {
+    name: 'app-check-internal',
+    container: l { name: '[DEFAULT]', providers: [Map] },
+    component: null,
+    instances: Map(0) {},
+    instancesDeferred: Map(0) {},
+    instancesOptions: Map(0) {},
+    onInitCallbacks: Map(0) {}
+  },
+  config: {
+    apiKey: 'AIzaSyAX9Pl_z_af8JSIsJJhq0ytRvZtAsBFjaY',
+    authDomain: 'bdiverchile.firebaseapp.com',
+    clientPlatform: 'Node',
+    apiHost: 'identitytoolkit.googleapis.com',
+    tokenApiHost: 'securetoken.googleapis.com',
+    apiScheme: 'https',
+    sdkClientVersion: 'Node/JsCore/10.11.1/FirebaseCore-web'
+  },
+  currentUser: null,
+  emulatorConfig: null,
+  operations: Promise {
+    <pending>,
+    [Symbol(async_id_symbol)]: 844,
+    [Symbol(trigger_async_id_symbol)]: 837,
+    [Symbol(kResourceStore)]: {
+      headers: [Getter],
+      cookies: [Getter],
+      mutableCookies: [Getter],
+      draftMode: [Getter]
+    },
+    [Symbol(kResourceStore)]: {
+      isStaticGeneration: true,
+      urlPathname: '/home',
+      pagePath: '/home/page',
+      incrementalCache: [IncrementalCache],
+      isRevalidate: undefined,
+      isPrerendering: true,
+      fetchCache: undefined,
+      isOnDemandRevalidate: undefined,
+      isDraftMode: undefined,
+      postpone: undefined,
+      fetchMetrics: []
+    },
+    [Symbol(kResourceStore)]: {
+      destination: null,
+      flushScheduled: false,
+      resumableState: [Object],
+      renderState: [Object],
+      rootFormatContext: [Object],
+      progressiveChunkSize: 12800,
+      status: 0,
+      fatalError: null,
+      nextSegmentId: 0,
+      allPendingTasks: 2,
+      pendingRootTasks: 2,
+      completedRootSegment: null,
+      abortableTasks: [Set],
+      pingedTasks: [Array],
+      clientRenderedBoundaries: [],
+      completedBoundaries: [],
+      partialBoundaries: [],
+      trackedPostpones: null,
+      onError: [Function (anonymous)],
+      onPostpone: [Function: nS],
+      onAllReady: [Function (anonymous)],
+      onShellReady: [Function: w],
+      onShellError: [Function: _],
+      onFatalError: [Function (anonymous)],
+      formState: null
+    },
+    [Symbol(kResourceStore)]: undefined
+  },
+  authStateSubscription: eT {
+    auth: [Circular *1],
+    observer: null,
+    addObserver: [Function: bound subscribe]
+  },
+  idTokenSubscription: eT {
+    auth: [Circular *1],
+    observer: null,
+    addObserver: [Function: bound subscribe]
+  },
+  beforeStateQueue: eb { auth: [Circular *1], queue: [] },
+  redirectUser: null,
+  isProactiveRefreshEnabled: false,
+  EXPECTED_PASSWORD_POLICY_SCHEMA_VERSION: 1,
+  _canInitEmulator: true,
+  _isInitialized: false,
+  _deleted: false,
+  _initializationPromise: Promise {
+    <pending>,
+    [Symbol(async_id_symbol)]: 844,
+    [Symbol(trigger_async_id_symbol)]: 837,
+    [Symbol(kResourceStore)]: {
+      headers: [Getter],
+      cookies: [Getter],
+      mutableCookies: [Getter],
+      draftMode: [Getter]
+    },
+    [Symbol(kResourceStore)]: {
+      isStaticGeneration: true,
+      urlPathname: '/home',
+      pagePath: '/home/page',
+      incrementalCache: [IncrementalCache],
+      isRevalidate: undefined,
+      isPrerendering: true,
+      fetchCache: undefined,
+      isOnDemandRevalidate: undefined,
+      isDraftMode: undefined,
+      postpone: undefined,
+      fetchMetrics: []
+    },
+    [Symbol(kResourceStore)]: {
+      destination: null,
+      flushScheduled: false,
+      resumableState: [Object],
+      renderState: [Object],
+      rootFormatContext: [Object],
+      progressiveChunkSize: 12800,
+      status: 0,
+      fatalError: null,
+      nextSegmentId: 0,
+      allPendingTasks: 2,
+      pendingRootTasks: 2,
+      completedRootSegment: null,
+      abortableTasks: [Set],
+      pingedTasks: [Array],
+      clientRenderedBoundaries: [],
+      completedBoundaries: [],
+      partialBoundaries: [],
+      trackedPostpones: null,
+      onError: [Function (anonymous)],
+      onPostpone: [Function: nS],
+      onAllReady: [Function (anonymous)],
+      onShellReady: [Function: w],
+      onShellError: [Function: _],
+      onFatalError: [Function (anonymous)],
+      formState: null
+    },
+    [Symbol(kResourceStore)]: undefined
+  },
+  _popupRedirectResolver: null,
+  _errorFactory: _ {
+    service: 'auth',
+    serviceName: 'Firebase',
+    errors: {
+      'dependent-sdk-initialized-before-auth': 'Another Firebase SDK was initialized and is trying to use Auth before Auth is initialized. Please be sure to call `initializeAuth` or `getAuth` before starting any other Firebase SDK.'
+    }
+  },
+  _agentRecaptchaConfig: null,
+  _tenantRecaptchaConfigs: {},
+  _projectPasswordPolicy: null,
+  _tenantPasswordPolicies: {},
+  lastNotifiedUid: undefined,
+  languageCode: null,
+  tenantId: null,
+  settings: { appVerificationDisabledForTesting: false },
+  frameworks: [],
+  name: '[DEFAULT]',
+  clientVersion: 'Node/JsCore/10.11.1/FirebaseCore-web'
+}
+GoogleAuthProvider object: e6 {
+  providerId: 'google.com',
+  defaultLanguageCode: null,
+  customParameters: {},
+  scopes: [ 'profile' ]
+}
+
+[info] Initializing Firebase...
+Firebase initialized.
+Auth object: <ref *1> eR {
+  app: K {
+    _isDeleted: false,
+    _options: {
+      apiKey: 'AIzaSyAX9Pl_z_af8JSIsJJhq0ytRvZtAsBFjaY',
+      authDomain: 'bdiverchile.firebaseapp.com',
+      projectId: 'bdiverchile',
+      storageBucket: 'bdiverchile.appspot.com',
+      messagingSenderId: '774329576244',
+      appId: '1:774329576244:web:8f17540a9293899bc55361'
+    },
+    _config: { name: '[DEFAULT]', automaticDataCollectionEnabled: false },
+    _name: '[DEFAULT]',
+    _automaticDataCollectionEnabled: false,
+    _container: l { name: '[DEFAULT]', providers: [Map] }
+  },
+  heartbeatServiceProvider: o {
+    name: 'heartbeat',
+    container: l { name: '[DEFAULT]', providers: [Map] },
+    component: i {
+      name: 'heartbeat',
+      instanceFactory: [Function (anonymous)],
+      type: 'PRIVATE',
+      multipleInstances: false,
+      serviceProps: {},
+      instantiationMode: 'LAZY',
+      onInstanceCreated: null
+    },
+    instances: Map(1) { '[DEFAULT]' => [eE] },
+    instancesDeferred: Map(0) {},
+    instancesOptions: Map(1) { '[DEFAULT]' => {} },
+    onInitCallbacks: Map(0) {}
+  },
+  appCheckServiceProvider: o {
+    name: 'app-check-internal',
+    container: l { name: '[DEFAULT]', providers: [Map] },
+    component: null,
+    instances: Map(0) {},
+    instancesDeferred: Map(0) {},
+    instancesOptions: Map(0) {},
+    onInitCallbacks: Map(0) {}
+  },
+  config: {
+    apiKey: 'AIzaSyAX9Pl_z_af8JSIsJJhq0ytRvZtAsBFjaY',
+    authDomain: 'bdiverchile.firebaseapp.com',
+    clientPlatform: 'Node',
+    apiHost: 'identitytoolkit.googleapis.com',
+    tokenApiHost: 'securetoken.googleapis.com',
+    apiScheme: 'https',
+    sdkClientVersion: 'Node/JsCore/10.11.1/FirebaseCore-web'
+  },
+  currentUser: null,
+  emulatorConfig: null,
+  operations: Promise {
+    <pending>,
+    [Symbol(async_id_symbol)]: 774,
+    [Symbol(trigger_async_id_symbol)]: 767,
+    [Symbol(kResourceStore)]: {
+      headers: [Getter],
+      cookies: [Getter],
+      mutableCookies: [Getter],
+      draftMode: [Getter]
+    },
+    [Symbol(kResourceStore)]: {
+      isStaticGeneration: true,
+      urlPathname: '/',
+      pagePath: '/page',
+      incrementalCache: [IncrementalCache],
+      isRevalidate: undefined,
+      isPrerendering: true,
+      fetchCache: undefined,
+      isOnDemandRevalidate: undefined,
+      isDraftMode: undefined,
+      postpone: undefined,
+      fetchMetrics: []
+    },
+    [Symbol(kResourceStore)]: {
+      destination: null,
+      flushScheduled: false,
+      resumableState: [Object],
+      renderState: [Object],
+      rootFormatContext: [Object],
+      progressiveChunkSize: 12800,
+      status: 0,
+      fatalError: null,
+      nextSegmentId: 0,
+      allPendingTasks: 2,
+      pendingRootTasks: 2,
+      completedRootSegment: null,
+      abortableTasks: [Set],
+      pingedTasks: [Array],
+      clientRenderedBoundaries: [],
+      completedBoundaries: [],
+      partialBoundaries: [],
+      trackedPostpones: null,
+      onError: [Function (anonymous)],
+      onPostpone: [Function: nS],
+      onAllReady: [Function (anonymous)],
+      onShellReady: [Function: w],
+      onShellError: [Function: _],
+      onFatalError: [Function (anonymous)],
+      formState: null
+    },
+    [Symbol(kResourceStore)]: undefined
+  },
+  authStateSubscription: eT {
+    auth: [Circular *1],
+    observer: null,
+    addObserver: [Function: bound subscribe]
+  },
+  idTokenSubscription: eT {
+    auth: [Circular *1],
+    observer: null,
+    addObserver: [Function: bound subscribe]
+  },
+  beforeStateQueue: eb { auth: [Circular *1], queue: [] },
+  redirectUser: null,
+  isProactiveRefreshEnabled: false,
+  EXPECTED_PASSWORD_POLICY_SCHEMA_VERSION: 1,
+  _canInitEmulator: true,
+  _isInitialized: false,
+  _deleted: false,
+  _initializationPromise: Promise {
+    <pending>,
+    [Symbol(async_id_symbol)]: 774,
+    [Symbol(trigger_async_id_symbol)]: 767,
+    [Symbol(kResourceStore)]: {
+      headers: [Getter],
+      cookies: [Getter],
+      mutableCookies: [Getter],
+      draftMode: [Getter]
+    },
+    [Symbol(kResourceStore)]: {
+      isStaticGeneration: true,
+      urlPathname: '/',
+      pagePath: '/page',
+      incrementalCache: [IncrementalCache],
+      isRevalidate: undefined,
+      isPrerendering: true,
+      fetchCache: undefined,
+      isOnDemandRevalidate: undefined,
+      isDraftMode: undefined,
+      postpone: undefined,
+      fetchMetrics: []
+    },
+    [Symbol(kResourceStore)]: {
+      destination: null,
+      flushScheduled: false,
+      resumableState: [Object],
+      renderState: [Object],
+      rootFormatContext: [Object],
+      progressiveChunkSize: 12800,
+      status: 0,
+      fatalError: null,
+      nextSegmentId: 0,
+      allPendingTasks: 2,
+      pendingRootTasks: 2,
+      completedRootSegment: null,
+      abortableTasks: [Set],
+      pingedTasks: [Array],
+      clientRenderedBoundaries: [],
+      completedBoundaries: [],
+      partialBoundaries: [],
+      trackedPostpones: null,
+      onError: [Function (anonymous)],
+      onPostpone: [Function: nS],
+      onAllReady: [Function (anonymous)],
+      onShellReady: [Function: w],
+      onShellError: [Function: _],
+      onFatalError: [Function (anonymous)],
+      formState: null
+    },
+    [Symbol(kResourceStore)]: undefined
+  },
+  _popupRedirectResolver: null,
+  _errorFactory: _ {
+    service: 'auth',
+    serviceName: 'Firebase',
+    errors: {
+      'dependent-sdk-initialized-before-auth': 'Another Firebase SDK was initialized and is trying to use Auth before Auth is initialized. Please be sure to call `initializeAuth` or `getAuth` before starting any other Firebase SDK.'
+    }
+  },
+  _agentRecaptchaConfig: null,
+  _tenantRecaptchaConfigs: {},
+  _projectPasswordPolicy: null,
+  _tenantPasswordPolicies: {},
+  lastNotifiedUid: undefined,
+  languageCode: null,
+  tenantId: null,
+  settings: { appVerificationDisabledForTesting: false },
+  frameworks: [],
+  name: '[DEFAULT]',
+  clientVersion: 'Node/JsCore/10.11.1/FirebaseCore-web'
+}
+GoogleAuthProvider object: e6 {
+  providerId: 'google.com',
+  defaultLanguageCode: null,
+  customParameters: {},
+  scopes: [ 'profile' ]
+}
+
+[info] Initializing Firebase...
+Firebase initialized.
+Auth object: <ref *1> eR {
+  app: K {
+    _isDeleted: false,
+    _options: {
+      apiKey: 'AIzaSyAX9Pl_z_af8JSIsJJhq0ytRvZtAsBFjaY',
+      authDomain: 'bdiverchile.firebaseapp.com',
+      projectId: 'bdiverchile',
+      storageBucket: 'bdiverchile.appspot.com',
+      messagingSenderId: '774329576244',
+      appId: '1:774329576244:web:8f17540a9293899bc55361'
+    },
+    _config: { name: '[DEFAULT]', automaticDataCollectionEnabled: false },
+    _name: '[DEFAULT]',
+    _automaticDataCollectionEnabled: false,
+    _container: l { name: '[DEFAULT]', providers: [Map] }
+  },
+  heartbeatServiceProvider: o {
+    name: 'heartbeat',
+    container: l { name: '[DEFAULT]', providers: [Map] },
+    component: i {
+      name: 'heartbeat',
+      instanceFactory: [Function (anonymous)],
+      type: 'PRIVATE',
+      multipleInstances: false,
+      serviceProps: {},
+      instantiationMode: 'LAZY',
+      onInstanceCreated: null
+    },
+    instances: Map(1) { '[DEFAULT]' => [eE] },
+    instancesDeferred: Map(0) {},
+    instancesOptions: Map(1) { '[DEFAULT]' => {} },
+    onInitCallbacks: Map(0) {}
+  },
+  appCheckServiceProvider: o {
+    name: 'app-check-internal',
+    container: l { name: '[DEFAULT]', providers: [Map] },
+    component: null,
+    instances: Map(0) {},
+    instancesDeferred: Map(0) {},
+    instancesOptions: Map(0) {},
+    onInitCallbacks: Map(0) {}
+  },
+  config: {
+    apiKey: 'AIzaSyAX9Pl_z_af8JSIsJJhq0ytRvZtAsBFjaY',
+    authDomain: 'bdiverchile.firebaseapp.com',
+    clientPlatform: 'Node',
+    apiHost: 'identitytoolkit.googleapis.com',
+    tokenApiHost: 'securetoken.googleapis.com',
+    apiScheme: 'https',
+    sdkClientVersion: 'Node/JsCore/10.11.1/FirebaseCore-web'
+  },
+  currentUser: null,
+  emulatorConfig: null,
+  operations: Promise {
+    <pending>,
+    [Symbol(async_id_symbol)]: 779,
+    [Symbol(trigger_async_id_symbol)]: 772,
+    [Symbol(kResourceStore)]: {
+      headers: [Getter],
+      cookies: [Getter],
+      mutableCookies: [Getter],
+      draftMode: [Getter]
+    },
+    [Symbol(kResourceStore)]: {
+      isStaticGeneration: true,
+      urlPathname: '/account',
+      pagePath: '/account/page',
+      incrementalCache: [IncrementalCache],
+      isRevalidate: undefined,
+      isPrerendering: true,
+      fetchCache: undefined,
+      isOnDemandRevalidate: undefined,
+      isDraftMode: undefined,
+      postpone: undefined,
+      fetchMetrics: []
+    },
+    [Symbol(kResourceStore)]: {
+      destination: null,
+      flushScheduled: false,
+      resumableState: [Object],
+      renderState: [Object],
+      rootFormatContext: [Object],
+      progressiveChunkSize: 12800,
+      status: 0,
+      fatalError: null,
+      nextSegmentId: 0,
+      allPendingTasks: 2,
+      pendingRootTasks: 2,
+      completedRootSegment: null,
+      abortableTasks: [Set],
+      pingedTasks: [Array],
+      clientRenderedBoundaries: [],
+      completedBoundaries: [],
+      partialBoundaries: [],
+      trackedPostpones: null,
+      onError: [Function (anonymous)],
+      onPostpone: [Function: nS],
+      onAllReady: [Function (anonymous)],
+      onShellReady: [Function: w],
+      onShellError: [Function: _],
+      onFatalError: [Function (anonymous)],
+      formState: null
+    },
+    [Symbol(kResourceStore)]: undefined
+  },
+  authStateSubscription: eT {
+    auth: [Circular *1],
+    observer: null,
+    addObserver: [Function: bound subscribe]
+  },
+  idTokenSubscription: eT {
+    auth: [Circular *1],
+    observer: null,
+    addObserver: [Function: bound subscribe]
+  },
+  beforeStateQueue: eb { auth: [Circular *1], queue: [] },
+  redirectUser: null,
+  isProactiveRefreshEnabled: false,
+  EXPECTED_PASSWORD_POLICY_SCHEMA_VERSION: 1,
+  _canInitEmulator: true,
+  _isInitialized: false,
+  _deleted: false,
+  _initializationPromise: Promise {
+    <pending>,
+    [Symbol(async_id_symbol)]: 779,
+    [Symbol(trigger_async_id_symbol)]: 772,
+    [Symbol(kResourceStore)]: {
+      headers: [Getter],
+      cookies: [Getter],
+      mutableCookies: [Getter],
+      draftMode: [Getter]
+    },
+    [Symbol(kResourceStore)]: {
+      isStaticGeneration: true,
+      urlPathname: '/account',
+      pagePath: '/account/page',
+      incrementalCache: [IncrementalCache],
+      isRevalidate: undefined,
+      isPrerendering: true,
+      fetchCache: undefined,
+      isOnDemandRevalidate: undefined,
+      isDraftMode: undefined,
+      postpone: undefined,
+      fetchMetrics: []
+    },
+    [Symbol(kResourceStore)]: {
+      destination: null,
+      flushScheduled: false,
+      resumableState: [Object],
+      renderState: [Object],
+      rootFormatContext: [Object],
+      progressiveChunkSize: 12800,
+      status: 0,
+      fatalError: null,
+      nextSegmentId: 0,
+      allPendingTasks: 2,
+      pendingRootTasks: 2,
+      completedRootSegment: null,
+      abortableTasks: [Set],
+      pingedTasks: [Array],
+      clientRenderedBoundaries: [],
+      completedBoundaries: [],
+      partialBoundaries: [],
+      trackedPostpones: null,
+      onError: [Function (anonymous)],
+      onPostpone: [Function: nS],
+      onAllReady: [Function (anonymous)],
+      onShellReady: [Function: w],
+      onShellError: [Function: _],
+      onFatalError: [Function (anonymous)],
+      formState: null
+    },
+    [Symbol(kResourceStore)]: undefined
+  },
+  _popupRedirectResolver: null,
+  _errorFactory: _ {
+    service: 'auth',
+    serviceName: 'Firebase',
+    errors: {
+      'dependent-sdk-initialized-before-auth': 'Another Firebase SDK was initialized and is trying to use Auth before Auth is initialized. Please be sure to call `initializeAuth` or `getAuth` before starting any other Firebase SDK.'
+    }
+  },
+  _agentRecaptchaConfig: null,
+  _tenantRecaptchaConfigs: {},
+  _projectPasswordPolicy: null,
+  _tenantPasswordPolicies: {},
+  lastNotifiedUid: undefined,
+  languageCode: null,
+  tenantId: null,
+  settings: { appVerificationDisabledForTesting: false },
+  frameworks: [],
+  name: '[DEFAULT]',
+  clientVersion: 'Node/JsCore/10.11.1/FirebaseCore-web'
+}
+GoogleAuthProvider object: e6 {
+  providerId: 'google.com',
+  defaultLanguageCode: null,
+  customParameters: {},
+  scopes: [ 'profile' ]
+}
+
+[info]    Generating static pages (3/15) 
+
+[info] Initializing Firebase...
+Firebase initialized.
+Auth object: <ref *1> eR {
+  app: K {
+    _isDeleted: false,
+    _options: {
+      apiKey: 'AIzaSyAX9Pl_z_af8JSIsJJhq0ytRvZtAsBFjaY',
+      authDomain: 'bdiverchile.firebaseapp.com',
+      projectId: 'bdiverchile',
+      storageBucket: 'bdiverchile.appspot.com',
+      messagingSenderId: '774329576244',
+      appId: '1:774329576244:web:8f17540a9293899bc55361'
+    },
+    _config: { name: '[DEFAULT]', automaticDataCollectionEnabled: false },
+    _name: '[DEFAULT]',
+    _automaticDataCollectionEnabled: false,
+    _container: l { name: '[DEFAULT]', providers: [Map] }
+  },
+  heartbeatServiceProvider: o {
+    name: 'heartbeat',
+    container: l { name: '[DEFAULT]', providers: [Map] },
+    component: i {
+      name: 'heartbeat',
+      instanceFactory: [Function (anonymous)],
+      type: 'PRIVATE',
+      multipleInstances: false,
+      serviceProps: {},
+      instantiationMode: 'LAZY',
+      onInstanceCreated: null
+    },
+    instances: Map(1) { '[DEFAULT]' => [eE] },
+    instancesDeferred: Map(0) {},
+    instancesOptions: Map(1) { '[DEFAULT]' => {} },
+    onInitCallbacks: Map(0) {}
+  },
+  appCheckServiceProvider: o {
+    name: 'app-check-internal',
+    container: l { name: '[DEFAULT]', providers: [Map] },
+    component: null,
+    instances: Map(0) {},
+    instancesDeferred: Map(0) {},
+    instancesOptions: Map(0) {},
+    onInitCallbacks: Map(0) {}
+  },
+  config: {
+    apiKey: 'AIzaSyAX9Pl_z_af8JSIsJJhq0ytRvZtAsBFjaY',
+    authDomain: 'bdiverchile.firebaseapp.com',
+    clientPlatform: 'Node',
+    apiHost: 'identitytoolkit.googleapis.com',
+    tokenApiHost: 'securetoken.googleapis.com',
+    apiScheme: 'https',
+    sdkClientVersion: 'Node/JsCore/10.11.1/FirebaseCore-web'
+  },
+  currentUser: null,
+  emulatorConfig: null,
+  operations: Promise {
+    <pending>,
+    [Symbol(async_id_symbol)]: 884,
+    [Symbol(trigger_async_id_symbol)]: 877,
+    [Symbol(kResourceStore)]: undefined,
+    [Symbol(kResourceStore)]: {
+      headers: [Getter],
+      cookies: [Getter],
+      mutableCookies: [Getter],
+      draftMode: [Getter]
+    },
+    [Symbol(kResourceStore)]: {
+      isStaticGeneration: true,
+      urlPathname: '/redes',
+      pagePath: '/redes/page',
+      incrementalCache: [IncrementalCache],
+      isRevalidate: undefined,
+      isPrerendering: true,
+      fetchCache: undefined,
+      isOnDemandRevalidate: undefined,
+      isDraftMode: undefined,
+      postpone: undefined,
+      fetchMetrics: []
+    },
+    [Symbol(kResourceStore)]: {
+      destination: null,
+      flushScheduled: false,
+      resumableState: [Object],
+      renderState: [Object],
+      rootFormatContext: [Object],
+      progressiveChunkSize: 12800,
+      status: 0,
+      fatalError: null,
+      nextSegmentId: 0,
+      allPendingTasks: 1,
+      pendingRootTasks: 1,
+      completedRootSegment: null,
+      abortableTasks: [Set],
+      pingedTasks: [],
+      clientRenderedBoundaries: [],
+      completedBoundaries: [],
+      partialBoundaries: [],
+      trackedPostpones: null,
+      onError: [Function (anonymous)],
+      onPostpone: [Function: nS],
+      onAllReady: [Function (anonymous)],
+      onShellReady: [Function: w],
+      onShellError: [Function: _],
+      onFatalError: [Function (anonymous)],
+      formState: null
+    },
+    [Symbol(kResourceStore)]: undefined
+  },
+  authStateSubscription: eT {
+    auth: [Circular *1],
+    observer: null,
+    addObserver: [Function: bound subscribe]
+  },
+  idTokenSubscription: eT {
+    auth: [Circular *1],
+    observer: null,
+    addObserver: [Function: bound subscribe]
+  },
+  beforeStateQueue: eb { auth: [Circular *1], queue: [] },
+  redirectUser: null,
+  isProactiveRefreshEnabled: false,
+  EXPECTED_PASSWORD_POLICY_SCHEMA_VERSION: 1,
+  _canInitEmulator: true,
+  _isInitialized: false,
+  _deleted: false,
+  _initializationPromise: Promise {
+    <pending>,
+    [Symbol(async_id_symbol)]: 884,
+    [Symbol(trigger_async_id_symbol)]: 877,
+    [Symbol(kResourceStore)]: undefined,
+    [Symbol(kResourceStore)]: {
+      headers: [Getter],
+      cookies: [Getter],
+      mutableCookies: [Getter],
+      draftMode: [Getter]
+    },
+    [Symbol(kResourceStore)]: {
+      isStaticGeneration: true,
+      urlPathname: '/redes',
+      pagePath: '/redes/page',
+      incrementalCache: [IncrementalCache],
+      isRevalidate: undefined,
+      isPrerendering: true,
+      fetchCache: undefined,
+      isOnDemandRevalidate: undefined,
+      isDraftMode: undefined,
+      postpone: undefined,
+      fetchMetrics: []
+    },
+    [Symbol(kResourceStore)]: {
+      destination: null,
+      flushScheduled: false,
+      resumableState: [Object],
+      renderState: [Object],
+      rootFormatContext: [Object],
+      progressiveChunkSize: 12800,
+      status: 0,
+      fatalError: null,
+      nextSegmentId: 0,
+      allPendingTasks: 1,
+      pendingRootTasks: 1,
+      completedRootSegment: null,
+      abortableTasks: [Set],
+      pingedTasks: [],
+      clientRenderedBoundaries: [],
+      completedBoundaries: [],
+      partialBoundaries: [],
+      trackedPostpones: null,
+      onError: [Function (anonymous)],
+      onPostpone: [Function: nS],
+      onAllReady: [Function (anonymous)],
+      onShellReady: [Function: w],
+      onShellError: [Function: _],
+      onFatalError: [Function (anonymous)],
+      formState: null
+    },
+    [Symbol(kResourceStore)]: undefined
+  },
+  _popupRedirectResolver: null,
+  _errorFactory: _ {
+    service: 'auth',
+    serviceName: 'Firebase',
+    errors: {
+      'dependent-sdk-initialized-before-auth': 'Another Firebase SDK was initialized and is trying to use Auth before Auth is initialized. Please be sure to call `initializeAuth` or `getAuth` before starting any other Firebase SDK.'
+    }
+  },
+  _agentRecaptchaConfig: null,
+  _tenantRecaptchaConfigs: {},
+  _projectPasswordPolicy: null,
+  _tenantPasswordPolicies: {},
+  lastNotifiedUid: undefined,
+  languageCode: null,
+  tenantId: null,
+  settings: { appVerificationDisabledForTesting: false },
+  frameworks: [],
+  name: '[DEFAULT]',
+  clientVersion: 'Node/JsCore/10.11.1/FirebaseCore-web'
+}
+GoogleAuthProvider object: e6 {
+  providerId: 'google.com',
+  defaultLanguageCode: null,
+  customParameters: {},
+  scopes: [ 'profile' ]
+}
+
+[info]    Generating static pages (7/15) 
+
+[info] ReferenceError: window is not defined
+    at 60169 (/Users/jhernandez/Desktop/Apps/bdiver2/.next/server/chunks/169.js:1:389585)
+    at t (/Users/jhernandez/Desktop/Apps/bdiver2/.next/server/webpack-runtime.js:1:128)
+    at 84442 (/Users/jhernandez/Desktop/Apps/bdiver2/.next/server/app/dashboard/page.js:1:5342)
+    at t (/Users/jhernandez/Desktop/Apps/bdiver2/.next/server/webpack-runtime.js:1:128)
+    at 28499 (/Users/jhernandez/Desktop/Apps/bdiver2/.next/server/app/dashboard/page.js:1:9789)
+    at t (/Users/jhernandez/Desktop/Apps/bdiver2/.next/server/webpack-runtime.js:1:128)
+    at 87650 (/Users/jhernandez/Desktop/Apps/bdiver2/.next/server/app/dashboard/page.js:1:13911)
+    at t (/Users/jhernandez/Desktop/Apps/bdiver2/.next/server/webpack-runtime.js:1:128)
+    at F (/Users/jhernandez/Desktop/Apps/bdiver2/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:94693)
+    at /Users/jhernandez/Desktop/Apps/bdiver2/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:97108
+
+Error occurred prerendering page "/dashboard". Read more: https://nextjs.org/docs/messages/prerender-error
+
+ReferenceError: window is not defined
+    at 60169 (/Users/jhernandez/Desktop/Apps/bdiver2/.next/server/chunks/169.js:1:389585)
+    at t (/Users/jhernandez/Desktop/Apps/bdiver2/.next/server/webpack-runtime.js:1:128)
+    at 84442 (/Users/jhernandez/Desktop/Apps/bdiver2/.next/server/app/dashboard/page.js:1:5342)
+    at t (/Users/jhernandez/Desktop/Apps/bdiver2/.next/server/webpack-runtime.js:1:128)
+    at 28499 (/Users/jhernandez/Desktop/Apps/bdiver2/.next/server/app/dashboard/page.js:1:9789)
+    at t (/Users/jhernandez/Desktop/Apps/bdiver2/.next/server/webpack-runtime.js:1:128)
+    at 87650 (/Users/jhernandez/Desktop/Apps/bdiver2/.next/server/app/dashboard/page.js:1:13911)
+    at t (/Users/jhernandez/Desktop/Apps/bdiver2/.next/server/webpack-runtime.js:1:128)
+    at F (/Users/jhernandez/Desktop/Apps/bdiver2/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:94693)
+    at /Users/jhernandez/Desktop/Apps/bdiver2/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:97108
+
+[info] ReferenceError: window is not defined
+    at 60169 (/Users/jhernandez/Desktop/Apps/bdiver2/.next/server/chunks/169.js:1:389585)
+    at t (/Users/jhernandez/Desktop/Apps/bdiver2/.next/server/webpack-runtime.js:1:128)
+    at 98611 (/Users/jhernandez/Desktop/Apps/bdiver2/.next/server/chunks/945.js:1:137)
+    at t (/Users/jhernandez/Desktop/Apps/bdiver2/.next/server/webpack-runtime.js:1:128)
+    at 30595 (/Users/jhernandez/Desktop/Apps/bdiver2/.next/server/app/usersview/page.js:1:4265)
+    at t (/Users/jhernandez/Desktop/Apps/bdiver2/.next/server/webpack-runtime.js:1:128)
+    at F (/Users/jhernandez/Desktop/Apps/bdiver2/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:94693)
+    at /Users/jhernandez/Desktop/Apps/bdiver2/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:97108
+    at W._fromJSON (/Users/jhernandez/Desktop/Apps/bdiver2/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:97546)
+    at JSON.parse (<anonymous>)
+
+[info] ReferenceError: window is not defined
+    at 60169 (/Users/jhernandez/Desktop/Apps/bdiver2/.next/server/chunks/169.js:1:389585)
+    at t (/Users/jhernandez/Desktop/Apps/bdiver2/.next/server/webpack-runtime.js:1:128)
+    at 84442 (/Users/jhernandez/Desktop/Apps/bdiver2/.next/server/app/usersettings/page.js:1:5181)
+    at t (/Users/jhernandez/Desktop/Apps/bdiver2/.next/server/webpack-runtime.js:1:128)
+    at 28499 (/Users/jhernandez/Desktop/Apps/bdiver2/.next/server/app/usersettings/page.js:1:8319)
+    at t (/Users/jhernandez/Desktop/Apps/bdiver2/.next/server/webpack-runtime.js:1:128)
+    at 75330 (/Users/jhernandez/Desktop/Apps/bdiver2/.next/server/app/usersettings/page.js:1:9656)
+    at t (/Users/jhernandez/Desktop/Apps/bdiver2/.next/server/webpack-runtime.js:1:128)
+    at F (/Users/jhernandez/Desktop/Apps/bdiver2/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:94693)
+    at /Users/jhernandez/Desktop/Apps/bdiver2/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:97108
+
+Error occurred prerendering page "/usersettings". Read more: https://nextjs.org/docs/messages/prerender-error
+
+ReferenceError: window is not defined
+    at 60169 (/Users/jhernandez/Desktop/Apps/bdiver2/.next/server/chunks/169.js:1:389585)
+    at t (/Users/jhernandez/Desktop/Apps/bdiver2/.next/server/webpack-runtime.js:1:128)
+    at 84442 (/Users/jhernandez/Desktop/Apps/bdiver2/.next/server/app/usersettings/page.js:1:5181)
+    at t (/Users/jhernandez/Desktop/Apps/bdiver2/.next/server/webpack-runtime.js:1:128)
+    at 28499 (/Users/jhernandez/Desktop/Apps/bdiver2/.next/server/app/usersettings/page.js:1:8319)
+    at t (/Users/jhernandez/Desktop/Apps/bdiver2/.next/server/webpack-runtime.js:1:128)
+    at 75330 (/Users/jhernandez/Desktop/Apps/bdiver2/.next/server/app/usersettings/page.js:1:9656)
+    at t (/Users/jhernandez/Desktop/Apps/bdiver2/.next/server/webpack-runtime.js:1:128)
+    at F (/Users/jhernandez/Desktop/Apps/bdiver2/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:94693)
+    at /Users/jhernandez/Desktop/Apps/bdiver2/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:97108
+
+[info] ReferenceError: window is not defined
+    at 60169 (/Users/jhernandez/Desktop/Apps/bdiver2/.next/server/chunks/169.js:1:389585)
+    at t (/Users/jhernandez/Desktop/Apps/bdiver2/.next/server/webpack-runtime.js:1:128)
+    at 98611 (/Users/jhernandez/Desktop/Apps/bdiver2/.next/server/chunks/945.js:1:137)
+    at t (/Users/jhernandez/Desktop/Apps/bdiver2/.next/server/webpack-runtime.js:1:128)
+    at 7945 (/Users/jhernandez/Desktop/Apps/bdiver2/.next/server/chunks/945.js:1:10926)
+    at t (/Users/jhernandez/Desktop/Apps/bdiver2/.next/server/webpack-runtime.js:1:128)
+    at 96306 (/Users/jhernandez/Desktop/Apps/bdiver2/.next/server/app/pagebuilder/page.js:1:3838)
+    at t (/Users/jhernandez/Desktop/Apps/bdiver2/.next/server/webpack-runtime.js:1:128)
+    at F (/Users/jhernandez/Desktop/Apps/bdiver2/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:94693)
+    at /Users/jhernandez/Desktop/Apps/bdiver2/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:97108
+
+[info]    Generating static pages (11/15) 
+
+[info] 
+Error occurred prerendering page "/usersview". Read more: https://nextjs.org/docs/messages/prerender-error
+
+ReferenceError: window is not defined
+    at 60169 (/Users/jhernandez/Desktop/Apps/bdiver2/.next/server/chunks/169.js:1:389585)
+    at t (/Users/jhernandez/Desktop/Apps/bdiver2/.next/server/webpack-runtime.js:1:128)
+    at 98611 (/Users/jhernandez/Desktop/Apps/bdiver2/.next/server/chunks/945.js:1:137)
+    at t (/Users/jhernandez/Desktop/Apps/bdiver2/.next/server/webpack-runtime.js:1:128)
+    at 30595 (/Users/jhernandez/Desktop/Apps/bdiver2/.next/server/app/usersview/page.js:1:4265)
+    at t (/Users/jhernandez/Desktop/Apps/bdiver2/.next/server/webpack-runtime.js:1:128)
+    at F (/Users/jhernandez/Desktop/Apps/bdiver2/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:94693)
+    at /Users/jhernandez/Desktop/Apps/bdiver2/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:97108
+    at W._fromJSON (/Users/jhernandez/Desktop/Apps/bdiver2/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:97546)
+    at JSON.parse (<anonymous>)
+
+[info] 
+Error occurred prerendering page "/pagebuilder". Read more: https://nextjs.org/docs/messages/prerender-error
+
+ReferenceError: window is not defined
+    at 60169 (/Users/jhernandez/Desktop/Apps/bdiver2/.next/server/chunks/169.js:1:389585)
+    at t (/Users/jhernandez/Desktop/Apps/bdiver2/.next/server/webpack-runtime.js:1:128)
+    at 98611 (/Users/jhernandez/Desktop/Apps/bdiver2/.next/server/chunks/945.js:1:137)
+    at t (/Users/jhernandez/Desktop/Apps/bdiver2/.next/server/webpack-runtime.js:1:128)
+    at 7945 (/Users/jhernandez/Desktop/Apps/bdiver2/.next/server/chunks/945.js:1:10926)
+    at t (/Users/jhernandez/Desktop/Apps/bdiver2/.next/server/webpack-runtime.js:1:128)
+    at 96306 (/Users/jhernandez/Desktop/Apps/bdiver2/.next/server/app/pagebuilder/page.js:1:3838)
+    at t (/Users/jhernandez/Desktop/Apps/bdiver2/.next/server/webpack-runtime.js:1:128)
+    at F (/Users/jhernandez/Desktop/Apps/bdiver2/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:94693)
+    at /Users/jhernandez/Desktop/Apps/bdiver2/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:97108
+
+[info]  ✓ Generating static pages (15/15) 
+
+[info] 
+
+[info] > Export encountered errors on following paths:
+	/dashboard/page: /dashboard
+	/pagebuilder/page: /pagebuilder
+	/usersettings/page: /usersettings
+	/usersview/page: /usersview
+
+[debug] [2024-05-12T22:06:18.801Z] Error: ENOENT: no such file or directory, open '/Users/jhernandez/Desktop/Apps/bdiver2/.next/export-marker.json'
+[error] 
+[error] Error: An unexpected error has occurred.

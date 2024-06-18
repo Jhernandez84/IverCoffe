@@ -1,0 +1,201 @@
+.cdr-main-container-w-border {
+  /* border: solid 1px;
+  border-color: aquamarine;
+  border-radius: 25px; */
+  padding: 10px;
+  width: 280px;
+  /* height: 290px; */
+}
+
+.cdr-secondary-container {
+  border: solid 1px;
+  border-color: aquamarine;
+  background-color: #1e293b;
+  border-radius: 15px;
+  padding: 10px;
+}
+
+.cdr-header-container {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  border-bottom: solid 1px;
+  margin-bottom: 10px;
+  border-color: aquamarine;
+}
+
+.cdr-header-container-left,
+.cdr-header-container-right {
+  display: grid;
+  grid-template-columns: 20% 60% 20%;
+}
+
+.cdr-selector {
+  display: flex;
+  flex-direction: column;
+  font-size: large;
+  cursor: pointer;
+  text-align: center;
+  justify-content: center;
+}
+
+.cdr-selector p {
+  font-size: x-small;
+}
+
+table {
+  height: 160px;
+}
+
+.cdr-header-days table thead tr th {
+  background-color: #e5e8ee; /* Consistent background color */
+  border-collapse: collapse; /* Remove any default spacing or borders */
+  border-spacing: 0px; /* Ensures no space between cells */
+}
+
+table tbody tr td {
+  text-align: center;
+  font-size: smaller;
+  height: 20px;
+}
+
+.cdr-week-number {
+  font-size: xx-small;
+  color: red;
+}
+
+.cdr-last-next-month {
+  cursor: not-allowed;
+  color: #0f172a;
+}
+
+.cdr-current-month {
+  cursor: pointer;
+}
+
+.cdr-current-day {
+  cursor: pointer;
+  border-bottom: solid 1px;
+  border-top: solid 1px;
+  border-color: aquamarine;
+  color: aquamarine;
+  /* background-color: aquamarine; */
+  border-radius: 25px;
+}
+
+.cdr-footer-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.btn-cdr-current-day {
+  cursor: pointer;
+  border-color: aquamarine;
+  border: solid 1px;
+  border-radius: 25px;
+  padding: 5px;
+  text-align: center;
+  background-color: rgb(141, 231, 201);
+  color: #0f172a;
+  font-weight: bold;
+  width: 80%;
+  margin: 0 auto; /* Center horizontally */
+  display: block; /* Ensures block-level behavior */
+}
+
+/* Componente que envuelve calendario y resumen */
+/* Componente que envuelve calendario y resumen */
+
+.cdr-smry-commp-container {
+  display: flex;
+  flex-direction: column;
+  border-radius: 25px;
+  border: solid 1px;
+  /* border-color: aquamarine; */
+  padding: 15px;
+}
+
+.cdr-smry-commp-container .cdr-header-calendar, .cdr-body-calendar  {
+  padding-left: 10px;
+  font-weight: bold;
+}
+
+.cdr-summary-container {
+  display: flex;
+  flex-direction: column;
+  /* border: solid 1px; */
+  /* border-color: aquamarine; */
+  border-radius: 25px;
+  padding: 10px;
+  /* background-color: #0f172a; */
+  width: 280px;
+  max-height: 200px;
+  gap: 10px;
+}
+
+.cdr_smry_card_event {
+  position: relative;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 20% 60% 20%;
+  align-items: center;
+  justify-content: space-between;
+  border: solid 0.5px;
+  border-color: aquamarine;
+  padding: 5px;
+  margin-left: 0.5px;
+  border-radius: 15px;
+  font-size: small;
+  height: 40px;
+  background-color: #1e293b;
+}
+
+.cdr_smry_card_event:hover {
+  cursor: pointer;
+  background-color: #43556d;
+  transition: ease-in;
+  transition-duration: 0.3s;
+}
+
+.cdr_smry_card_event_left {
+  display: block;
+  justify-content: center;
+  align-items: center;
+  align-self: center;
+}
+
+.cdr_smry_card_event_center_type {
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.cdr_smry_card_event_center_location {
+  margin-top: 5px;
+  font-size: 10px;
+}
+
+.cdr_smry_card_event_right {
+  font-size: larger;
+  font-weight: bold;
+}
+
+.cdr_smry_more_events {
+  display: flex;
+  flex-direction: row;
+  cursor: pointer;
+  border-color: aquamarine;
+  border: solid 1px;
+  border-radius: 15px;
+  padding: 5px;
+  text-align: center;
+  background-color: rgb(141, 231, 201);
+  color: #0f172a;
+  font-weight: bold;
+  width: 95%;
+  height: 40px;
+  margin: 0 auto; /* Center horizontally */
+  display: block; /* Ensures block-level behavior */
+}

@@ -1,0 +1,32 @@
+.EventComponent-Container {
+  display: grid;
+  grid-template-rows: 10% auto;
+  box-sizing: border-box;
+  border: solid;
+  border-color: aquamarine;
+  height: 100%;
+  width: calc(100vw - 120px);
+}
+
+.EventComponent-Container .EventComponent-Header {
+  display: grid;
+  grid-template-columns: 33% 33% 33%;
+  align-items: center;
+  justify-content: space-between;
+  text-align: center;
+  border: solid;
+  border-color: aquamarine;
+}
+
+.EventComponent-Container .EventComponent-Body {
+  display: grid;
+  grid-template-columns: auto auto;
+  border: solid;
+  border-color: aquamarine;
+}
+
+.EventComponent-Body-Right, 
+.EventComponent-Body-left {
+  border: solid;
+  border-color: aquamarine;
+}
