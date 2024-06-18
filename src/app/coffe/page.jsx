@@ -181,30 +181,18 @@ const CoffeManager = () => {
         {/* <h1>Administrador de ventas Coffe</h1> */}
         <section className="coffemanager-header">
           <div className="NewOrderEntry">Ingresar Orden</div>
-          <div>Gráfico de algo</div>
+          <div className="NavMenu">Menú list</div>
           <div>Resumen de caja</div>
         </section>
 
         <section className="coffe-manager-body-container">
           <section className="coffe-manager-body-products-navigation">
-            <section className="coffe-manager-body-orders-navigation">
-              <div className="product-tab-selector">
-                <p>Tipo 1 </p>
-              </div>
-              <div className="product-tab-selector">
-                <p>Tipo 2 </p>
-              </div>
-              <div className="product-tab-selector">
-                <p>Tipo 3 </p>
-              </div>
-            </section>
             <section className="coffe-manager-body-menu-container">
               <div className="menu-filter">
                 <div>Esta venta </div>
                 <div>Gráfico de algo</div>
                 <div>Resumen de caja</div>
               </div>
-
               <div className="menu-list">
                 {products.map((product, index) => {
                   return (
@@ -221,9 +209,6 @@ const CoffeManager = () => {
           <div className="coffe-manager-body-order-details-container">
             <div>
               <p>Detalle de esta venta</p>
-            </div>
-            <div>
-              <p className="product-addToCart"> ( + )</p>
             </div>
             <div className="products-invoice-details">
               {products.map((prod, index) => {

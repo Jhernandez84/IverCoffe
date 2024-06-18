@@ -3,12 +3,9 @@
   flex-direction: row;
   position: relative;
   flex-wrap: wrap;
-  /* height: calc(100vh - 100px); */
   height: 100vh;
-  /* align-items: center; */
   justify-content: center;
   /* background-color: var(--primary-bg-color-light); */
-  
 }
 
 .content-container {
@@ -131,8 +128,8 @@
 }
 
 .expanded-sidebar.Dark {
-background-color: var(--primary-bg-color-light);
-  }
+  background-color: var(--primary-bg-color-light);
+}
 
 .sidebar-content-container {
   position: relative;

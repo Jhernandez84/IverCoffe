@@ -1,5 +1,6 @@
 import React from "react";
 import { useState } from "react";
+import './styles.css'
 
 const CardProduct = ({ product, openModal }) => {
   const [initialQty, setInitialQty] = useState(0);
