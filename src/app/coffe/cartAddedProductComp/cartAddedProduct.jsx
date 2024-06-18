@@ -9,12 +9,15 @@ const CartAddedProduct = ({ products }) => {
           <img src={products.Product_Img} alt="" />
         </div>
         <div className="order-detail-description-container">
-            <div className="order-detail-description-header">cosa1</div>
-            <div className="order-detail-description-desc">cosa1</div>
+          <div className="order-detail-description-header">cosa1</div>
+          <div className="order-detail-description-desc">cosa1</div>
+        </div>
+        <div>
+          <p>🗑️</p>
         </div>
       </div>
     </div>
-  )
+  );
 };
 
 export default CartAddedProduct;

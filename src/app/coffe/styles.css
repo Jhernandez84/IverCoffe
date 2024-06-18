@@ -16,7 +16,6 @@
   grid-template-columns: 20% 60% 20%;
   justify-content: center;
   border-radius: 20px;
-  border: solid 1px;
   padding: 10px;
 }
 
@@ -32,9 +31,10 @@
 
 .coffemanager-header .NewOrderEntry {
   cursor: pointer;
-  border-style: dotted;
-  border: dashed 2px;
+  border: dotted 4px;
+  border-color: var(--primary-bg-strong-color-dark);
   transition: all 0.5s;
+  background-color: var(--primary-bg-color-dark);
 }
 
 .coffemanager-header .NewOrderEntry:hover {
@@ -51,8 +51,8 @@
 .coffe-manager-body-products-navigation {
   display: flex;
   justify-content: space-between;
-  border: solid 1px;
-  border-color: red;
+  /* border: solid 1px;
+  border-color: red; */
   box-sizing: border-box;
 }
 
@@ -92,22 +92,20 @@
 }
 
 .coffe-manager-body-order-details-container {
+  display: grid;
+  grid-template-rows: 15% 55% 15% auto;
   box-sizing: border-box;
   padding: 5px;
   height: 100%;
-  /* overflow: auto; */
 }
 
 .products-invoice-details {
   display: flex;
   flex-direction: column;
   gap: 5px;
-  border-color: aqua;
-  border: solid 1px;
-  /* max-height: 40%; */
   padding: 0 5px 0 5px;
   overflow: auto;
-  max-height: 700px;
+  max-height: 400px;
 }
 
 .products-header {
@@ -147,7 +145,6 @@
 .products-navigation .products-tabs .product-tab-selector {
   cursor: pointer;
   text-align: center;
-  /* height: 90%; */
   width: 100%;
   border-radius: 20px;
   border: solid 1px;
@@ -165,4 +162,19 @@
   width: 30px;
   height: 30px;
   border-radius: 25px;
+}
+
+.order-details-btn {
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  background-color: var(--primary-bg-strong-color-dark);
+  border-radius: 18px;
+  margin: 5px;
+  height: 35px;
+}
+
+.order-details-btn:hover {
 }

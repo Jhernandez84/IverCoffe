@@ -168,6 +168,10 @@ const CoffeManager = () => {
     // setAddNewRecord(false);
   };
 
+  const CreateNewOrder = () => {
+    alert("New Entry");
+  };
+
   return (
     <>
       <section
@@ -180,7 +184,9 @@ const CoffeManager = () => {
         {isModalOpen && <Modal closeModal={closeModal} item={selectedItem} />}
         {/* <h1>Administrador de ventas Coffe</h1> */}
         <section className="coffemanager-header">
-          <div className="NewOrderEntry">Ingresar Orden</div>
+          <div className="NewOrderEntry" onClick={CreateNewOrder}>
+            Ingresar Orden
+          </div>
           <div className="NavMenu">Menú list</div>
           <div>Resumen de caja</div>
         </section>
@@ -207,13 +213,27 @@ const CoffeManager = () => {
             </section>
           </section>
           <div className="coffe-manager-body-order-details-container">
-            <div>
+            <div className="order-details-header">
               <p>Detalle de esta venta</p>
             </div>
             <div className="products-invoice-details">
               {products.map((prod, index) => {
                 return <CartAddedProduct key={index} products={prod} />;
               })}
+            </div>
+            <div className="order-details-footer">
+              <div className="order-details-summary">
+                <p>Producto</p>
+                <p>Total</p>
+              </div>
+            </div>
+            <div>
+              <p>Medio de Pago 1</p>
+              {/* <p>Medio de Pago 1</p>
+              <p>Medio de Pago 1</p> */}
+            </div>
+            <div>
+              <p className="order-details-btn">Ingresar pedido  ✅</p>
             </div>
           </div>
         </section>
