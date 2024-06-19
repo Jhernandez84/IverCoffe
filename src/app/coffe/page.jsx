@@ -214,7 +214,21 @@ const CoffeManager = () => {
           </section>
           <div className="coffe-manager-body-order-details-container">
             <div className="order-details-header">
-              <p>Detalle de esta venta</p>
+              <div className="text">
+                <p>Detalle de la orden</p>
+              </div>
+              <div className="details">
+                <div>
+                  <p>Número de orden</p>
+                  <p>Hora Ingreso</p>
+                  <p>Retira</p>
+                </div>
+                <div>
+                  <p>XXXX</p>
+                  <p>XXXX</p>
+                  <p>XXXX</p>
+                </div>
+              </div>
             </div>
             <div className="products-invoice-details">
               {products.map((prod, index) => {
@@ -222,18 +236,20 @@ const CoffeManager = () => {
               })}
             </div>
             <div className="order-details-footer">
-              <div className="order-details-summary">
-                <p>Producto</p>
+              <div className="summary">
+                <p>Nº de ítems</p>
+                <p>Subtotal</p>
+                <p>Iva</p>
                 <p>Total</p>
               </div>
-            </div>
-            <div>
-              <p>Medio de Pago 1</p>
-              {/* <p>Medio de Pago 1</p>
-              <p>Medio de Pago 1</p> */}
-            </div>
-            <div>
-              <p className="order-details-btn">Ingresar pedido  ✅</p>
+              <div className="payments">
+                <p>Transf.</p>
+                <p>Efectivo</p>
+                <p>Pendiente</p>
+              </div>
+              <div>
+                <p className="place-order-btn">Ingresar pedido ✅</p>
+              </div>
             </div>
           </div>
         </section>

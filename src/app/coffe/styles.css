@@ -93,27 +93,77 @@
 
 .coffe-manager-body-order-details-container {
   display: grid;
-  grid-template-rows: 15% 55% 15% auto;
+  grid-template-rows: 18% 50% calc(32% - 5px);
   box-sizing: border-box;
   padding: 5px;
-  height: 100%;
+  border: solid 0.5px;
+  border-radius: 20px;
+}
+
+.order-details-header {
+  display: grid;
+  grid-template-rows: 25% 75%;
+  /* background-color: #fff; */
+}
+
+.order-details-header .text {
+  color: black;
+  text-align: center;
+  font-size: 20px;
+}
+
+.order-details-header .details {
+  font-size: small;
+  /* margin: 10px 0px; */
+  padding-top: 10px;
+  padding-left: 10px;
+  display: grid;
+  grid-template-columns: 70% 40%;
+  color: black;
 }
 
 .products-invoice-details {
   display: flex;
   flex-direction: column;
   gap: 5px;
-  padding: 0 5px 0 5px;
+  padding: 10px 5px 0 5px;
   overflow: auto;
-  max-height: 400px;
+  max-height: 370px;
 }
 
-.products-header {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  border-color: aqua;
-  border: solid 1px;
+.order-details-footer {
+  display: grid;
+  grid-template-rows: 50% 25% 25%;
+  /* background-color: #fff; */
+  height: 100%;
+}
+
+.order-details-footer .summary {
+  padding-left: 15px;
+  padding-top: 0;
+  font-size: small;
+  color: black;
+}
+
+.payments {
+  display: grid;
+  grid-template-columns: 30% 30% 30%;
+  justify-content: space-around;
+  gap: 15px;
+  padding: 0 5px 0 5px;
+}
+
+.payments p {
+  cursor: pointer;
+  border-radius: 15px;
+  background-color: var(--primary-bg-header-color-dark);
+  height: 40px;
+  text-align: center;
+  align-content: center;
+}
+
+.payments p:hover {
+  background-color: var(--primary-bg-strong-color-dark);
 }
 
 .products-header .header-visual {
@@ -164,7 +214,7 @@
   border-radius: 25px;
 }
 
-.order-details-btn {
+.place-order-btn {
   cursor: pointer;
   display: flex;
   flex-direction: column;
@@ -173,8 +223,5 @@
   background-color: var(--primary-bg-strong-color-dark);
   border-radius: 18px;
   margin: 5px;
-  height: 35px;
-}
-
-.order-details-btn:hover {
+  height: 40px;
 }
