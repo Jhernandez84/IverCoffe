@@ -36,10 +36,12 @@ const CardProduct = ({ product, openModal }) => {
           alt={product.Product_Desc}
           onClick={openModal}
         />
-        <p className="product-header">{product.Product_Name}</p>
+        <p className="product-header">
+          {product.Product_Name} ${product.Product_Price}
+        </p>
         {/* <p className="product-details">{product.Product_Desc}</p> */}
         {/* <p className="product-price">$ {product.Product_Price}</p> */}
-        {/* <div className="product-addToCart">
+        <div className="product-addToCart">
           {initialQty === 0 ? (
             <p
               onClick={() => {
@@ -74,7 +76,7 @@ const CardProduct = ({ product, openModal }) => {
               </div>
             </div>
           )}
-        </div> */}
+        </div>
       </div>
     </>
   );

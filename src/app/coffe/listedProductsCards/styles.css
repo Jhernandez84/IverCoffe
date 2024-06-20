@@ -1,21 +1,25 @@
 .products-card {
   display: grid;
   grid-template-rows: 65% 15% 15%;
-  /* justify-content: center; */
+  justify-content: stretch;
   align-items: center;
   border: solid 0.5px;
   border-radius: 10px;
-  margin: 5px;
   max-height: 180px;
   max-width: 250px;
+  padding-left: 5px;
 }
 
 .products-card img {
   cursor: pointer;
-  width: calc(100% - 10px);
-  height: 100px;
+  width: calc(100% - 5px);
+  height: 90px;
   border-radius: 10px;
-  margin: 5px;
+  margin: 0 5px 0 0px;
+}
+
+.product-header {
+  font-size: medium;
 }
 
 .product-addToCart {
@@ -26,15 +30,18 @@
   border-radius: 20px;
   border: solid 0.5px;
   cursor: pointer;
-  width: 100%;
-  background: var(--primary-bg-header-color-dark);
+  width: calc(100% - 5px);
+  height: 20px;
+  font-size: small;
   transition: all 0.5s;
+  background-color: var(--primary-bg-header-color-dark);
   border-color: var(--primary-bg-header-color-dark);
 }
 
 .product-addToCart:hover {
-  background-color: var(--primary-bg-strong-color-dark);
-  transition: all 0.2s;
+  animation: borderAnimation 1s forwards; /* Adjust the duration as needed */
+  /* background-color: var(--primary-bg-strong-color-dark); */
+  /* transition: all 0.2s; */
 }
 
 .product-addToCart-manualQty {
@@ -48,4 +55,22 @@
   display: flex;
   flex-direction: row;
   justify-content: center;
+}
+
+@keyframes backgroundColorAnimation {
+  0% {
+    background-color: transparent transparent transparent red;
+  }
+  25% {
+    background-color: transparent transparent red red;
+  }
+  50% {
+    background-color: transparent red red red;
+  }
+  75% {
+    background-color: red red red red;
+  }
+  100% {
+    background-color: red red red red;
+  }
 }
