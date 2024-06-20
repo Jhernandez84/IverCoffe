@@ -81,7 +81,8 @@
   justify-content: space-between;
   padding: 10px 5px;
   gap: 10px;
-  max-height: 700px;
+  max-height: 800px;
+  transition: all .5s;
   overflow: scroll;
 }
 
@@ -93,7 +94,7 @@
 
 .coffe-manager-body-order-details-container {
   display: grid;
-  grid-template-rows: 18% 50% calc(32% - 5px);
+  grid-template-rows: 20% 55% 25%;
   box-sizing: border-box;
   padding: 5px;
   border: solid 0.5px;
@@ -129,6 +130,7 @@
   padding: 10px 5px 0 5px;
   overflow: auto;
   max-height: 370px;
+  transition: all .5s;
 }
 
 .order-details-footer {
@@ -224,4 +226,15 @@
   border-radius: 18px;
   margin: 5px;
   height: 40px;
+}
+
+@media screen and (max-height: 1000px) {
+  .products-invoice-details {
+    max-height: 340px;
+    transition: all .5s;
+  }
+
+  .menu-list {
+    max-height: 700px;
+  }
 }

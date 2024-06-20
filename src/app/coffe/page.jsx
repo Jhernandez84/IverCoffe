@@ -237,7 +237,6 @@ const CoffeManager = () => {
             </div>
             <div className="order-details-footer">
               <div className="summary">
-                <p>Nº de ítems</p>
                 <p>Subtotal</p>
                 <p>Iva</p>
                 <p>Total</p>

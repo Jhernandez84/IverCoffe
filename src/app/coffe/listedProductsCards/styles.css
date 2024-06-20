@@ -1,48 +1,51 @@
 .products-card {
-    display: grid;
-    grid-template-rows: 20% 40% 20% 10% 10%;
-    align-items: center;
-    border: solid 0.5px;
-    border-radius: 10px;
-    margin: 5px;
-    padding: 10px;
-  }
-  
-  .products-card img {
-    cursor: pointer;
-    width: 100px;
-    height: 100px;
-    border-radius: 25px;
-  }
-  
-  .product-addToCart {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    align-items: center;
-    border-radius: 20px;
-    border: solid 0.5px;
-    cursor: pointer;
-    width: 100%;
-    background: var(--primary-bg-header-color-dark);
-    transition: all 0.5s;
-    border-color: var(--primary-bg-header-color-dark);
-  }
-  
-  .product-addToCart:hover {
-    background-color: var(--primary-bg-strong-color-dark);
-    transition: all 0.2s;
-  }
-  
-  .product-addToCart-manualQty {
-    width: 50px;
-    background: none;
-    color: white;
-    border: none;
-  }
-  
-  .product-addToCart-qty {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-  }
+  display: grid;
+  grid-template-rows: 65% 15% 15%;
+  /* justify-content: center; */
+  align-items: center;
+  border: solid 0.5px;
+  border-radius: 10px;
+  margin: 5px;
+  max-height: 180px;
+  max-width: 250px;
+}
+
+.products-card img {
+  cursor: pointer;
+  width: calc(100% - 10px);
+  height: 100px;
+  border-radius: 10px;
+  margin: 5px;
+}
+
+.product-addToCart {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  border-radius: 20px;
+  border: solid 0.5px;
+  cursor: pointer;
+  width: 100%;
+  background: var(--primary-bg-header-color-dark);
+  transition: all 0.5s;
+  border-color: var(--primary-bg-header-color-dark);
+}
+
+.product-addToCart:hover {
+  background-color: var(--primary-bg-strong-color-dark);
+  transition: all 0.2s;
+}
+
+.product-addToCart-manualQty {
+  width: 50px;
+  background: none;
+  color: white;
+  border: none;
+}
+
+.product-addToCart-qty {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}

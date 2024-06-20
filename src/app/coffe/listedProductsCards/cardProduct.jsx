@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import './styles.css'
+import "./styles.css";
 
 const CardProduct = ({ product, openModal }) => {
   const [initialQty, setInitialQty] = useState(0);
@@ -31,15 +31,15 @@ const CardProduct = ({ product, openModal }) => {
   return (
     <>
       <div className="products-card">
-        <p className="product-header">{product.Product_Name}</p>
         <img
           src={product.Product_Img}
           alt={product.Product_Desc}
           onClick={openModal}
         />
-        <p className="product-details">{product.Product_Desc}</p>
-        <p className="product-price">$ {product.Product_Price}</p>
-        <div className="product-addToCart">
+        <p className="product-header">{product.Product_Name}</p>
+        {/* <p className="product-details">{product.Product_Desc}</p> */}
+        {/* <p className="product-price">$ {product.Product_Price}</p> */}
+        {/* <div className="product-addToCart">
           {initialQty === 0 ? (
             <p
               onClick={() => {
@@ -74,7 +74,7 @@ const CardProduct = ({ product, openModal }) => {
               </div>
             </div>
           )}
-        </div>
+        </div> */}
       </div>
     </>
   );
