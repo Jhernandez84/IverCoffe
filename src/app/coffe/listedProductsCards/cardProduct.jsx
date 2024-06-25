@@ -2,7 +2,9 @@ import React from "react";
 import { useState } from "react";
 import "./styles.css";
 
-const CardProduct = ({ product, openModal }) => {
+const CardProduct = ({ product, openModal, addToCart, updateCart, removeFromCart }) => {
+  console.log(product)
+
   const [initialQty, setInitialQty] = useState(0);
   const [isManualQty, setIsManualQty] = useState(false);
 
@@ -18,6 +20,7 @@ const CardProduct = ({ product, openModal }) => {
 
   const addItem = () => {
     setInitialQty(initialQty + 1);
+    // addToCart()
   };
 
   const reduceItem = () => {

@@ -6,7 +6,7 @@ const CartAddedProduct = ({ products }) => {
     <div className="order-container">
       <div className="order-detail-container">
         <div className="order-detail-img-container">
-          <img src={products.Product_Img} alt="" />
+          <img src={products?.Product_Img} alt="" />
         </div>
         <div className="order-detail-description-container">
           <div className="text-header">Producto ejemplo</div>
@@ -14,7 +14,7 @@ const CartAddedProduct = ({ products }) => {
         </div>
         <div className="order-details-options-container">
           <p className="options delete" onClick={() => alert("removed")}>
-            ❌
+            $ Total
           </p>
         </div>
       </div>

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useContext } from "react";
 import { ThemeContext } from "@/Context/ThemeContext/ThemeContext";
 import useItemHandler from "./helper";
@@ -14,20 +14,47 @@ const CoffeManager = () => {
   const { initialQty, addItem, reduceItem, removeItem } = useItemHandler();
   const { userThemePreference } = useContext(ThemeContext);
 
+  function extractTime() {
+    const date = new Date();
+    const hours = date.getHours().toString().padStart(2, "0");
+    const minutes = date.getMinutes().toString().padStart(2, "0");
+    const seconds = date.getSeconds().toString().padStart(2, "0");
+    return `${hours}:${minutes}:${seconds}`;
+  }
+
   const initial = [
     {
-      Product_id: 1,
-      Product_Name: "Mechada Queso",
-      Product_Desc: "buen producto",
-      Product_Img:
-        "data:image/jpeg;base64,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",
-      Product_Price: 2000,
+      Product_id: null,
+      Product_Name: null,
+      Product_Desc: null,
+      Product_Img: null,
+      Product_Price: null,
     },
   ];
 
   const [cartContent, setCartContent] = useState(initial);
 
-  const UpdateCart = (prod) => {
+  const orderDefault = {
+    orderId: null,
+    orderCustomerName: null,
+    orderDate: null,
+    orderDetail: cartContent,
+  };
+  const [orderDetails, setOrderDetails] = useState(orderDefault);
+
+  console.log(orderDetails);
+
+  const addToCart = () =>{
+    // 'add to cart function'
+    setCartContent((prevCartContent) => [...prevCartContent, prod]);
+  }
+
+  const removeFromCart = ()=>{
+    // 'remove from cart function'
+
+  }
+
+  const updateCart = (prod) => {
     setCartContent((prevCartContent) => [...prevCartContent, prod]);
   };
 
@@ -155,6 +182,7 @@ const CoffeManager = () => {
   ];
 
   const [isModalOpen, setModalOpen] = useState(false);
+  const [isModalOpenNewOrder, setModalOpenNewOrder] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null);
 
   const openModal = (item) => {
@@ -169,7 +197,12 @@ const CoffeManager = () => {
   };
 
   const CreateNewOrder = () => {
-    alert("New Entry");
+    setOrderDetails({
+      orderId: "546417164fasdfas61",
+      orderCustomerName: "Test User",
+      orderDate: extractTime(),
+    });
+    // alert("New Entry");
   };
 
   return (
@@ -182,6 +215,7 @@ const CoffeManager = () => {
         }
       >
         {isModalOpen && <Modal closeModal={closeModal} item={selectedItem} />}
+        {isModalOpenNewOrder && <Modal closeModal={closeModal} item={selectedItem} />}
         {/* <h1>Administrador de ventas Coffe</h1> */}
         <section className="coffemanager-header">
           <div className="NewOrderEntry" onClick={CreateNewOrder}>
@@ -206,6 +240,9 @@ const CoffeManager = () => {
                       key={index}
                       product={product}
                       openModal={openModal}
+                      addToCart={addToCart}
+                      updateCart= {updateCart}
+                      removeFromCart={removeFromCart}
                     />
                   );
                 })}
@@ -224,14 +261,14 @@ const CoffeManager = () => {
                   <p>Retira</p>
                 </div>
                 <div>
-                  <p>XXXX</p>
-                  <p>XXXX</p>
-                  <p>XXXX</p>
+                  <p>{orderDetails.orderId}</p>
+                  <p>{orderDetails.orderDate}</p>
+                  <p>{orderDetails.orderCustomerName}</p>
                 </div>
               </div>
             </div>
             <div className="products-invoice-details">
-              {products.map((prod, index) => {
+              {cartContent.map((prod, index) => {
                 return <CartAddedProduct key={index} products={prod} />;
               })}
             </div>
@@ -246,7 +283,7 @@ const CoffeManager = () => {
                 <p>Efectivo</p>
                 <p>Pendiente</p>
               </div>
-              <div>
+              <div className="processOder">
                 <p className="place-order-btn">Ingresar pedido ✅</p>
               </div>
             </div>

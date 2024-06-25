@@ -1,8 +1,7 @@
 .coffemanager-container {
   display: grid;
-  grid-template-rows: 10% calc(90% - 10px);
+  grid-template-rows: 10% 90%;
   padding: 10px;
-  gap: 10px;
   background-color: white;
   width: calc(100% - 19px);
 }
@@ -82,7 +81,7 @@
   padding: 10px 5px;
   gap: 10px;
   max-height: 800px;
-  transition: all .5s;
+  transition: all 0.5s;
   overflow: scroll;
 }
 
@@ -95,7 +94,8 @@
 .coffe-manager-body-order-details-container {
   display: grid;
   grid-template-rows: 20% 55% 25%;
-  box-sizing: border-box;
+  /* box-sizing: border-box; */
+  margin-top: 15px;
   padding: 5px;
   border: solid 0.5px;
   border-radius: 20px;
@@ -119,7 +119,7 @@
   padding-top: 10px;
   padding-left: 10px;
   display: grid;
-  grid-template-columns: 70% 40%;
+  grid-template-columns: 40% 60%;
   color: black;
 }
 
@@ -129,8 +129,8 @@
   gap: 5px;
   padding: 10px 5px 0 5px;
   overflow: auto;
-  max-height: 370px;
-  transition: all .5s;
+  max-height: 450px;
+  transition: all 0.5s;
 }
 
 .order-details-footer {
@@ -150,8 +150,8 @@
 .payments {
   display: grid;
   grid-template-columns: 30% 30% 30%;
-  justify-content: space-around;
-  gap: 15px;
+  justify-content: space-evenly;
+  align-self: center;
   padding: 0 5px 0 5px;
 }
 
@@ -162,6 +162,15 @@
   height: 40px;
   text-align: center;
   align-content: center;
+  padding: 0 5px 0 5px;
+}
+
+.processOder{
+  display: block;
+  /* justify-content: stretch; */
+  padding: 0 5px 0 5px;
+
+
 }
 
 .payments p:hover {
@@ -228,10 +237,10 @@
   height: 40px;
 }
 
-@media screen and (max-height: 1000px) {
+@media screen and (max-height: 900px) {
   .products-invoice-details {
-    max-height: 340px;
-    transition: all .5s;
+    max-height: 450px;
+    transition: all 0.5s;
   }
 
   .menu-list {
