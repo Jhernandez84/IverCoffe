@@ -2,8 +2,14 @@ import React from "react";
 import { useState } from "react";
 import "./styles.css";
 
-const CardProduct = ({ product, openModal, addToCart, updateCart, removeFromCart }) => {
-  console.log(product)
+const CardProduct = ({
+  product,
+  openModal,
+  addToCart,
+  updateCart,
+  removeFromCart,
+}) => {
+  // console.log(product)
 
   const [initialQty, setInitialQty] = useState(0);
   const [isManualQty, setIsManualQty] = useState(false);
@@ -15,12 +21,12 @@ const CardProduct = ({ product, openModal, addToCart, updateCart, removeFromCart
   const handleManualQtyChange = (e) => {
     const newValue = e.target.value;
     setInitialQty(newValue);
-    console.log(initialQty);
+    // console.log(initialQty);
   };
 
-  const addItem = () => {
+  const addItem = (product) => {
     setInitialQty(initialQty + 1);
-    // addToCart()
+    addToCart(product);
   };
 
   const reduceItem = () => {
@@ -48,7 +54,7 @@ const CardProduct = ({ product, openModal, addToCart, updateCart, removeFromCart
           {initialQty === 0 ? (
             <p
               onClick={() => {
-                addItem();
+                addItem(product);
               }}
             >
               Agregar
@@ -75,7 +81,13 @@ const CardProduct = ({ product, openModal, addToCart, updateCart, removeFromCart
                 )}
               </div>
               <div>
-                <p onClick={addItem}>+</p>
+                <p
+                  onClick={() => {
+                    addItem(product);
+                  }}
+                >
+                  +
+                </p>
               </div>
             </div>
           )}

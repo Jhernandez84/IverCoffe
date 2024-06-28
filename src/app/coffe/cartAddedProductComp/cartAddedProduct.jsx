@@ -6,16 +6,23 @@ const CartAddedProduct = ({ products }) => {
     <div className="order-container">
       <div className="order-detail-container">
         <div className="order-detail-img-container">
-          <img src={products?.Product_Img} alt="" />
+          <img src={products.Product_Img} alt="" />
         </div>
         <div className="order-detail-description-container">
-          <div className="text-header">Producto ejemplo</div>
-          <div className="text-description">$ 1.500 x X = 1$.500</div>
+          <div className="text-header">{products.Product_Name}</div>
+          <div className="text-description">{products.Product_Desc}</div>
         </div>
         <div className="order-details-options-container">
-          <p className="options delete" onClick={() => alert("removed")}>
-            $ Total
-          </p>
+          <div>
+            <p className="Price">
+              $ {products.Product_Price}
+            </p>
+          </div>
+          <div>
+            <p className="remove" onClick={() => alert("removed")}>
+              Eliminar
+            </p>
+          </div>
         </div>
       </div>
     </div>

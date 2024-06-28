@@ -41,6 +41,23 @@
   transition: all 0.5s;
 }
 
+.coffemanager-header .NavMenu{
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+}
+
+.coffemanager-header .NavMenu .NavItem.Active{
+  display: flex;
+  align-self: center;
+  text-align: center;
+  border-radius: 25px;
+  border-color: aqua;
+  border: solid 1px;
+  padding: 8px;
+  margin: 0;
+}
+
 .coffe-manager-body-container {
   display: grid;
   grid-template-columns: 70% 30%;
@@ -165,12 +182,9 @@
   padding: 0 5px 0 5px;
 }
 
-.processOder{
+.processOder {
   display: block;
-  /* justify-content: stretch; */
   padding: 0 5px 0 5px;
-
-
 }
 
 .payments p:hover {
@@ -235,6 +249,18 @@
   border-radius: 18px;
   margin: 5px;
   height: 40px;
+}
+
+.place-order-btn::before {
+  background-color: red;
+  left: -100%;
+  transition-duration: 0.3s;
+  mix-blend-mode: difference;
+}
+
+.place-order-btn:hover::before {
+  transition-duration: 0.3s;
+  transform: translate(100%, -50%);
 }
 
 @media screen and (max-height: 900px) {
