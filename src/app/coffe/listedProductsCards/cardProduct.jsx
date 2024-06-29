@@ -30,6 +30,7 @@ const CardProduct = ({
   };
 
   const reduceItem = () => {
+    removeFromCart(product);
     setInitialQty((prevQty) => Math.max(prevQty - 1, 0)); // Prevents negative quantity
   };
 

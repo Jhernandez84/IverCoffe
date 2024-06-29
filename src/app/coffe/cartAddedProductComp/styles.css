@@ -48,6 +48,12 @@
   font-size: small;
 }
 
+.text-description.expand{
+  cursor: pointer;
+  color: yellowgreen;
+
+}
+
 .order-detail-container .order-details-options-container {
   display: grid;
   grid-template-rows: 50% 50%;

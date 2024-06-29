@@ -41,13 +41,13 @@
   transition: all 0.5s;
 }
 
-.coffemanager-header .NavMenu{
+.coffemanager-header .NavMenu {
   display: flex;
   flex-direction: row;
   gap: 15px;
 }
 
-.coffemanager-header .NavMenu .NavItem.Active{
+.coffemanager-header .NavMenu .NavItem.Active {
   display: flex;
   align-self: center;
   text-align: center;
@@ -131,13 +131,24 @@
 }
 
 .order-details-header .details {
-  font-size: small;
-  /* margin: 10px 0px; */
-  padding-top: 10px;
-  padding-left: 10px;
   display: grid;
   grid-template-columns: 40% 60%;
-  color: black;
+
+  border-radius: 25px;
+  background-color: var(--primary-bg-header-color-dark);
+  margin: 5px;
+  padding-left: 15px;
+  padding-top: 5px;
+  font-size: small;
+  /* font-weight: bold;  */
+  color: white;
+  font-size: small;
+  /* text-align: left; */
+}
+
+.order-details-header .details .details-values {
+  text-align: right;
+  padding-right: 10px;
 }
 
 .products-invoice-details {
@@ -158,10 +169,14 @@
 }
 
 .order-details-footer .summary {
+  border-radius: 25px;
+  background-color: var(--primary-bg-header-color-dark);
+  margin: 5px;
   padding-left: 15px;
   padding-top: 0;
   font-size: small;
-  color: black;
+  /* font-weight: bold; */
+  color: white;
 }
 
 .payments {

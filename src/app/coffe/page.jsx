@@ -25,7 +25,7 @@ const CoffeManager = () => {
 
   function calculateTotal() {
     return cartContent.reduce((total, item) => total + item.Product_Price, 0);
-  };
+  }
 
   const initial = [
     {
@@ -38,8 +38,7 @@ const CoffeManager = () => {
   ];
 
   const [cartContent, setCartContent] = useState([]);
-  console.log(cartContent)
-
+  console.log(cartContent);
 
   const orderDefault = {
     orderId: null,
@@ -55,14 +54,34 @@ const CoffeManager = () => {
   const addToCart = (prod) => {
     setCartContent((prevCartContent) => {
       if (Array.isArray(prevCartContent)) {
-        return [...prevCartContent, prod];
+        return [...prevCartContent, { ...prod, Product_index: prevCartContent.length }];
       } else {
-        return [prod];
+        return [{ ...prod, Product_index: 0 }];
       }
-    })};
+    });
+  };
 
-  const removeFromCart = () => {
-    // 'remove from cart function'
+  const removeFromCart = (productId, index = null) => {
+    setCartContent((prevCartContent) => {
+      // Find all products with the given product ID
+      const productIndexes = prevCartContent
+        .map((product, i) => (product.Product_id === productId ? i : -1))
+        .filter(i => i !== -1);
+  
+      // If index is not provided, remove the product with the highest index
+      if (index === null) {
+        index = productIndexes.length - 1;
+      }
+  
+      // Remove the product at the specified index
+      if (productIndexes.length > index) {
+        const newCartContent = [...prevCartContent];
+        newCartContent.splice(productIndexes[index], 1);
+        return newCartContent;
+      }
+  
+      return prevCartContent;
+    });
   };
 
   const updateCart = (prod) => {
@@ -79,7 +98,7 @@ const CoffeManager = () => {
       Product_Price: 2000,
     },
     {
-      Product_id: 1,
+      Product_id: 2,
       Product_Name: "Mechada Queso",
       Product_Desc: "buen producto",
       Product_Img:
@@ -87,7 +106,7 @@ const CoffeManager = () => {
       Product_Price: 2000,
     },
     {
-      Product_id: 1,
+      Product_id: 3,
       Product_Name: "Mechada Queso",
       Product_Desc: "buen producto",
       Product_Img:
@@ -95,7 +114,7 @@ const CoffeManager = () => {
       Product_Price: 2000,
     },
     {
-      Product_id: 1,
+      Product_id: 4,
       Product_Name: "Mechada Queso",
       Product_Desc: "buen producto",
       Product_Img:
@@ -103,7 +122,7 @@ const CoffeManager = () => {
       Product_Price: 2000,
     },
     {
-      Product_id: 1,
+      Product_id: 5,
       Product_Name: "Emp. Queso Choclo",
       Product_Desc: "buen producto",
       Product_Img:
@@ -111,7 +130,7 @@ const CoffeManager = () => {
       Product_Price: 2000,
     },
     {
-      Product_id: 1,
+      Product_id: 6,
       Product_Name: "Mechada Queso",
       Product_Desc: "buen producto",
       Product_Img:
@@ -119,7 +138,7 @@ const CoffeManager = () => {
       Product_Price: 2000,
     },
     {
-      Product_id: 1,
+      Product_id: 7,
       Product_Name: "Mechada Queso",
       Product_Desc: "buen producto",
       Product_Img:
@@ -127,7 +146,7 @@ const CoffeManager = () => {
       Product_Price: 2000,
     },
     {
-      Product_id: 1,
+      Product_id: 8,
       Product_Name: "Mechada Queso",
       Product_Desc: "buen producto",
       Product_Img:
@@ -135,7 +154,7 @@ const CoffeManager = () => {
       Product_Price: 2000,
     },
     {
-      Product_id: 1,
+      Product_id: 9,
       Product_Name: "Emp. Queso Choclo",
       Product_Desc: "buen producto",
       Product_Img:
@@ -143,7 +162,7 @@ const CoffeManager = () => {
       Product_Price: 2000,
     },
     {
-      Product_id: 1,
+      Product_id: 10,
       Product_Name: "Mechada Queso",
       Product_Desc: "buen producto",
       Product_Img:
@@ -151,7 +170,7 @@ const CoffeManager = () => {
       Product_Price: 2000,
     },
     {
-      Product_id: 1,
+      Product_id: 11,
       Product_Name: "Mechada Queso",
       Product_Desc: "buen producto",
       Product_Img:
@@ -159,7 +178,7 @@ const CoffeManager = () => {
       Product_Price: 2000,
     },
     {
-      Product_id: 1,
+      Product_id: 12,
       Product_Name: "Mechada Queso",
       Product_Desc: "buen producto",
       Product_Img:
@@ -167,7 +186,7 @@ const CoffeManager = () => {
       Product_Price: 2000,
     },
     {
-      Product_id: 1,
+      Product_id: 13,
       Product_Name: "Emp. Queso Choclo",
       Product_Desc: "buen producto",
       Product_Img:
@@ -175,7 +194,7 @@ const CoffeManager = () => {
       Product_Price: 2000,
     },
     {
-      Product_id: 1,
+      Product_id: 14,
       Product_Name: "Mechada Queso",
       Product_Desc: "buen producto",
       Product_Img:
@@ -183,7 +202,7 @@ const CoffeManager = () => {
       Product_Price: 2000,
     },
     {
-      Product_id: 1,
+      Product_id: 15,
       Product_Name: "Mechada Queso",
       Product_Desc: "buen producto",
       Product_Img:
@@ -191,7 +210,7 @@ const CoffeManager = () => {
       Product_Price: 2000,
     },
     {
-      Product_id: 1,
+      Product_id: 16,
       Product_Name: "Mechada Queso",
       Product_Desc: "buen producto",
       Product_Img:
@@ -199,7 +218,7 @@ const CoffeManager = () => {
       Product_Price: 2000,
     },
     {
-      Product_id: 1,
+      Product_id: 17,
       Product_Name: "Emp. Queso Choclo",
       Product_Desc: "buen producto",
       Product_Img:
@@ -207,7 +226,7 @@ const CoffeManager = () => {
       Product_Price: 2000,
     },
     {
-      Product_id: 1,
+      Product_id: 18,
       Product_Name: "Mechada Queso",
       Product_Desc: "buen producto",
       Product_Img:
@@ -215,7 +234,7 @@ const CoffeManager = () => {
       Product_Price: 2000,
     },
     {
-      Product_id: 1,
+      Product_id: 19,
       Product_Name: "Mechada Queso",
       Product_Desc: "buen producto",
       Product_Img:
@@ -239,20 +258,35 @@ const CoffeManager = () => {
     // setAddNewRecord(false);
   };
 
-  const CreateNewOrder = ( CustomerName ) => {
+  const CreateNewOrder = (CustomerName) => {
     setOrderDetails({
       orderId: CreateRecord("Coffe", {
         orderCustomerName: CustomerName,
         orderFullDate: new Date(),
-        orderStatus: 'Created',
-        orderPaymentStatus:'Pending',
+        orderStatus: "Created",
+        orderPaymentStatus: "Pending",
         orderLastUpdate: new Date(),
-        orderDetails:''
+        orderDetails: "",
       }),
       orderCustomerName: CustomerName,
       orderDate: extractTime(),
     });
   };
+
+  // acá comienza la sección que agrupa los pedidos por tipo de producto
+  const groupedProducts = cartContent.reduce((acc, product) => {
+    const existingProduct = acc.find(
+      (item) => item.Product_id === product.Product_id
+    );
+    if (existingProduct) {
+      existingProduct.Product_Price += product.Product_Price;
+      existingProduct.Count += 1;
+    } else {
+      acc.push({ ...product, Count: 1 });
+    }
+    return acc;
+  }, []);
+  // acá termina la sección que agrupa los pedidos por tipo de producto
 
   return (
     <>
@@ -269,7 +303,12 @@ const CoffeManager = () => {
         )}
         {/* <h1>Administrador de ventas Coffe</h1> */}
         <section className="coffemanager-header">
-          <div className="NewOrderEntry" onClick={()=> {CreateNewOrder('Jonathan Hernández')}}>
+          <div
+            className="NewOrderEntry"
+            onClick={() => {
+              CreateNewOrder("Jonathan Hernández");
+            }}
+          >
             Ingresar Orden
           </div>
           <div className="NavMenu">
@@ -316,7 +355,7 @@ const CoffeManager = () => {
                   <p>Hora Ingreso:</p>
                   <p>Retira:</p>
                 </div>
-                <div>
+                <div className="details-values">
                   <p>{orderDetails.orderId}</p>
                   <p>{orderDetails.orderDate}</p>
                   <p>{orderDetails.orderCustomerName}</p>
@@ -324,14 +363,14 @@ const CoffeManager = () => {
               </div>
             </div>
             <div className="products-invoice-details">
-              {cartContent?.map((prod, index) => {
-                return <CartAddedProduct key={index} products={prod} />;
+              {groupedProducts?.map((prod, index) => {
+                return <CartAddedProduct key={index} products={prod} removeFromCart={removeFromCart}/>;
               })}
             </div>
             <div className="order-details-footer">
               <div className="summary">
-                <p>Subtotal $ {(calculateTotal() / 1.19)} </p>
-                <p>IVA $ {(calculateTotal() * 0.19)}</p>
+                <p>Subtotal $ {calculateTotal() / 1.19} </p>
+                <p>IVA $ {calculateTotal() * 0.19}</p>
                 <p>Total $ {calculateTotal()}</p>
               </div>
               <div className="payments">
