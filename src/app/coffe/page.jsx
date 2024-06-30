@@ -3,17 +3,23 @@
 import React, { useEffect, useState } from "react";
 import { useContext } from "react";
 import { ThemeContext } from "@/Context/ThemeContext/ThemeContext";
+import { AuthContext } from "@/Context/UserContext/UserContext";
 import useItemHandler from "./helper";
 import CardProduct from "./listedProductsCards/cardProduct";
 import CartAddedProduct from "./cartAddedProductComp/cartAddedProduct";
 import Modal from "./modal/modal";
-import { CreateRecord } from "@/Components/Firebase/DataManager/DataOperations";
+import {
+  CreateRecord,
+  UpdateRecord,
+} from "@/Components/Firebase/DataManager/DataOperations";
 
 import "./styles.css";
 
 const CoffeManager = () => {
   const { initialQty, addItem, reduceItem, removeItem } = useItemHandler();
   const { userThemePreference } = useContext(ThemeContext);
+  const [paymentMethod, setPaymentMethod] = useState(null);
+  const { authUser } = useContext(AuthContext);
 
   function extractTime() {
     const date = new Date();
@@ -38,7 +44,6 @@ const CoffeManager = () => {
   ];
 
   const [cartContent, setCartContent] = useState([]);
-  console.log(cartContent);
 
   const orderDefault = {
     orderId: null,
@@ -49,12 +54,13 @@ const CoffeManager = () => {
 
   const [orderDetails, setOrderDetails] = useState(orderDefault);
 
-  console.log(orderDetails);
-
   const addToCart = (prod) => {
     setCartContent((prevCartContent) => {
       if (Array.isArray(prevCartContent)) {
-        return [...prevCartContent, { ...prod, Product_index: prevCartContent.length }];
+        return [
+          ...prevCartContent,
+          { ...prod, Product_index: prevCartContent.length },
+        ];
       } else {
         return [{ ...prod, Product_index: 0 }];
       }
@@ -66,20 +72,20 @@ const CoffeManager = () => {
       // Find all products with the given product ID
       const productIndexes = prevCartContent
         .map((product, i) => (product.Product_id === productId ? i : -1))
-        .filter(i => i !== -1);
-  
+        .filter((i) => i !== -1);
+
       // If index is not provided, remove the product with the highest index
       if (index === null) {
         index = productIndexes.length - 1;
       }
-  
+
       // Remove the product at the specified index
       if (productIndexes.length > index) {
         const newCartContent = [...prevCartContent];
         newCartContent.splice(productIndexes[index], 1);
         return newCartContent;
       }
-  
+
       return prevCartContent;
     });
   };
@@ -258,19 +264,35 @@ const CoffeManager = () => {
     // setAddNewRecord(false);
   };
 
-  const CreateNewOrder = (CustomerName) => {
+  const CreateNewOrder = async (CustomerName) => {
     setOrderDetails({
-      orderId: CreateRecord("Coffe", {
+      orderId: await CreateRecord("Coffe", {
         orderCustomerName: CustomerName,
         orderFullDate: new Date(),
-        orderStatus: "Created",
+        orderStatus: { Status: "Entered", StatusTimeUpdated: new Date() },
         orderPaymentStatus: "Pending",
+        orderPaymentType: "null",
         orderLastUpdate: new Date(),
         orderDetails: "",
       }),
       orderCustomerName: CustomerName,
       orderDate: extractTime(),
     });
+    console.log(orderDetails);
+  };
+
+  const ConfirmOrder = () => {
+    UpdateRecord(
+      "Coffe",
+      orderDetails.orderId,
+      {
+        orderDetails: cartContent,
+        orderPaymentType: paymentMethod,
+        orderPaymentStatus: "Completed",
+        orderStatus: { Status: "Preparing", StatusTimeUpdated: new Date() },
+      },
+      authUser.email
+    );
   };
 
   // acá comienza la sección que agrupa los pedidos por tipo de producto
@@ -314,6 +336,7 @@ const CoffeManager = () => {
           <div className="NavMenu">
             <p className="NavItem Active">POS Coffe</p>
             <p>Gestión de órdenes</p>
+            <p>Productos</p>
             <p>Inventarios</p>
             <p>Reportes </p>
           </div>
@@ -351,7 +374,7 @@ const CoffeManager = () => {
               </div>
               <div className="details">
                 <div>
-                  <p>ID de la orden:</p>
+                  <p>Orden Id:</p>
                   <p>Hora Ingreso:</p>
                   <p>Retira:</p>
                 </div>
@@ -364,7 +387,13 @@ const CoffeManager = () => {
             </div>
             <div className="products-invoice-details">
               {groupedProducts?.map((prod, index) => {
-                return <CartAddedProduct key={index} products={prod} removeFromCart={removeFromCart}/>;
+                return (
+                  <CartAddedProduct
+                    key={index}
+                    products={prod}
+                    removeFromCart={removeFromCart}
+                  />
+                );
               })}
             </div>
             <div className="order-details-footer">
@@ -374,12 +403,18 @@ const CoffeManager = () => {
                 <p>Total $ {calculateTotal()}</p>
               </div>
               <div className="payments">
-                <p>Transf.</p>
-                <p>Efectivo</p>
-                <p>Pendiente</p>
+                <p onClick={() => setPaymentMethod("Transferencia")}>Transf.</p>
+                <p onClick={() => setPaymentMethod("Efectivo")}>Efectivo</p>
+                <p onClick={() => setPaymentMethod("Pendiente")}>Pendiente</p>
               </div>
               <div className="processOder">
-                <p className="place-order-btn">Ingresar pedido ✅</p>
+                {paymentMethod ? (
+                  <p className="place-order-btn" onClick={ConfirmOrder}>
+                    Confirmar orden
+                  </p>
+                ) : (
+                  []
+                )}
               </div>
             </div>
           </div>

@@ -2,11 +2,8 @@ import React from "react";
 import "./styles.css";
 
 const CartAddedProduct = ({ removeFromCart, products }) => {
-  const { Product_id } = products;
-  console.log(products);
-
   const deleteHandler = (value, index) => {
-    removeFromCart(value, index);
+    removeFromCart(value);
   };
 
   return (
@@ -18,7 +15,12 @@ const CartAddedProduct = ({ removeFromCart, products }) => {
         <div className="order-detail-description-container">
           <div className="text-header">{products.Product_Name}</div>
           {products.Count > 1 ? (
-            <div className="text-description expand" onClick={()=> alert('details')}>Ver detalle del pedido</div>
+            <div
+              className="text-description expand"
+              onClick={() => alert("details")}
+            >
+              Ver detalle del pedido
+            </div>
           ) : (
             <div className="text-description">{products.Product_Desc}</div>
           )}

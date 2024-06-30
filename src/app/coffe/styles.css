@@ -132,7 +132,7 @@
 
 .order-details-header .details {
   display: grid;
-  grid-template-columns: 40% 60%;
+  grid-template-columns: 35% 65%;
 
   border-radius: 25px;
   background-color: var(--primary-bg-header-color-dark);
