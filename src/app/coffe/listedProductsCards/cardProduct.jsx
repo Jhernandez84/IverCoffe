@@ -1,18 +1,26 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import "./styles.css";
 
 const CardProduct = ({
   product,
+  cartContent,
   openModal,
   addToCart,
   updateCart,
   removeFromCart,
 }) => {
-  // console.log(product)
-
   const [initialQty, setInitialQty] = useState(0);
   const [isManualQty, setIsManualQty] = useState(false);
+
+  useEffect(() => {
+    cartContent.forEach((cartProduct) => {
+      if (product.Product_id === cartProduct.Product_id) {
+        console.log(product.Product_id, cartProduct.Product_id);
+        setInitialQty(cartProduct.Count);
+      }
+    });
+  }, [cartContent]);
 
   const enterManualQty = () => {
     setIsManualQty(true);

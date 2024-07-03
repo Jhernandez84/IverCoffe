@@ -350,6 +350,13 @@ const CoffeManager = () => {
                 <div>Esta venta </div>
                 <div>Gráfico de algo</div>
                 <div>Resumen de caja</div>
+                <div>Resumen de caja</div>
+                <div>Resumen de caja</div>
+                <div>
+                  <div>
+                    ( Buscar Pedido )
+                  </div>
+                </div>
               </div>
               <div className="menu-list">
                 {products.map((product, index) => {
@@ -360,6 +367,7 @@ const CoffeManager = () => {
                       openModal={openModal}
                       addToCart={addToCart}
                       updateCart={updateCart}
+                      cartContent={groupedProducts}
                       removeFromCart={removeFromCart}
                     />
                   );
@@ -403,9 +411,15 @@ const CoffeManager = () => {
                 <p>Total $ {calculateTotal()}</p>
               </div>
               <div className="payments">
-                <p onClick={() => setPaymentMethod("Transferencia")}>Transf.</p>
-                <p onClick={() => setPaymentMethod("Efectivo")}>Efectivo</p>
-                <p onClick={() => setPaymentMethod("Pendiente")}>Pendiente</p>
+                <p onClick={() => setPaymentMethod("Transferencia")}>
+                  {paymentMethod === "Transferencia" ? "Transf. ✅" : "Transf."}
+                </p>
+                <p onClick={() => setPaymentMethod("Efectivo")}>
+                  {paymentMethod === "Efectivo" ? "Efectivo ✅" : "Efectivo"}
+                </p>
+                <p onClick={() => setPaymentMethod("Pendiente")}>
+                  {paymentMethod === "Pendiente" ? "Pendiente ⚠️" : "Pendiente"}
+                </p>
               </div>
               <div className="processOder">
                 {paymentMethod ? (

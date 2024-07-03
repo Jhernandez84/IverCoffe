@@ -2,6 +2,7 @@ import React from "react";
 import "./styles.css";
 
 const CartAddedProduct = ({ removeFromCart, products }) => {
+
   const deleteHandler = (value, index) => {
     removeFromCart(value);
   };
