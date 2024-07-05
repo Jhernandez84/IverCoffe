@@ -10,17 +10,35 @@ const CardProduct = ({
   updateCart,
   removeFromCart,
 }) => {
+  
   const [initialQty, setInitialQty] = useState(0);
   const [isManualQty, setIsManualQty] = useState(false);
+
+  // console.log(initialQty)
 
   useEffect(() => {
     cartContent.forEach((cartProduct) => {
       if (product.Product_id === cartProduct.Product_id) {
-        console.log(product.Product_id, cartProduct.Product_id);
-        setInitialQty(cartProduct.Count);
+        if (cartProduct.Count >= 1) {
+          // console.log(
+          //   product.Product_id,
+          //   cartProduct.Product_id,
+          //   cartProduct.Count
+          // );
+          setInitialQty(cartProduct.Count);
+          console.log(
+            "Product ID:",
+            product.Product_id,
+            "Product Qty:",
+            cartProduct.Count,
+            Date()
+          );
+        } else {
+          setInitialQty(0);
+        }
       }
     });
-  }, [cartContent]);
+  }, [cartContent, setInitialQty]);
 
   const enterManualQty = () => {
     setIsManualQty(true);
@@ -29,21 +47,21 @@ const CardProduct = ({
   const handleManualQtyChange = (e) => {
     const newValue = e.target.value;
     setInitialQty(newValue);
-    // console.log(initialQty);
   };
 
   const addItem = (product) => {
-    setInitialQty(initialQty + 1);
     addToCart(product);
   };
 
-  const reduceItem = () => {
+  const reduceItem = (product, index) => {
+    if (initialQty === 1) {
+      setInitialQty(0);
+    } else {
+      setInitialQty(initialQty - 1);
+    }
     removeFromCart(product);
-    setInitialQty((prevQty) => Math.max(prevQty - 1, 0)); // Prevents negative quantity
-  };
 
-  const removeItem = () => {
-    setInitialQty(0);
+    // setInitialQty((prevQty) => Math.max(prevQty - 1, 0)); // Prevents negative quantity
   };
 
   return (
@@ -71,7 +89,13 @@ const CardProduct = ({
           ) : (
             <div className="product-addToCart">
               <div>
-                <p onClick={reduceItem}>{initialQty === 1 ? "🗑️" : "-"}</p>
+                <p
+                  onClick={() => {
+                    reduceItem(product.Product_id);
+                  }}
+                >
+                  {initialQty === 1 ? "🗑️" : "-"}
+                </p>
               </div>
               <div className="product-addToCart-divider">
                 {isManualQty === false ? (

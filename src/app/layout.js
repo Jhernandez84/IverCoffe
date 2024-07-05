@@ -4,7 +4,7 @@ import React, { useContext } from "react";
 import { AuthProvider } from "@/Context/UserContext/UserContextComponent";
 import { AuthContext } from "@/Context/UserContext/UserContext";
 import { ThemeProvider } from "@/Context/ThemeContext/ThemeContextComponent";
-import { ThemeContext } from "@/Context/ThemeContext/ThemeContext";
+import { ProductProvider } from "@/Context/ProductContext/ProductContextComponent";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import SideBarComponent from "@/Components/Sidebar/SideBar";
@@ -28,9 +28,11 @@ export default function RootLayout({ children }) {
     <html>
       <body>
         <ThemeProvider>
-          <AuthProvider>
-            <InnerLayout>{children}</InnerLayout>
-          </AuthProvider>
+          <ProductProvider>
+            <AuthProvider>
+              <InnerLayout>{children}</InnerLayout>
+            </AuthProvider>
+          </ProductProvider>
         </ThemeProvider>
       </body>
     </html>

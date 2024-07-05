@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./styles.css";
 
 const CartAddedProduct = ({ removeFromCart, products }) => {
 
-  const deleteHandler = (value, index) => {
+  console.log('productos en carrito', products.Count)
+
+  const reduceItem = (value) => {
     removeFromCart(value);
   };
 
@@ -34,7 +36,7 @@ const CartAddedProduct = ({ removeFromCart, products }) => {
             <p
               className="remove"
               onClick={() =>
-                deleteHandler(products.Product_id, products.Product_index)
+                reduceItem(products.Product_id)
               }
             >
               Eliminar
