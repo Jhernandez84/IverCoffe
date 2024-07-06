@@ -164,13 +164,12 @@
   transition: all 0.5s;
 }
 
-.products-invoice-details .header{
+.products-invoice-details .header {
   display: flex;
   justify-content: center;
   padding-bottom: 5px;
   font-size: large;
 }
-
 
 .order-details-footer {
   display: grid;
@@ -214,7 +213,9 @@
 }
 
 .payments p:hover {
-  background-color: var(--primary-bg-strong-color-dark);
+  /* background-color: var(--primary-bg-strong-color-dark); */
+  background-color: white;
+  color: black;
 }
 
 .products-header .header-visual {
@@ -277,16 +278,44 @@
   height: 40px;
 }
 
-.place-order-btn::before {
-  background-color: red;
-  left: -100%;
+.place-order-btn {
+  border-color: aliceblue;
+  border: solid 0.5px;
+  /* background-color: white;
+  color: black; */
+  transition: ease-in;
   transition-duration: 0.3s;
-  mix-blend-mode: difference;
 }
 
-.place-order-btn:hover::before {
+.place-order-btn:hover {
+  background-color: white;
+  color: black;
+  transition: ease-in;
   transition-duration: 0.3s;
-  transform: translate(100%, -50%);
+}
+
+.POS-nav-content p {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-self: center;
+  align-items: center;
+  padding: 7px;
+  border-radius: 25px;
+  text-decoration: none;
+  color: white;
+  transition-duration: 0.5s;
+}
+
+.POS-nav-content p.active {
+  background-color: var(--primary-bg-strong-color-dark);
+}
+
+.POS-nav-content p:hover {
+  padding: 7px;
+  border-radius: 25px;
+  background-color: var(--primary-bg-strong-color-dark);
+  transition-duration: 0.4s;
 }
 
 @media screen and (max-height: 900px) {

@@ -12,6 +12,7 @@ import {
   CreateRecord,
   UpdateRecord,
 } from "@/Components/Firebase/DataManager/DataOperations";
+import Link from "next/link";
 
 import "./styles.css";
 
@@ -344,10 +345,18 @@ const CoffeManager = () => {
           </div>
           <div className="NavMenu">
             <p className="NavItem Active">POS Coffe</p>
-            <p>Gestión de órdenes</p>
-            <p>Productos</p>
-            <p>Inventarios</p>
-            <p>Reportes </p>
+            <Link href="/coffe/orders" className="POS-nav-content">
+              <p>Gestión de órdenes</p>
+            </Link>
+            <Link href="/coffe/products" className="POS-nav-content">
+              <p>Productos</p>
+            </Link>
+            <Link href="/coffe/inventory" className="POS-nav-content">
+              <p>Inventarios</p>
+            </Link>
+            <Link href="/coffe/reports" className="POS-nav-content">
+              <p>Reportes</p>
+            </Link>
           </div>
           <div>Resumen de caja</div>
         </section>
