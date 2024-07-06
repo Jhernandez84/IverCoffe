@@ -1,26 +1,37 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "./styles.css";
 
-const CartAddedProduct = ({ removeFromCart, products }) => {
+import Modal from "./modal/modal";
 
-  console.log('productos en carrito', products.Count)
+const CartAddedProduct = ({ removeFromCart, products }) => {
+  console.log("productos en carrito", products.Count);
 
   const reduceItem = (value) => {
     removeFromCart(value);
   };
 
+  const [showDetailModal, setShowDetailModal] = useState(false);
+
   return (
     <div className="order-container">
+      {/* {showDetailModal && <Modal closeModal={closeModal} item={selectedItem} />} */}
+      {showDetailModal && <Modal setShowDetailModal={setShowDetailModal} item={products}/>}
       <div className="order-detail-container">
         <div className="order-detail-img-container">
           <img src={products.Product_Img} alt="" />
         </div>
         <div className="order-detail-description-container">
-          <div className="text-header">{products.Product_Name}</div>
+          {products.Count > 1 ? (
+            <div className="text-header">
+              {products.Product_Name} x {products.Count}
+            </div>
+          ) : (
+            <div className="text-header">{products.Product_Name}</div>
+          )}
           {products.Count > 1 ? (
             <div
               className="text-description expand"
-              onClick={() => alert("details")}
+              onClick={() => setShowDetailModal(true)}
             >
               Ver detalle del pedido
             </div>
@@ -35,9 +46,7 @@ const CartAddedProduct = ({ removeFromCart, products }) => {
           <div>
             <p
               className="remove"
-              onClick={() =>
-                reduceItem(products.Product_id)
-              }
+              onClick={() => reduceItem(products.Product_id)}
             >
               Eliminar
             </p>

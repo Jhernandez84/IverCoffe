@@ -110,17 +110,20 @@
 
 .coffe-manager-body-order-details-container {
   display: grid;
-  grid-template-rows: 20% 55% 25%;
+  grid-template-rows: 13% 62% 25%;
   /* box-sizing: border-box; */
-  margin-top: 15px;
+  /* margin-top: 15px; */
   padding: 5px;
-  border: solid 0.5px;
+  /* border: solid 0.5px; */
   border-radius: 20px;
+  background-color: var(--primary-bg-strong-color-dark);
 }
 
 .order-details-header {
-  display: grid;
-  grid-template-rows: 25% 75%;
+  padding-top: 0;
+  /* margin-top: -10px; */
+  /* display: grid; */
+  /* grid-template-rows: 25% 75%; */
   /* background-color: #fff; */
 }
 
@@ -134,7 +137,7 @@
   display: grid;
   grid-template-columns: 35% 65%;
 
-  border-radius: 25px;
+  border-radius: 10px;
   background-color: var(--primary-bg-header-color-dark);
   margin: 5px;
   padding-left: 15px;
@@ -161,6 +164,14 @@
   transition: all 0.5s;
 }
 
+.products-invoice-details .header{
+  display: flex;
+  justify-content: center;
+  padding-bottom: 5px;
+  font-size: large;
+}
+
+
 .order-details-footer {
   display: grid;
   grid-template-rows: 50% 25% 25%;
@@ -169,7 +180,7 @@
 }
 
 .order-details-footer .summary {
-  border-radius: 25px;
+  border-radius: 10px;
   background-color: var(--primary-bg-header-color-dark);
   margin: 5px;
   padding-left: 15px;

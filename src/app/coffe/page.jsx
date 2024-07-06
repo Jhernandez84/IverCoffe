@@ -254,7 +254,7 @@ const CoffeManager = () => {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    console.log('Cambió el item productos')
+    console.log("Cambió el item productos");
     setProducts(ListProducts);
   }, [cartContent]);
 
@@ -356,13 +356,15 @@ const CoffeManager = () => {
           <section className="coffe-manager-body-products-navigation">
             <section className="coffe-manager-body-menu-container">
               <div className="menu-filter">
+                {/* acá va un map para los tipos/categorias de productos */}
                 <div>Esta venta </div>
                 <div>Gráfico de algo</div>
                 <div>Resumen de caja</div>
                 <div>Resumen de caja</div>
                 <div>Resumen de caja</div>
+                {/* acá va un map para los tipos/categorias de productos */}
                 <div>
-                  <div>( Buscar Pedido )</div>
+                  <div>Buscar... 🔍</div>
                 </div>
               </div>
               <div className="menu-list">
@@ -384,12 +386,12 @@ const CoffeManager = () => {
           </section>
           <div className="coffe-manager-body-order-details-container">
             <div className="order-details-header">
-              <div className="text">
+              {/* <div className="text">
                 <p>Detalle de la orden</p>
-              </div>
+              </div> */}
               <div className="details">
                 <div>
-                  <p>Orden Id:</p>
+                  <p className="orderFinder">Orden Id:</p>
                   <p>Hora Ingreso:</p>
                   <p>Retira:</p>
                 </div>
@@ -401,6 +403,7 @@ const CoffeManager = () => {
               </div>
             </div>
             <div className="products-invoice-details">
+              <div className="header">Detalle de esta orden</div>
               {groupedProducts.map((prod, index) => {
                 return (
                   <CartAddedProduct
