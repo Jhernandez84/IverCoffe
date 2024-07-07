@@ -1,6 +1,6 @@
 .coffemanager-container {
   display: grid;
-  grid-template-rows: 10% 90%;
+  grid-template-rows: min(10% , 90px) 90%;
   padding: 10px;
   background-color: white;
   width: calc(100% - 19px);

@@ -22,6 +22,7 @@ const CoffeManager = () => {
   const { cartContent, setCartContent } = useContext(ProductContext);
 
   const [paymentMethod, setPaymentMethod] = useState(null);
+  const [newOrder, setNewOrder] = useState(false);
 
   function extractTime() {
     const date = new Date();
@@ -34,16 +35,6 @@ const CoffeManager = () => {
   function calculateTotal() {
     return cartContent?.reduce((total, item) => total + item.Product_Price, 0);
   }
-
-  const initial = [
-    {
-      Product_id: null,
-      Product_Name: null,
-      Product_Desc: null,
-      Product_Img: null,
-      Product_Price: null,
-    },
-  ];
 
   const orderDefault = {
     orderId: null,
@@ -288,7 +279,8 @@ const CoffeManager = () => {
       orderCustomerName: CustomerName,
       orderDate: extractTime(),
     });
-    console.log(orderDetails);
+    setNewOrder(true);
+    console.log(newOrder);
   };
 
   const ConfirmOrder = () => {
@@ -303,6 +295,11 @@ const CoffeManager = () => {
       },
       authUser.email
     );
+
+    // Proceso para limpiar el carrito e ingresar un nuevo pedido
+    // Proceso para limpiar el carrito e ingresar un nuevo pedido
+    setCartContent(null);
+    setNewOrder(false);
   };
 
   // acá comienza la sección que agrupa los pedidos por tipo de producto
@@ -384,6 +381,7 @@ const CoffeManager = () => {
                       product={product}
                       openModal={openModal}
                       addToCart={addToCart}
+                      newOrder={newOrder}
                       // updateCart={updateCart}
                       cartContent={groupedProducts}
                       removeFromCart={removeFromCart}

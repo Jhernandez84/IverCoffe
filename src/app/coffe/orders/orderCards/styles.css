@@ -1,0 +1,38 @@
+.orderCard-container {
+  display: grid;
+  grid-template-rows: 20% 80%;
+  justify-content: stretch;
+  align-items: center;
+  border: solid 0.5px;
+  border-radius: 10px;
+  /* max-height: 500px; */
+  max-width: 250px;
+  padding-left: 5px;
+}
+
+.product-header {
+  font-size: medium;
+}
+
+.order-details .orders-list img {
+  width: 25px;
+  height: 25px;
+}
+
+@keyframes backgroundColorAnimation {
+  0% {
+    background-color: transparent transparent transparent red;
+  }
+  25% {
+    background-color: transparent transparent red red;
+  }
+  50% {
+    background-color: transparent red red red;
+  }
+  75% {
+    background-color: red red red red;
+  }
+  100% {
+    background-color: red red red red;
+  }
+}

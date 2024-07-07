@@ -2,3 +2,14 @@
   background-color: var(--primary-bg-header-color-dark);
   
 }
+
+.orders-container{
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  justify-content: space-between;
+  padding: 10px 5px;
+  gap: 10px;
+  max-height: 800px;
+  transition: all 0.5s;
+  overflow: scroll;
+}

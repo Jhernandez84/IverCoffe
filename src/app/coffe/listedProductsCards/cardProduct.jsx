@@ -9,12 +9,10 @@ const CardProduct = ({
   addToCart,
   updateCart,
   removeFromCart,
+  newOrder,
 }) => {
-  
   const [initialQty, setInitialQty] = useState(0);
   const [isManualQty, setIsManualQty] = useState(false);
-
-  // console.log(initialQty)
 
   useEffect(() => {
     cartContent.forEach((cartProduct) => {
@@ -66,7 +64,7 @@ const CardProduct = ({
 
   return (
     <>
-      <div className="products-card">
+      <div className={`products-card ${!newOrder ? "disabled" : ""}`}>
         <img
           src={product.Product_Img}
           alt={product.Product_Desc}
