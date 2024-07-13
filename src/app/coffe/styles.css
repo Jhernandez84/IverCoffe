@@ -1,6 +1,6 @@
 .coffemanager-container {
   display: grid;
-  grid-template-rows: min(10% , 90px) 90%;
+  grid-template-rows: min(10%, 90px) 90%;
   padding: 10px;
   background-color: white;
   width: calc(100% - 19px);
@@ -294,7 +294,8 @@
   transition-duration: 0.3s;
 }
 
-.POS-nav-content p {
+.POS-nav-content {
+  cursor: pointer;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -307,11 +308,11 @@
   transition-duration: 0.5s;
 }
 
-.POS-nav-content p.active {
+/* .POS-nav-content active {
   background-color: var(--primary-bg-strong-color-dark);
-}
+} */
 
-.POS-nav-content p:hover {
+.POS-nav-content:hover {
   padding: 7px;
   border-radius: 25px;
   background-color: var(--primary-bg-strong-color-dark);

@@ -1,22 +1,32 @@
 .orderCard-container {
   display: grid;
-  grid-template-rows: 20% 80%;
-  justify-content: stretch;
-  align-items: center;
+  grid-template-rows: 30% 40% 10%;
+  justify-content: center;
   border: solid 0.5px;
   border-radius: 10px;
-  /* max-height: 500px; */
-  max-width: 250px;
-  padding-left: 5px;
+  padding: 5px;
+  height: 200px;
 }
 
-.product-header {
-  font-size: medium;
+.orderCard-container .order-header {
+  margin-top: -10px;
+  font-size: larger;
 }
 
 .order-details .orders-list img {
   width: 25px;
   height: 25px;
+}
+
+.order-list {
+  display: flex;
+  flex-direction: column;
+  align-self: flex-end;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 30px; /* Adjust the height as needed */
 }
 
 @keyframes backgroundColorAnimation {
