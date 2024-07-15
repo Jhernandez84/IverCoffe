@@ -5,6 +5,7 @@ import { GetFireBaseDataAll } from "@/Components/Firebase/DataManager/DataOperat
 import OrdersCard from "./orderCards/orderCards";
 import "./styles.css";
 import { UpdateRecord } from "@/Components/Firebase/DataManager/DataOperations";
+import { UpdateProductStatus } from "@/Components/Firebase/DataManager/DataOperations";
 
 const OrderManagerPage = ({ orderDetails, setOrderDetails }) => {
   // console.log("detalle de la orden", orderDetails);
@@ -29,9 +30,14 @@ const OrderManagerPage = ({ orderDetails, setOrderDetails }) => {
     fetchOrders();
   }, []);
 
-  const HandleDeliveredStatus = () => {
-    console.log();
-    UpdateRecord('Coffe',mainOrderData?.id,'','Jonathan');
+  const HandleDeliveredStatus = (id, productStatus) => {
+    console.log("Modificando Index", id, productStatus);
+    console.log("Modificando", orderDetails);
+    // need to change the array when value like id change productStatus != las value
+    // UpdateRecord("Coffe", mainOrderData?.id, "", "Jonathan");
+    UpdateProductStatus("Coffe", mainOrderData?.id, {
+      orderDetails: orderDetails,
+    });
   };
 
   return (
@@ -74,11 +80,17 @@ const OrderManagerPage = ({ orderDetails, setOrderDetails }) => {
               <div>
                 <div>
                   <p className="orderFinder">Orden:</p>
-                  {mainOrderData?.id}
                 </div>
-                <p>Hora Ingreso: {mainOrderData?.id}</p>
+                {/* <p>Hora Ingreso: {mainOrderData?.id}</p> */}
+                <p>Hora Ingreso:</p>
                 {/* <p>Estado: {mainOrderData?.orderStatus}</p> */}
                 <p>Estado: </p>
+              </div>
+              <div>
+                <p>{mainOrderData?.id}</p>
+              </div>
+              <div>
+                <p>'14-07-2024'</p>
               </div>
             </div>
             <div>
@@ -114,7 +126,12 @@ const OrderManagerPage = ({ orderDetails, setOrderDetails }) => {
                             type="checkbox"
                             id={details.Product_index}
                             checked={details.Product_Status === "Ready"}
-                            onClick={() => HandleDeliveredStatus()}
+                            onClick={() =>
+                              HandleDeliveredStatus(
+                                details.Product_index,
+                                details.Product_Status
+                              )
+                            }
                           />
                           {/* <label htmlFor={index}> Entregado</label> */}
                         </td>

@@ -26,11 +26,13 @@ const OrdersCard = ({ orders, setOrderDetails, setMainOrderData }) => {
         onClick={() => HandleOrderCheck(orders.orderDetails)}
       >
         <section className="order-header">
-          <h1>Orden :{id}</h1>
-          <h1>Cliente: {orderCustomerName}</h1>
+          <p className="TextHeader">Orden :{id}</p>
+          <p className="TextClientLabel">Cliente: {orderCustomerName}</p>
+          <p className="TextProductsLabel"> Productos: {orderDetails.Count}</p>
+          <p className="TextProductsLabel"> Estado: {orderPaymentStatus}</p>
         </section>
         <section className="order-details">
-          <p>Detalle del pedido</p>
+          {/* <p>Detalle del pedido</p> */}
         </section>
         <section className="order-footer">
           <progress className="progress-bar" value="50" max="100"></progress>

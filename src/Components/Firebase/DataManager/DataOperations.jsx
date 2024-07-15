@@ -174,6 +174,33 @@ export const UpdateRecord = async (
   }
 };
 
+export const UpdateProductStatus = async (
+  collectionName,
+  id,
+  newData
+  // userWhoUpdates
+) => {
+  try {
+    const docRef = db.collection(collectionName).doc(id);
+    const doc = await docRef.get();
+
+    if (doc.exists) {
+      // Document exists, update its data
+      // newData.LastUpdateBy = userWhoUpdates;
+      // newData.LastUpdatetimeStamp = new Date();
+
+      await docRef.update(newData);
+      console.log(`Document with ID ${id} updated successfully.`);
+    } else {
+      throw new Error(`Document with ID ${id} does not exist.`);
+    }
+  } catch (error) {
+    console.error("Error updating record:", error);
+    throw error;
+  }
+};
+
+
 export const DeleteRecord = async (collectionName, id) => {
   try {
     const docRef = db.collection(collectionName).doc(id);
