@@ -1,43 +1,43 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
+import { GetMainOrdersData } from "@/Components/Firebase/DataManager/DataOperations";
 import { GetFireBaseDataAll } from "@/Components/Firebase/DataManager/DataOperations";
 import OrdersCard from "./orderCards/orderCards";
 import "./styles.css";
 import { UpdateRecord } from "@/Components/Firebase/DataManager/DataOperations";
-import { UpdateProductStatus } from "@/Components/Firebase/DataManager/DataOperations";
+import { updateProductStatus } from "@/Components/Firebase/DataManager/DataOperations";
 
 const OrderManagerPage = ({ orderDetails, setOrderDetails }) => {
-  // console.log("detalle de la orden", orderDetails);
-
   const [orders, setOrders] = useState(null);
   const [loading, setLoading] = useState(true); // Initialize loading state
   const [mainOrderData, setMainOrderData] = useState(null);
+  const [orderMenuStatus, setOrderMenuStatus] = useState(0);
 
-  useEffect(() => {
-    const fetchOrders = async () => {
-      try {
-        const DBEvento = "Coffe"; // Replace with the actual collection name
-        const data = await GetFireBaseDataAll(DBEvento);
-        setOrders(data);
-      } catch (error) {
-        console.error("Error fetching orders:", error);
-      } finally {
-        setLoading(false); // Update loading state
-      }
-    };
+  console.log("detalle de la orden", orderDetails);
 
-    fetchOrders();
-  }, []);
+  useEffect(
+    () => {
+      const fetchOrders = async () => {
+        try {
+          const DBEvento = "Coffe"; // Replace with the actual collection name
+          const data = await GetFireBaseDataAll(DBEvento);
+          setOrders(data);
+        } catch (error) {
+          console.error("Error fetching orders:", error);
+        } finally {
+          setLoading(false); // Update loading state
+        }
+      };
+      fetchOrders();
+    },
+    [],
+    [orderMenuStatus]
+  );
 
   const HandleDeliveredStatus = (id, productStatus) => {
-    console.log("Modificando Index", id, productStatus);
-    console.log("Modificando", orderDetails);
-    // need to change the array when value like id change productStatus != las value
-    // UpdateRecord("Coffe", mainOrderData?.id, "", "Jonathan");
-    UpdateProductStatus("Coffe", mainOrderData?.id, {
-      orderDetails: orderDetails,
-    });
+    console.log(mainOrderData.id);
+    updateProductStatus("Coffe", mainOrderData.id, id, productStatus);
   };
 
   return (
@@ -62,6 +62,7 @@ const OrderManagerPage = ({ orderDetails, setOrderDetails }) => {
                     orders={order}
                     setOrderDetails={setOrderDetails}
                     setMainOrderData={setMainOrderData}
+                    setOrderMenuStatus={setOrderMenuStatus}
                   />
                 ))
               ) : (
@@ -89,9 +90,7 @@ const OrderManagerPage = ({ orderDetails, setOrderDetails }) => {
               <div>
                 <p>{mainOrderData?.id}</p>
               </div>
-              <div>
-                <p>'14-07-2024'</p>
-              </div>
+              <div>{/* <p>'14-07-2024'</p> */}</div>
             </div>
             <div>
               <div className="details-values"></div>
@@ -121,20 +120,19 @@ const OrderManagerPage = ({ orderDetails, setOrderDetails }) => {
                         <td>
                           <p>{details.Product_Name}</p>
                         </td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            id={details.Product_index}
-                            checked={details.Product_Status === "Ready"}
-                            onClick={() =>
-                              HandleDeliveredStatus(
-                                details.Product_index,
-                                details.Product_Status
-                              )
-                            }
-                          />
-                          {/* <label htmlFor={index}> Entregado</label> */}
-                        </td>
+                        <input
+                          type="checkbox"
+                          id={details.Product_index}
+                          defaultChecked={details.Product_Status === "Prepared"}
+                          onClick={() =>
+                            HandleDeliveredStatus(
+                              details.Product_index,
+                              details.Product_Status === "Prepared"
+                                ? "Ordered"
+                                : "Prepared"
+                            )
+                          }
+                        />
                       </tr>
                     ))
                   ) : (

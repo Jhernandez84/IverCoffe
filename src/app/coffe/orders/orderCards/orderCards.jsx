@@ -2,7 +2,12 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import "./styles.css";
 
-const OrdersCard = ({ orders, setOrderDetails, setMainOrderData }) => {
+const OrdersCard = ({
+  orders,
+  setOrderDetails,
+  setMainOrderData,
+  setOrderMenuStatus,
+}) => {
   const {
     id,
     orderCustomerName,
@@ -11,11 +16,10 @@ const OrdersCard = ({ orders, setOrderDetails, setMainOrderData }) => {
     orderDetails,
   } = orders;
 
-  // console.log("Detalle del Pedido", orders.orderDetails);
-
-  const HandleOrderCheck = (details) => {
+  const HandleOrderSelected = (details) => {
     setOrderDetails(details);
     setMainOrderData(orders);
+    setOrderMenuStatus(0);
   };
 
   return (
@@ -23,7 +27,7 @@ const OrdersCard = ({ orders, setOrderDetails, setMainOrderData }) => {
       {/* <div className={`products-card ${!newOrder ? "disabled" : ""}`}> */}
       <div
         className="orderCard-container"
-        onClick={() => HandleOrderCheck(orders.orderDetails)}
+        onClick={() => HandleOrderSelected(orders.orderDetails)}
       >
         <section className="order-header">
           <p className="TextHeader">Orden :{id}</p>
@@ -35,7 +39,7 @@ const OrdersCard = ({ orders, setOrderDetails, setMainOrderData }) => {
           {/* <p>Detalle del pedido</p> */}
         </section>
         <section className="order-footer">
-          <progress className="progress-bar" value="50" max="100"></progress>
+          <progress className="progress-bar" value={Math.random(5,10)*100} max="100"></progress>
 
           {/* <p>Estado de la orden 🟢 🟡 🔴</p>
           <button type="button">Pedido Completado</button> */}

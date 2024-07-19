@@ -35,7 +35,7 @@ const POSComponent = ({ orderDetails, setOrderDetails }) => {
           {
             ...prod,
             Product_index: prevCartContent.length,
-            Product_Status: "Pending",
+            Product_Status: "Created",
           },
         ];
       } else {

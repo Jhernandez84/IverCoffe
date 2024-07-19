@@ -1,6 +1,7 @@
 "use client";
 
 import { db } from "@/Components/Firebase/firebase";
+import { doc, getDoc, updateDoc } from "firebase/firestore";
 
 export const GetFireBaseData = async (DBEvento) => {
   try {
@@ -33,8 +34,8 @@ export const GetFireBaseData = async (DBEvento) => {
 
 export const GetFireBaseDataAll = async (DBEvento) => {
   try {
-    if (!DBEvento || typeof DBEvento !== 'string') {
-      throw new Error('Invalid DBEvento parameter');
+    if (!DBEvento || typeof DBEvento !== "string") {
+      throw new Error("Invalid DBEvento parameter");
     }
 
     const collectionRef = db.collection(DBEvento);
@@ -49,13 +50,13 @@ export const GetFireBaseDataAll = async (DBEvento) => {
         id: doc.id,
         ...doc.data(),
       }))
-      .filter((record) => record.EventoEstado !== 'eliminado');
+      .filter((record) => record.EventoEstado !== "eliminado");
 
     // records.sort((a, b) => a.orderFullDate.localeCompare(b.Rut));
 
     return records;
   } catch (error) {
-    console.error('Error fetching data:', error);
+    console.error("Error fetching data:", error);
     throw error; // Re-throw the error to be caught by the caller
   }
 };
@@ -136,6 +137,70 @@ export const GetStoredData = async (collectionName, docId) => {
   }
 };
 
+export const GetMainOrdersData = async (collectionName, docId) => {
+  try {
+    if (!collectionName || typeof collectionName !== "string") {
+      throw new Error("Invalid collectionName parameter");
+    }
+    if (!docId || typeof docId !== "string") {
+      throw new Error("Invalid docId parameter");
+    }
+    const docRef = doc(db, collectionName, docId);
+    const docSnapshot = await docRef.get();
+    if (!docSnapshot.exists) {
+      throw new Error(`No record found for the provided document ID: ${docId}`);
+    }
+    const data = {
+      id: docSnapshot.id,
+      ...docSnapshot.data(),
+    };
+
+    const result = {
+      orderId: data.id,
+      orderCustomerName: data.orderCustomerName,
+      orderFullDate: data.orderFullDate,
+    };
+
+    return result;
+  } catch (error) {
+    console.error("Error fetching data:", error);
+    throw error;
+  }
+};
+
+export const GetStoredDataDetails = async (collectionName, docId) => {
+  try {
+    if (!collectionName || typeof collectionName !== "string") {
+      throw new Error("Invalid collectionName parameter");
+    }
+
+    if (!docId || typeof docId !== "string") {
+      throw new Error("Invalid docId parameter");
+    }
+
+    // Reference to the specific document
+    const docRef = doc(db, collectionName, docId);
+    const docSnapshot = await getDoc(docRef);
+
+    if (!docSnapshot.exists()) {
+      throw new Error(`No record found for the provided document ID: ${docId}`);
+    }
+
+    const data = {
+      id: docSnapshot.id,
+      ...docSnapshot.data(),
+    };
+
+    // Extract the orderDetails field if it exists
+    const { orderDetails } = data;
+
+    return orderDetails;
+  } catch (error) {
+    console.error("Error fetching data:", error);
+    throw error;
+  }
+};
+
 export const CreateRecord = async (collectionName, newData) => {
   try {
     const docRef = db.collection(collectionName).doc();
@@ -174,33 +239,6 @@ export const UpdateRecord = async (
   }
 };
 
-export const UpdateProductStatus = async (
-  collectionName,
-  id,
-  newData
-  // userWhoUpdates
-) => {
-  try {
-    const docRef = db.collection(collectionName).doc(id);
-    const doc = await docRef.get();
-
-    if (doc.exists) {
-      // Document exists, update its data
-      // newData.LastUpdateBy = userWhoUpdates;
-      // newData.LastUpdatetimeStamp = new Date();
-
-      await docRef.update(newData);
-      console.log(`Document with ID ${id} updated successfully.`);
-    } else {
-      throw new Error(`Document with ID ${id} does not exist.`);
-    }
-  } catch (error) {
-    console.error("Error updating record:", error);
-    throw error;
-  }
-};
-
-
 export const DeleteRecord = async (collectionName, id) => {
   try {
     const docRef = db.collection(collectionName).doc(id);
@@ -215,6 +253,48 @@ export const DeleteRecord = async (collectionName, id) => {
     }
   } catch (error) {
     console.error("Error deleting record:", error);
+    throw error;
+  }
+};
+
+export const updateProductStatus = async (
+  collectionName,
+  orderId,
+  productIndex,
+  newStatus
+  // userWhoUpdates
+) => {
+  try {
+    // Reference to the specific document
+    const orderRef = doc(db, collectionName, orderId);
+    const orderSnap = await getDoc(orderRef);
+
+    if (orderSnap.exists()) {
+      // Get the current orderDetails array
+      const orderDetails = orderSnap.data().orderDetails;
+
+      // Check if productIndex is valid
+      if (productIndex >= 0 && productIndex < orderDetails.length) {
+        // Update the Product_Status for the specified product index
+        orderDetails[productIndex].Product_Status = newStatus;
+
+        // Update the document with the new orderDetails array and update metadata
+        const newData = {
+          orderDetails: orderDetails,
+          // LastUpdateBy: userWhoUpdates,
+          // LastUpdatetimeStamp: new Date(),
+        };
+
+        await updateDoc(orderRef, newData);
+        console.log("Product status updated successfully!");
+      } else {
+        throw new Error(`Invalid product index: ${productIndex}`);
+      }
+    } else {
+      throw new Error(`Document with ID ${orderId} does not exist.`);
+    }
+  } catch (error) {
+    console.error("Error updating record:", error);
     throw error;
   }
 };
