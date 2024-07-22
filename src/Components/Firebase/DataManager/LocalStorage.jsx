@@ -2,11 +2,20 @@
 // const { AddDataToLocalStorage, RemoveDataFromLocalStorage } = localStorageHelpers;
 
 const AddDataToLocalStorage = (key, data) => {
-    localStorage.setItem(key, JSON.stringify(data));
-  };
+  localStorage.setItem(key, JSON.stringify(data));
+};
+
+const GetDataFromLocalStorage = (key) => {
+  const data = localStorage.getItem(key);
+  return data ? JSON.parse(data) : null;
+};
 
 const RemoveDataFromLocalStorage = (key) => {
   localStorage.removeItem(key);
 };
 
-export default {RemoveDataFromLocalStorage, AddDataToLocalStorage};
+export {
+  RemoveDataFromLocalStorage,
+  AddDataToLocalStorage,
+  GetDataFromLocalStorage,
+};

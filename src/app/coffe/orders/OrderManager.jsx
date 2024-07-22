@@ -7,6 +7,12 @@ import OrdersCard from "./orderCards/orderCards";
 import "./styles.css";
 import { UpdateRecord } from "@/Components/Firebase/DataManager/DataOperations";
 import { updateProductStatus } from "@/Components/Firebase/DataManager/DataOperations";
+import {
+  AddDataToLocalStorage,
+  GetDataFromLocalStorage,
+} from "../../../Components/Firebase/DataManager/LocalStorage";
+
+// llama las funciones de LocalStorage
 
 const OrderManagerPage = ({ orderDetails, setOrderDetails }) => {
   const [orders, setOrders] = useState(null);
@@ -16,24 +22,25 @@ const OrderManagerPage = ({ orderDetails, setOrderDetails }) => {
 
   console.log("detalle de la orden", orderDetails);
 
-  useEffect(
-    () => {
-      const fetchOrders = async () => {
-        try {
-          const DBEvento = "Coffe"; // Replace with the actual collection name
-          const data = await GetFireBaseDataAll(DBEvento);
-          setOrders(data);
-        } catch (error) {
-          console.error("Error fetching orders:", error);
-        } finally {
-          setLoading(false); // Update loading state
-        }
-      };
-      fetchOrders();
-    },
-    [],
-    [orderMenuStatus]
-  );
+  useEffect(() => {
+    const fetchOrders = async () => {
+      try {
+        const DBEvento = "Coffe"; // Replace with the actual collection name
+        const data = await GetFireBaseDataAll(DBEvento);
+        AddDataToLocalStorage("orders", data);
+      } catch (error) {
+        console.error("Error fetching orders:", error);
+      } finally {
+        setLoading(false); // Update loading state
+      }
+    };
+
+    // console.log(GetDataFromLocalStorage("orders"));
+    const LocalStoragedOrders = GetDataFromLocalStorage("orders");
+    setOrders(LocalStoragedOrders);
+    console.log("Ordenes almacenadas", LocalStoragedOrders);
+    fetchOrders();
+  }, []);
 
   const HandleDeliveredStatus = (id, productStatus) => {
     console.log(mainOrderData.id);
@@ -56,7 +63,7 @@ const OrderManagerPage = ({ orderDetails, setOrderDetails }) => {
               {loading ? (
                 <div>Loading...</div> // You can replace this with a loading spinner or any other loading indicator
               ) : orders.length > 0 ? (
-                orders.map((order, index) => (
+                orders?.map((order, index) => (
                   <OrdersCard
                     key={index}
                     orders={order}
