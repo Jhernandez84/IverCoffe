@@ -5,10 +5,11 @@ import { useContext } from "react";
 import { ThemeContext } from "@/Context/ThemeContext/ThemeContext";
 import { AuthContext } from "@/Context/UserContext/UserContext";
 import { ProductContext } from "@/Context/ProductContext/ProductContext";
-import CardProduct from "./listedProductsCards/cardProduct";
-import CartAddedProduct from "./cartAddedProductComp/cartAddedProduct";
 import POSComponent from "./pos/pos";
 import OrderManagerPage from "./orders/OrderManager";
+import ReportingPage from "./reports/page";
+import StockManagerPage from "./orders/StockManager/page";
+import MenuManagerPage from "./orders/Menu/page";
 import Modal from "./modal/modal";
 import {
   CreateRecord,
@@ -122,9 +123,16 @@ const CoffeManager = () => {
         ) : (
           []
         )}
-        {posViewer === "PRO" ? "PRODUCTOS" : []}
-        {posViewer === "INV" ? "INVENTARIOS" : []}
-        {posViewer === "REP" ? "REPORTES" : []}
+        {posViewer === "REP" ? (
+          <ReportingPage
+          // orderDetails={orderDetails}
+          // setOrderDetails={setOrderDetails}
+          />
+        ) : (
+          []
+        )}
+        {posViewer === "PRO" ? <MenuManagerPage /> : []}
+        {posViewer === "INV" ? <StockManagerPage /> : []}
       </section>
     </>
   );
