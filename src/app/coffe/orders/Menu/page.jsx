@@ -1,6 +1,64 @@
 import React, { Children, useEffect, useState } from "react";
 
 const MenuManagerPage = () => {
+  const MenuList = [
+    {
+      name: "Plato 1",
+      descripcion: "plato de ejemplo",
+      imagen: "",
+      cantidad: "2",
+      PrecioCosto: "2510",
+      Otros: "SI",
+      Disponible: "SI",
+      Estado: "🟢",
+      StockMinimo: "5",
+    },
+    {
+      name: "Plato 2",
+      descripcion: "plato de ejemplo",
+      imagen: "",
+      cantidad: "2",
+      PrecioCosto: "2510",
+      Otros: "SI",
+      Disponible: "SI",
+      Estado: "🟡",
+      StockMinimo: "5",
+    },
+    {
+      name: "Plato 3",
+      descripcion: "plato de ejemplo",
+      imagen: "",
+      cantidad: "2",
+      PrecioCosto: "2510",
+      Otros: "SI",
+      Disponible: "SI",
+      Estado: "🔴",
+      StockMinimo: "5",
+    },
+    {
+      name: "Plato 3",
+      descripcion: "plato de ejemplo",
+      imagen: "",
+      cantidad: "2",
+      PrecioCosto: "2510",
+      Otros: "SI",
+      Disponible: "SI",
+      Estado: "🔴",
+      StockMinimo: "5",
+    },
+    {
+      name: "Plato 3",
+      descripcion: "plato de ejemplo",
+      imagen: "",
+      cantidad: "2",
+      PrecioCosto: "2510",
+      Otros: "SI",
+      Disponible: "SI",
+      Estado: "🟡",
+      StockMinimo: "5",
+    },
+  ];
+
   return (
     <section className="coffe-manager-body-container">
       <section className="coffe-manager-body-products-navigation">
@@ -17,7 +75,52 @@ const MenuManagerPage = () => {
               <div>Buscar... 🔍</div>
             </div>
           </div>
-          <div className="menu-list"></div>
+          <div className="menu-list">
+            <div></div>
+            <div>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Estado</th>
+                    <th>Imagen</th>
+                    <th>Ítem Nombre</th>
+                    <th>Descripción</th>
+                    <th>Disponible</th>
+                    <th>¿Avisar Stock?</th>
+                    <th>Stock Mínimo</th>
+                    <th>Precio Costo</th>
+                    <th colSpan={2}>Seleccione</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {MenuList.map((item, index) => {
+                    return (
+                      <tr key={index}>
+                        <td>{item.Estado}</td>
+                        <td>{item.imagen}</td>
+                        <td>{item.name}</td>
+                        <td>{item.descripcion}</td>
+                        <td>
+                          <input
+                            type="number"
+                            name=""
+                            id=""
+                            // value={item.cantidad}
+                            placeholder={item.cantidad}
+                          />
+                        </td>
+                        <td>{item.Otros}</td>
+                        <td>{item.StockMinimo}</td> {/* agregar condición al valor del stock*/}
+                        <td>{item.PrecioCosto}</td>
+                        <td>✅</td>
+                        <td>❌</td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+            </div>
+          </div>
         </section>
       </section>
       <div className="coffe-manager-body-order-details-container">
