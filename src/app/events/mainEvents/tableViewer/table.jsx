@@ -1,6 +1,19 @@
+"use client";
 import React from "react";
+import { useRouter } from "next/navigation";
+import { HiSelector } from "react-icons/hi";
 
 const TableViewer = ({ event }) => {
+  const router = useRouter();
+
+  const createForm = (eventId) => {
+    router.push(`/events/form/edit/?id=${eventId}`);
+  };
+
+  const viewForm = (eventId) => {
+    router.push(`/events/form/?id=${eventId}`);
+  };
+
   return (
     <tr>
       <td>
@@ -15,9 +28,26 @@ const TableViewer = ({ event }) => {
       <td>{event.attendeeCapacity}</td>
       <td>{event.eventType}</td>
       <td>${event.registrationCost}</td>
-
-      <td>{event.eventCategory}</td>
-      <td>{event.eventDuration}</td>
+      <td>
+        <p
+          type="button"
+          onClick={() => {
+            createForm(event.eventId);
+          }}
+        >
+          <HiSelector />
+        </p>
+      </td>
+      <td>
+        <p
+          type="button"
+          onClick={() => {
+            viewForm(event.eventId);
+          }}
+        >
+          👀
+        </p>
+      </td>
       {/* <td>{event.tags.join(", ")}</td> */}
       <td>{event.eventVisibility}</td>
       {/* <td>{event.requireRSVP ? "Yes" : "No"}</td>
