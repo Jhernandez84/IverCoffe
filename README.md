@@ -12,6 +12,10 @@ yarn dev
 pnpm dev
 # or
 bun dev
+
+# page.module.css contains main pages css styles for most pages
+# page.module.css contains main pages css styles for most pages
+# page.module.css contains main pages css styles for most pages
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.

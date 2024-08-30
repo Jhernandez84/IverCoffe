@@ -42,7 +42,7 @@ export const AuthProvider = ({ children }) => {
       // Store authentication data in localStorage
       localStorage.setItem("authUser", JSON.stringify(user));
       setAuthUser(user);
-      router.push("/dashboard");
+      router.push("/pos");
     } catch (error) {
       console.error("Google sign-in error:", error);
     }

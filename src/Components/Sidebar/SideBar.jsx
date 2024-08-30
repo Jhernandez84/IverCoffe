@@ -1,23 +1,6 @@
 "use client";
 import Link from "next/link";
 import * as HiIcons from "react-icons/hi";
-import {
-  HiChartPie,
-  HiHome,
-  HiUserGroup,
-  HiTicket,
-  HiCalendar,
-  HiAdjustments,
-  HiUser,
-  HiUsers,
-  HiQuestionMarkCircle,
-  HiSun,
-  HiMoon,
-  HiCreditCard,
-  HiCurrencyDollar,
-  HiFingerPrint
-} from "react-icons/hi";
-// import Tooltip from "../Tooltips/Tooptip";
 
 import "../Sidebar/styles.css";
 
@@ -55,57 +38,39 @@ const SideBarComponent = () => {
 
   const SideBarMenu = [
     {
-      SBIcon: <HiChartPie style={{ fontSize: iconSize }} />,
+      SBIcon: <HiIcons.HiHome style={{ fontSize: iconSize }} />,
       SBMenu: "Dashboard",
-      SBRout: "/dashboard",
+      SBRout: "/pos",
     },
     {
-      SBIcon: <HiUserGroup style={{ fontSize: iconSize }} />,
+      SBIcon: <HiIcons.HiBell style={{ fontSize: iconSize }} />,
       SBMenu: "Iglesia",
-      SBRout: "/usersview",
-      SBSMContent: [
-        {
-          SBIcon: <HiUserGroup style={{ fontSize: iconSize }} />,
-          SBMenu: "Redes",
-          SBRout: "/redes",
-        },
-        {
-          SBIcon: <HiUserGroup style={{ fontSize: iconSize }} />,
-          SBMenu: "Grupos",
-          SBRout: "/teamgroupsn",
-        },
-      ],
+      SBRout: "/orders",
     },
     {
-      SBIcon: <HiTicket style={{ fontSize: iconSize }} />,
+      SBIcon: <HiIcons.HiBookOpen style={{ fontSize: iconSize }} />,
       SBMenu: "Eventos",
-      SBRout: "/events",
+      SBRout: "/menu_manager",
     },
     {
-      SBIcon: <HiCalendar style={{ fontSize: iconSize }} />,
+      SBIcon: <HiIcons.HiChartBar style={{ fontSize: iconSize }} />,
       SBMenu: "Calendario",
-      SBRout: "/calendar",
+      SBRout: "/inventory_manager",
     },
     {
-      SBIcon: <HiAdjustments style={{ fontSize: iconSize }} />,
+      SBIcon: <HiIcons.HiDocumentReport style={{ fontSize: iconSize }} />,
+      SBMenu: "Reportes",
+      SBRout: "/reports",
+    },
+    {
+      SBIcon: <HiIcons.HiAdjustments style={{ fontSize: iconSize }} />,
       SBMenu: "Mantenedor",
-      SBRout: "/usersettings",
-    },
-    {
-      SBIcon: <HiCurrencyDollar style={{ fontSize: iconSize }} />,
-      SBMenu: "Coffe",
-      SBRout: "/coffe",
-    },
-    {
-      SBIcon: <HiQuestionMarkCircle style={{ fontSize: iconSize }} />,
-      SBMenu: "Ayuda",
-      SBRout: "/",
+      SBRout: "/settings",
     },
   ];
 
   return (
     <>
-      {/* <div className="sbar-container"> */}
       <div
         className={
           userThemePreference === "Dark"
@@ -152,12 +117,12 @@ const SideBarComponent = () => {
             />
             <div className="sidebar-account-settings-drkMode">
               {userThemePreference === "Dark" ? (
-                <HiSun
+                <HiIcons.HiSun
                   style={{ fontSize: iconSize }}
                   onClick={() => setUserThemeModeLight()}
                 />
               ) : (
-                <HiMoon
+                <HiIcons.HiMoon
                   style={{ fontSize: iconSize }}
                   onClick={() => setUserThemeModeDark()}
                 />
