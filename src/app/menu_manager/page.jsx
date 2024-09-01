@@ -11,12 +11,19 @@ import "../tableStyles.css";
 const MenuManagerPage = ({ Menu }) => {
   const { userThemePreference } = useContext(ThemeContext);
   const [showModal, setShowModal] = useState(false);
+  const [itemData, setItemData] = useState(false);
+
+  const handleClickItem = (item) => {
+    setItemData(item);
+    setShowModal(true);
+  };
 
   const MenuList = [
     {
       name: "Plato 1",
       descripcion: "plato de ejemplo",
-      imagen: "",
+      imagen:
+        "https://images-gmi-pmc.edge-generalmills.com/5722b9dc-deaa-497b-8581-a79af9cf1002.jpg",
       cantidad: "2",
       PrecioCosto: "2510",
       Otros: "SI",
@@ -79,7 +86,7 @@ const MenuManagerPage = ({ Menu }) => {
             : "coffemanager-container"
         }
       >
-        {showModal && <Modal setShowModal={setShowModal} />}
+        {showModal && <Modal setShowModal={setShowModal} itemData={itemData} />}
         <section className="coffemanager-header">
           <div
             className="NewOrderEntry"
@@ -139,11 +146,13 @@ const MenuManagerPage = ({ Menu }) => {
                     <tr
                       key={index}
                       onClick={() => {
-                        setShowModal(true);
+                        handleClickItem(item);
                       }}
                     >
                       <td>{item.Estado}</td>
-                      <td>{item.imagen}</td>
+                      <td>
+                        <img src={item.imagen} alt="" />
+                      </td>
                       <td>{item.name}</td>
                       <td>{item.descripcion}</td>
                       <td>

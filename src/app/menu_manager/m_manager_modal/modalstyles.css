@@ -1,49 +1,113 @@
 .modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 9999; /* Ensure the modal overlay appears above all other elements */
-  }
-  
-  .modal {
-    background: #475569;
-    padding: 20px;
-    border-radius: 25px;
-    position: relative;
-    width: 50%;
-    min-height: 45%;
-    z-index: 10000; /* Ensure the modal appears above all other elements */
-  }
-  
-  .modal-header-section {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    padding: 15px;
-  }
-  
-  .modal-footer-section {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-  }
-  
-  .close {
-    display: flex;
-    justify-content: center;
-    vertical-align: bottom;
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    cursor: pointer;
-    font-size: 20px;
-    border-radius: 25px;
-    width: 30px;
-    background: #24857d;
-  }
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999; /* Ensure the modal overlay appears above all other elements */
+}
+
+.modal {
+  background: #475569;
+  padding: 20px;
+  border-radius: 25px;
+  position: relative;
+  min-width: 40%;
+  min-height: 45%;
+  z-index: 10000; /* Ensure the modal appears above all other elements */
+}
+
+.modal-header-section {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding: 15px;
+  margin-bottom: 15px;
+  border-bottom: solid 1px;
+  padding-top: 15px;
+  font-size: large;
+}
+
+.modal-header-section img {
+  margin-left: 15px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50px;
+}
+
+.modal-footer-section {
+  border-top: solid 1px;
+  padding-top: 15px;
+  margin-top: 15px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.modal-footer-section .btn-modal {
+  border-radius: 10px;
+  border: solid 1px;
+  padding: 5px;
+  width: 70px;
+  text-align: center;
+  transition: ease;
+  transition-duration: 0.5s;
+}
+
+.modal-footer-section .btn-modal:hover {
+  cursor: pointer;
+  background-color: #24857d;
+}
+
+/* Modal settings  */
+/* Modal settings  */
+
+.data_grouping {
+  display: grid;
+  grid-template-columns: 40% auto;
+  gap: 10px;
+  margin: 5px;
+}
+
+.data_grouping input,
+select {
+  display: flex;
+  align-self: self-start;
+  height: 30px;
+  /* border-radius: 25px; */
+}
+
+.data_grouping_3c {
+  display: grid;
+  grid-template-columns: 40% 5% auto;
+  gap: 10px;
+  margin: 5px;
+}
+
+.data_grouping_3c input {
+  display: flex;
+  justify-content: end;
+  height: 30px;
+}
+
+.data_grouping_2 {
+  display: grid;
+  grid-template-columns: 20% 40% 40%;
+  gap: 10px;
+  /* margin: 5px; */
+}
+
+.checkbox,
+select {
+  cursor: pointer;
+}
+
+label {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+}
