@@ -12,11 +12,19 @@ const MenuManagerPage = ({ Menu }) => {
   const { userThemePreference } = useContext(ThemeContext);
   const [showModal, setShowModal] = useState(false);
   const [itemData, setItemData] = useState(false);
+  const [isNewRecord, setIsNewRecord] = useState(false);
 
   const handleClickItem = (item) => {
     setItemData(item);
     setShowModal(true);
+    setIsNewRecord(false);
   };
+
+  const handleCreateItem = (item) =>{
+    setItemData(item);
+    setShowModal(true);
+    setIsNewRecord(true)
+  }
 
   const MenuList = [
     {
@@ -86,12 +94,12 @@ const MenuManagerPage = ({ Menu }) => {
             : "coffemanager-container"
         }
       >
-        {showModal && <Modal setShowModal={setShowModal} itemData={itemData} />}
+        {showModal && <Modal setShowModal={setShowModal} itemData={itemData} NewRecord={isNewRecord} />}
         <section className="coffemanager-header">
           <div
             className="NewOrderEntry"
             onClick={() => {
-              CreateNewOrder("Jonathan Hernández");
+              handleCreateItem("Jonathan Hernández");
             }}
           >
             Nuevo Menú
