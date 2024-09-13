@@ -3,6 +3,8 @@
 import { db } from "@/Components/Firebase/firebase";
 import { doc, getDoc, updateDoc } from "firebase/firestore";
 
+
+// Esta consulta obtiene los valores guardados
 export const GetFireBaseData = async (DBEvento) => {
   try {
     if (!DBEvento || typeof DBEvento !== "string") {
@@ -21,9 +23,9 @@ export const GetFireBaseData = async (DBEvento) => {
         id: doc.id,
         ...doc.data(),
       }))
-      .filter((record) => record.EventoEstado !== "eliminado");
+    //   .filter((record) => record.EventoEstado !== "eliminado");
 
-    records.sort((a, b) => a.Rut.localeCompare(b.Rut));
+    // records.sort((a, b) => a.Rut.localeCompare(b.Rut));
 
     return records;
   } catch (error) {

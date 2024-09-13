@@ -1,28 +1,33 @@
 "use client";
 
 import { useState, useCallback, useEffect } from "react";
+import { CreateRecord } from "@/Components/Firebase/DataManager/DataOperations";
 import "./modalstyles.css";
 
 const Modal = ({ setShowModal, itemData, NewRecord }) => {
-  const handleCreateRecord = () => {};
+  const handleCreateRecord = () => {
+    CreateRecord("CoffeProducts", newEntryData);
+    setShowModal(false);
+  };
+
   const handleSaveChanges = () => {};
 
   const NewDataFields = {
     product_name: itemData.name,
     product_description: itemData.descripcion,
     product_image: itemData.imagen,
-    product_quantity: itemData.cantidad,
-    product_cost_price: itemData.PrecioCosto,
-    product_sell_price: itemData.PrecioVenta,
-    product_status: itemData.Disponible,
-    product_alrt_min_stock: "yes",
-    product_min_stock: itemData.StockMinimo,
-    product_allow_neg_qty: "yes",
-    product_max_neg_qty: 0,
+    product_quantity: itemData.cantidad || 0,
+    product_cost_price: itemData.PrecioCosto || 0,
+    product_sell_price: itemData.PrecioVenta || 0,
+    product_status: itemData.Disponible || "SI",
+    product_alrt_min_stock: true,
+    product_min_stock: itemData.StockMinimo || 0,
+    product_allow_neg_qty: true,
+    product_max_neg_qty: null,
   };
 
   const [newEntryData, setNewEntryData] = useState(NewDataFields);
-  console.log(newEntryData)
+  console.log(newEntryData);
 
   const getNewEntryData = useCallback(
     ({ target }) => {
@@ -63,7 +68,9 @@ const Modal = ({ setShowModal, itemData, NewRecord }) => {
               />
             </div>
             <div className="data_grouping">
-              <label htmlFor="product_description">Descripción del producto</label>
+              <label htmlFor="product_description">
+                Descripción del producto
+              </label>
               <input
                 type="text"
                 name="product_description"
@@ -80,44 +87,60 @@ const Modal = ({ setShowModal, itemData, NewRecord }) => {
                 id="product_image"
                 placeholder={newEntryData.product_image}
                 onChange={getNewEntryData}
-
-              />
-            </div>
-            <div className="data_grouping_3c">
-              <label htmlFor="product_alrt_min_stock">Notificar Cantidad mínima</label>
-              <input className="checkbox" type="checkbox" name="" id="" />
-              <input
-                type="number"
-                name="product_alrt_min_stock"
-                id="product_alrt_min_stock"
-                placeholder={newEntryData.product_alrt_min_stock}
-                onChange={getNewEntryData}
-
               />
             </div>
             <div className="data_grouping">
-              <label htmlFor="product_min_stock">Cantidad mínima</label>
+              <label htmlFor="product_quantity">Cantidad Disponible</label>
               <input
-                type="text"
-                name="product_min_stock"
-                id="product_min_stock"
-                placeholder={newEntryData.product_min_stock}
+                type="number"
+                name="product_quantity"
+                id="product_quantity"
+                placeholder={newEntryData.product_quantity}
                 onChange={getNewEntryData}
-
               />
             </div>
             <div className="data_grouping_3c">
-              <label htmlFor="product_allow_neg_qty">¿Permite cantidad negativa?</label>
-              <input className="checkbox" type="checkbox" name="product_allow_neg_qty" id="" />
+              <label htmlFor="product_alrt_min_stock">
+                Notificar Cantidad mínima
+              </label>
+              <input
+                className="checkbox"
+                type="checkbox"
+                name="product_allow_neg_qty"
+                id=""
+              />
               <div className="data_grouping_2">
                 <label htmlFor="product_min_stock">Hasta</label>
                 <input
+                  disabled={newEntryData?.product_alrt_min_stock === true}
                   type="number"
                   name="product_min_stock"
                   id="product_min_stock"
-                  placeholder={newEntryData.product_allow_neg_qty}
+                  placeholder={newEntryData?.product_min_stock || ""}
                   onChange={getNewEntryData}
-
+                />
+                <label htmlFor="product_name"> unidades.</label>
+              </div>
+            </div>
+            <div className="data_grouping_3c">
+              <label htmlFor="product_allow_neg_qty">
+                ¿Permite cantidad negativa?
+              </label>
+              <input
+                className="checkbox"
+                type="checkbox"
+                name="product_allow_neg_qty"
+                id=""
+              />
+              <div className="data_grouping_2">
+                <label htmlFor="product_min_stock">Hasta</label>
+                <input
+                  disabled={newEntryData?.product_allow_neg_qty === true}
+                  type="number"
+                  name="product_min_stock"
+                  id="product_min_stock"
+                  placeholder={newEntryData?.product_max_neg_qty || ""}
+                  onChange={getNewEntryData}
                 />
                 <label htmlFor="product_name"> unidades.</label>
               </div>
@@ -130,7 +153,6 @@ const Modal = ({ setShowModal, itemData, NewRecord }) => {
                 id="product_cost_price"
                 placeholder={newEntryData.product_cost_price}
                 onChange={getNewEntryData}
-
               />
             </div>
             <div className="data_grouping">
@@ -172,11 +194,11 @@ const Modal = ({ setShowModal, itemData, NewRecord }) => {
         </section>
         <section className="modal-footer-section">
           {NewRecord === true ? (
-            <p className="btn-modal" onClick={() => setShowModal(false)}>
-              Crear Ítem
+            <p className="btn-modal" onClick={() => handleCreateRecord()}>
+              Crear ítem
             </p>
           ) : (
-            <p className="btn-modal" onClick={() => setShowModal(false)}>
+            <p className="btn-modal" onClick={() => handleSaveChanges(alert('modificando'))}>
               Guardar
             </p>
           )}

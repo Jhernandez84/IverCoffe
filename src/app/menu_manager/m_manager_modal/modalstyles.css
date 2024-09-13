@@ -111,3 +111,9 @@ label {
   justify-content: left;
   align-items: center;
 }
+
+.del-btn{
+  /* padding: 5px; */
+  /* border-radius: 25px; */
+  /* border-color: red; */
+}

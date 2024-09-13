@@ -2,13 +2,30 @@
 
 import React, { Children, useEffect, useState, useContext } from "react";
 import { ThemeContext } from "@/Context/ThemeContext/ThemeContext";
+import { GetFireBaseData } from "@/Components/Firebase/DataManager/DataOperations";
 import Modal from "./m_manager_modal/modal";
 
 import "../page.module.css";
 import "../tableStyles.css";
+
 // import "../globals.css";
 
-const MenuManagerPage = ({ Menu }) => {
+const MenuManagerPage = () => {
+  const [MenuList, setMenu] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const data = await GetFireBaseData("CoffeProducts"); // Wait for the promise to resolve
+        setMenu(data); // Set the resolved data to state
+        console.log(data);
+      } catch (error) {
+        console.error("Error fetching data:", error); // Handle any errors
+      }
+    };
+    fetchData(); // Call the async function
+  }, []);
+
   const { userThemePreference } = useContext(ThemeContext);
   const [showModal, setShowModal] = useState(false);
   const [itemData, setItemData] = useState(false);
@@ -20,13 +37,13 @@ const MenuManagerPage = ({ Menu }) => {
     setIsNewRecord(false);
   };
 
-  const handleCreateItem = (item) =>{
+  const handleCreateItem = (item) => {
     setItemData(item);
     setShowModal(true);
-    setIsNewRecord(true)
-  }
+    setIsNewRecord(true);
+  };
 
-  const MenuList = [
+  const Menu1List = [
     {
       name: "Plato 1",
       descripcion: "plato de ejemplo",
@@ -94,7 +111,13 @@ const MenuManagerPage = ({ Menu }) => {
             : "coffemanager-container"
         }
       >
-        {showModal && <Modal setShowModal={setShowModal} itemData={itemData} NewRecord={isNewRecord} />}
+        {showModal && (
+          <Modal
+            setShowModal={setShowModal}
+            itemData={itemData}
+            NewRecord={isNewRecord}
+          />
+        )}
         <section className="coffemanager-header">
           <div
             className="NewOrderEntry"
@@ -134,7 +157,7 @@ const MenuManagerPage = ({ Menu }) => {
             <table>
               <thead>
                 {/* <tr> */}
-                <th>Estado</th>
+                <th></th>
                 <th>Imagen</th>
                 <th>Ítem Nombre</th>
                 <th>Descripción</th>
@@ -142,44 +165,90 @@ const MenuManagerPage = ({ Menu }) => {
                 <th>¿Avisar Stock?</th>
                 <th>Stock Mínimo</th>
                 <th>Precio Costo</th>
-                <th>Precio Costo</th>
-                <th>Precio Costo</th>
-                <th>Precio Costo</th>
-                <th colSpan={2}>Seleccione</th>
+                <th>Precio de Venta</th>
+                <th>Estado</th>
+                <th colSpan={2}>Opciones</th>
                 {/* </tr> */}
               </thead>
               <tbody>
-                {MenuList.map((item, index) => {
+                {MenuList?.map((item, index) => {
                   return (
-                    <tr
-                      key={index}
-                      onClick={() => {
-                        handleClickItem(item);
-                      }}
-                    >
-                      <td>{item.Estado}</td>
-                      <td>
-                        <img src={item.imagen} alt="" />
+                    <tr key={index}>
+                      <td
+                        onClick={() => {
+                          handleClickItem(item);
+                        }}
+                      >
+                        {item.product_status}
                       </td>
-                      <td>{item.name}</td>
-                      <td>{item.descripcion}</td>
+                      <td
+                        onClick={() => {
+                          handleClickItem(item);
+                        }}
+                      >
+                        <img src={item.product_image} alt="" />
+                      </td>
+                      <td
+                        onClick={() => {
+                          handleClickItem(item);
+                        }}
+                      >
+                        {item.product_name}
+                      </td>
+                      <td
+                        onClick={() => {
+                          handleClickItem(item);
+                        }}
+                      >
+                        {item.product_description}
+                      </td>
                       <td>
                         <input
                           type="number"
                           name=""
                           id=""
                           // value={item.cantidad}
-                          placeholder={item.cantidad}
+                          placeholder={item.product_quantity}
+                          style={{ maxWidth: "80px", minHeight: "24px" }} // Set the correct max-width here
                         />
                       </td>
-                      <td>{item.Otros}</td>
+                      <td>
+                        <select name="" id="">
+                          <option value="1">Si</option>
+                          <option value="2">No</option>
+                        </select>
+                      </td>
                       <td>{item.StockMinimo}</td>{" "}
                       {/* agregar condición al valor del stock*/}
-                      <td>{item.PrecioCosto}</td>
-                      <td>{item.PrecioCosto}</td>
-                      <td>{item.PrecioCosto}</td>
-                      <td>✅</td>
-                      <td>❌</td>
+                      <td>
+                        <input
+                          type="number"
+                          name=""
+                          id=""
+                          // value={item.cantidad}
+                          placeholder={item.product_cost_price}
+                          style={{ maxWidth: "80px", minHeight: "24px" }} // Set the correct max-width here
+                        />
+                      </td>
+                      <td>
+                        <input
+                          type="number"
+                          name=""
+                          id=""
+                          // value={item.cantidad}
+                          placeholder={item.product_sell_price}
+                          style={{ maxWidth: "80px", minHeight: "24px" }} // Set the correct max-width here
+                        />
+                      </td>
+                      <td>
+                        <select name="" id="">
+                          <option value="1">Habilitado</option>
+                          <option value="2">Pendiente</option>
+                          <option value="3">Agotado</option>
+                        </select>
+                      </td>
+                      <td className="del-btn">Eliminar</td>
+                      <td className="del-btn">Duplicar</td>
                     </tr>
                   );
                 })}
