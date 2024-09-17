@@ -1,43 +1,67 @@
 "use client";
 
 import { useState, useCallback, useEffect } from "react";
-import { CreateRecord } from "@/Components/Firebase/DataManager/DataOperations";
+import {
+  CreateRecord,
+  UpdateRecord,
+} from "@/Components/Firebase/DataManager/DataOperations";
 import "./modalstyles.css";
 
 const Modal = ({ setShowModal, itemData, NewRecord }) => {
+
   const handleCreateRecord = () => {
     CreateRecord("CoffeProducts", newEntryData);
     setShowModal(false);
   };
 
-  const handleSaveChanges = () => {};
+  const handleSaveChanges = (id) => {
+    console.log(newEntryData, id)
+    UpdateRecord("CoffeProducts", id, newEntryData, "fakeuser");
+    // alert("modificando");
+  };
 
   const NewDataFields = {
-    product_name: itemData.name,
-    product_description: itemData.descripcion,
-    product_image: itemData.imagen,
-    product_quantity: itemData.cantidad || 0,
-    product_cost_price: itemData.PrecioCosto || 0,
-    product_sell_price: itemData.PrecioVenta || 0,
-    product_status: itemData.Disponible || "SI",
-    product_alrt_min_stock: true,
-    product_min_stock: itemData.StockMinimo || 0,
-    product_allow_neg_qty: true,
-    product_max_neg_qty: null,
+    product_id: itemData.id,
+    product_name: itemData.product_name,
+    product_description: itemData.product_description,
+    product_image: itemData.product_image,
+    product_quantity: itemData.product_quantity || 0,
+    product_cost_price: itemData.product_cost_price || 0,
+    product_sell_price: itemData.product_sell_price || 0,
+    product_status: itemData.product_status || "SI",
+    product_alrt_min_stock: itemData.product_alrt_min_stock,
+    product_min_stock: itemData.product_min_stock || 0,
+    product_allow_neg_qty: itemData.product_allow_neg_qty,
+    product_max_neg_qty: itemData.product_max_neg_qty,
   };
 
   const [newEntryData, setNewEntryData] = useState(NewDataFields);
   console.log(newEntryData);
 
-  const getNewEntryData = useCallback(
-    ({ target }) => {
-      setNewEntryData({
-        ...newEntryData,
-        [target.name]: target.value,
-      });
-    },
-    [newEntryData]
-  );
+  const getNewEntryData = useCallback(({ target }) => {
+    const { name, type, value, checked } = target;
+
+    if (type === "checkbox") {
+      // Handle boolean checkbox toggle
+      setNewEntryData((prevState) => ({
+        ...prevState,
+        [name]: checked, // Set to the current checked state
+      }));
+    } else {
+      // Handle regular input fields
+      setNewEntryData((prevState) => ({
+        ...prevState,
+        [name]: value,
+      }));
+    }
+  }, []);
+
+  const handleBooleanToggle = (fieldName) => {
+    setNewEntryData((prevState) => ({
+      ...prevState,
+      [fieldName]: !prevState[fieldName], // Toggle boolean field
+    }));
+  };
 
   return (
     // El modal tendrá 3 filas para guardar datos 10,80,10
@@ -53,7 +77,7 @@ const Modal = ({ setShowModal, itemData, NewRecord }) => {
         </span> */}
         <section className="modal-header-section">
           Edición de producto - {newEntryData.product_name} -
-          {itemData.imagen ? <img src={itemData.imagen} alt="" /> : []}
+          {newEntryData.image ? <img src={newEntryData.image} alt="" /> : []}
         </section>
         <section className="modal-body-section">
           <div className="min_data_section">
@@ -106,8 +130,11 @@ const Modal = ({ setShowModal, itemData, NewRecord }) => {
               <input
                 className="checkbox"
                 type="checkbox"
-                name="product_allow_neg_qty"
-                id=""
+                name="product_alrt_min_stock"
+                id="product_alrt_min_stock"
+                onClick={() => {
+                  handleBooleanToggle("product_alrt_min_stock");
+                }}
               />
               <div className="data_grouping_2">
                 <label htmlFor="product_min_stock">Hasta</label>
@@ -130,7 +157,10 @@ const Modal = ({ setShowModal, itemData, NewRecord }) => {
                 className="checkbox"
                 type="checkbox"
                 name="product_allow_neg_qty"
-                id=""
+                id="product_allow_neg_qty"
+                onClick={() => {
+                  handleBooleanToggle("product_allow_neg_qty");
+                }}
               />
               <div className="data_grouping_2">
                 <label htmlFor="product_min_stock">Hasta</label>
@@ -198,7 +228,10 @@ const Modal = ({ setShowModal, itemData, NewRecord }) => {
               Crear ítem
             </p>
           ) : (
-            <p className="btn-modal" onClick={() => handleSaveChanges(alert('modificando'))}>
+            <p
+              className="btn-modal"
+              onClick={() => handleSaveChanges(newEntryData.product_id)}
+            >
               Guardar
             </p>
           )}
