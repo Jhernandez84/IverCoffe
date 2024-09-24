@@ -4,6 +4,7 @@ import React, { Children, useEffect, useState, useContext } from "react";
 import { ThemeContext } from "@/Context/ThemeContext/ThemeContext";
 import {
   GetFireBaseData,
+  UpdateRecord,
   DeleteRecord,
 } from "@/Components/Firebase/DataManager/DataOperations";
 import Modal from "./m_manager_modal/modal";
@@ -20,6 +21,7 @@ const MenuManagerPage = () => {
   const [itemData, setItemData] = useState(false);
   const [isNewRecord, setIsNewRecord] = useState(false);
   const [updateRecords, setUpdateRecords] = useState();
+  const [value, setSelectedValue] = useState();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -49,6 +51,21 @@ const MenuManagerPage = () => {
   const handleQuickDelete = (item) => {
     DeleteRecord("CoffeProducts", item);
     setUpdateRecords((prevState) => !prevState); // Toggle true/false
+  };
+
+  const handleQuickAmend = (item) => {
+    UpdateRecord(
+      "CoffeProducts",
+      item.id,
+      { product_status: value },
+      "fakeuser"
+    );
+    console.log(item);
+  };
+
+  const handleSelectorChanges = (event) => {
+    setSelectedValue(event.target.value);
+    console.log(event)
   };
 
   return (
@@ -107,7 +124,6 @@ const MenuManagerPage = () => {
             <table>
               <thead>
                 {/* <tr> */}
-                <th></th>
                 <th>Imagen</th>
                 <th>Ítem Nombre</th>
                 <th>Descripción</th>
@@ -124,13 +140,13 @@ const MenuManagerPage = () => {
                 {MenuList?.map((item, index) => {
                   return (
                     <tr key={index}>
-                      <td
+                      {/* <td
                         onClick={() => {
                           handleClickItem(item);
                         }}
                       >
                         {item.product_status}
-                      </td>
+                      </td> */}
                       <td
                         onClick={() => {
                           handleClickItem(item);
@@ -157,6 +173,9 @@ const MenuManagerPage = () => {
                           type="number"
                           name=""
                           id=""
+                          onBlur={() => {
+                            alert("alert");
+                          }}
                           // value={item.cantidad}
                           placeholder={item.product_quantity}
                           style={{ maxWidth: "80px", minHeight: "24px" }} // Set the correct max-width here
@@ -191,19 +210,25 @@ const MenuManagerPage = () => {
                         />
                       </td>
                       <td>
-                        <select name="" id="" value={item.product_status}>
+                        <select
+                          name=""
+                          id=""
+                          value={item.product_status}
+                          // onClick={() => handleQuickAmend(item)}
+                          onChange={()=> handleSelectorChanges}
+                        >
                           <option value="enabled">Habilitado</option>
                           <option value="pending">Pendiente</option>
                           <option value="soldout">Agotado</option>
                         </select>
                       </td>
                       <td
-                        className="del-btn"
+                        className="btn-modal del-btn"
                         onClick={() => handleQuickDelete(item.id)}
                       >
                         Eliminar
                       </td>
-                      <td className="del-btn">Duplicar</td>
+                      <td className="btn-modal del-btn">Duplicar</td>
                     </tr>
                   );
                 })}

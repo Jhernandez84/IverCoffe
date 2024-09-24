@@ -40,7 +40,7 @@ const Modal = ({ setShowModal, itemData, NewRecord, setUpdateRecords }) => {
     product_min_stock: itemData.product_min_stock || 0,
     product_allow_neg_qty: itemData.product_allow_neg_qty || null,
     product_max_neg_qty: itemData.product_max_neg_qty || 0,
-    product_status: itemData.product_status || null,
+    product_status: itemData.product_status || 'enabled',
   };
 
   const [newEntryData, setNewEntryData] = useState(NewDataFields);
