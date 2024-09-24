@@ -2,7 +2,10 @@
 
 import React, { Children, useEffect, useState, useContext } from "react";
 import { ThemeContext } from "@/Context/ThemeContext/ThemeContext";
-import { GetFireBaseData } from "@/Components/Firebase/DataManager/DataOperations";
+import {
+  GetFireBaseData,
+  DeleteRecord,
+} from "@/Components/Firebase/DataManager/DataOperations";
 import Modal from "./m_manager_modal/modal";
 
 import "../page.module.css";
@@ -12,6 +15,11 @@ import "../tableStyles.css";
 
 const MenuManagerPage = () => {
   const [MenuList, setMenu] = useState(null);
+  const { userThemePreference } = useContext(ThemeContext);
+  const [showModal, setShowModal] = useState(false);
+  const [itemData, setItemData] = useState(false);
+  const [isNewRecord, setIsNewRecord] = useState(false);
+  const [updateRecords, setUpdateRecords] = useState();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -24,12 +32,7 @@ const MenuManagerPage = () => {
       }
     };
     fetchData(); // Call the async function
-  }, []);
-
-  const { userThemePreference } = useContext(ThemeContext);
-  const [showModal, setShowModal] = useState(false);
-  const [itemData, setItemData] = useState(false);
-  const [isNewRecord, setIsNewRecord] = useState(false);
+  }, [updateRecords]);
 
   const handleClickItem = (item) => {
     setItemData(item);
@@ -43,64 +46,10 @@ const MenuManagerPage = () => {
     setIsNewRecord(true);
   };
 
-  const Menu1List = [
-    {
-      name: "Plato 1",
-      descripcion: "plato de ejemplo",
-      imagen:
-        "https://images-gmi-pmc.edge-generalmills.com/5722b9dc-deaa-497b-8581-a79af9cf1002.jpg",
-      cantidad: "2",
-      PrecioCosto: "2510",
-      Otros: "SI",
-      Disponible: "SI",
-      Estado: "🟢",
-      StockMinimo: "5",
-    },
-    {
-      name: "Plato 2",
-      descripcion: "plato de ejemplo",
-      imagen: "",
-      cantidad: "2",
-      PrecioCosto: "2510",
-      Otros: "SI",
-      Disponible: "SI",
-      Estado: "🟡",
-      StockMinimo: "5",
-    },
-    {
-      name: "Plato 3",
-      descripcion: "plato de ejemplo",
-      imagen: "",
-      cantidad: "2",
-      PrecioCosto: "2510",
-      Otros: "SI",
-      Disponible: "SI",
-      Estado: "🔴",
-      StockMinimo: "5",
-    },
-    {
-      name: "Plato 3",
-      descripcion: "plato de ejemplo",
-      imagen: "",
-      cantidad: "2",
-      PrecioCosto: "2510",
-      Otros: "SI",
-      Disponible: "SI",
-      Estado: "🔴",
-      StockMinimo: "5",
-    },
-    {
-      name: "Plato 3",
-      descripcion: "plato de ejemplo",
-      imagen: "",
-      cantidad: "2",
-      PrecioCosto: "2510",
-      Otros: "SI",
-      Disponible: "SI",
-      Estado: "🟡",
-      StockMinimo: "5",
-    },
-  ];
+  const handleQuickDelete = (item) => {
+    DeleteRecord("CoffeProducts", item);
+    setUpdateRecords((prevState) => !prevState); // Toggle true/false
+  };
 
   return (
     <>
@@ -116,6 +65,7 @@ const MenuManagerPage = () => {
             setShowModal={setShowModal}
             itemData={itemData}
             NewRecord={isNewRecord}
+            setUpdateRecords={setUpdateRecords}
           />
         )}
         <section className="coffemanager-header">
@@ -241,13 +191,18 @@ const MenuManagerPage = () => {
                         />
                       </td>
                       <td>
-                        <select name="" id="">
-                          <option value="1">Habilitado</option>
-                          <option value="2">Pendiente</option>
-                          <option value="3">Agotado</option>
+                        <select name="" id="" value={item.product_status}>
+                          <option value="enabled">Habilitado</option>
+                          <option value="pending">Pendiente</option>
+                          <option value="soldout">Agotado</option>
                         </select>
                       </td>
-                      <td className="del-btn">Eliminar</td>
+                      <td
+                        className="del-btn"
+                        onClick={() => handleQuickDelete(item.id)}
+                      >
+                        Eliminar
+                      </td>
                       <td className="del-btn">Duplicar</td>
                     </tr>
                   );

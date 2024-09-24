@@ -4,35 +4,43 @@ import { useState, useCallback, useEffect } from "react";
 import {
   CreateRecord,
   UpdateRecord,
+  DeleteRecord,
 } from "@/Components/Firebase/DataManager/DataOperations";
 import "./modalstyles.css";
 
-const Modal = ({ setShowModal, itemData, NewRecord }) => {
-
+const Modal = ({ setShowModal, itemData, NewRecord, setUpdateRecords }) => {
   const handleCreateRecord = () => {
     CreateRecord("CoffeProducts", newEntryData);
+    setUpdateRecords((prevState) => !prevState); // Toggle true/false
     setShowModal(false);
   };
 
   const handleSaveChanges = (id) => {
-    console.log(newEntryData, id)
+    // console.log(newEntryData, id);
     UpdateRecord("CoffeProducts", id, newEntryData, "fakeuser");
-    // alert("modificando");
+    setUpdateRecords((prevState) => !prevState); // Toggle true/false
+    setShowModal(false);
+  };
+
+  const handleDeleteRecord = (id) => {
+    DeleteRecord("CoffeProducts", id);
+    setUpdateRecords((prevState) => !prevState); // Toggle true/false
+    setShowModal(false);
   };
 
   const NewDataFields = {
-    product_id: itemData.id,
+    product_id: itemData.id || null,
     product_name: itemData.product_name,
     product_description: itemData.product_description,
-    product_image: itemData.product_image,
+    product_image: itemData.product_image || null,
     product_quantity: itemData.product_quantity || 0,
     product_cost_price: itemData.product_cost_price || 0,
     product_sell_price: itemData.product_sell_price || 0,
-    product_status: itemData.product_status || "SI",
-    product_alrt_min_stock: itemData.product_alrt_min_stock,
+    product_alrt_min_stock: itemData.product_alrt_min_stock || null,
     product_min_stock: itemData.product_min_stock || 0,
-    product_allow_neg_qty: itemData.product_allow_neg_qty,
-    product_max_neg_qty: itemData.product_max_neg_qty,
+    product_allow_neg_qty: itemData.product_allow_neg_qty || null,
+    product_max_neg_qty: itemData.product_max_neg_qty || 0,
+    product_status: itemData.product_status || null,
   };
 
   const [newEntryData, setNewEntryData] = useState(NewDataFields);
@@ -196,11 +204,16 @@ const Modal = ({ setShowModal, itemData, NewRecord }) => {
               />
             </div>
             <div className="data_grouping">
-              <label htmlFor="product_name">Estado</label>
-              <select name="" id="">
-                <option value="1">Habilitado</option>
-                <option value="2">Pendiente</option>
-                <option value="3">Agotado</option>
+              <label htmlFor="product_status">Estado</label>
+              <select
+                name="product_status"
+                id="product_status"
+                value={newEntryData.product_status}
+                onChange={getNewEntryData}
+              >
+                <option value="enabled">Habilitado</option>
+                <option value="pending">Pendiente</option>
+                <option value="soldout">Agotado</option>
               </select>
             </div>
           </div>
@@ -238,7 +251,11 @@ const Modal = ({ setShowModal, itemData, NewRecord }) => {
           <p className="btn-modal" onClick={() => setShowModal(false)}>
             Duplicar
           </p>
-          <p className="btn-modal" onClick={() => setShowModal(false)}>
+          <p
+            className="btn-modal"
+            onClick={()=> handleDeleteRecord(newEntryData.product_id)}
+            // onClick={() => handleDeleteRecord(newEntryData.product_id)}
+          >
             Eliminar
           </p>
           <p className="btn-modal" onClick={() => setShowModal(false)}>
