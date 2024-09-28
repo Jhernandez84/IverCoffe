@@ -7,6 +7,7 @@ const CartAddedProduct = ({ removeFromCart, products }) => {
   console.log("productos en carrito", products.Count);
 
   const reduceItem = (value) => {
+    console.log('removing:', value)
     removeFromCart(value);
   };
 
@@ -49,7 +50,7 @@ const CartAddedProduct = ({ removeFromCart, products }) => {
             </p>
           </div>
           <div>
-            <p className="remove" onClick={() => reduceItem(products.id)}>
+            <p className="remove" onClick={() => reduceItem(products)}>
               Eliminar
             </p>
           </div>

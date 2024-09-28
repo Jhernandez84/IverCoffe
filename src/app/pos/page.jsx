@@ -48,7 +48,7 @@ const CoffeManager = () => {
 
   const CreateNewOrder = async (CustomerName) => {
     setOrderDetails({
-      orderId: await CreateRecord("Coffe", {
+      orderId: await CreateRecord("Orders", {
         orderCustomerName: CustomerName,
         orderFullDate: new Date(),
         orderStatus: { Status: "Entered", StatusTimeUpdated: new Date() },

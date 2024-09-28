@@ -19,7 +19,7 @@ const CardProduct = ({
       if (product.id === cartProduct.id) {
         if (cartProduct.Count >= 1) {
           console.log(
-          //   product.Product_id,
+            product.id,
             cartProduct.id,
           //   cartProduct.Count
           );
@@ -48,17 +48,18 @@ const CardProduct = ({
   };
 
   const addItem = (product) => {
+    console.log('agregando producto:', product)
     addToCart(product);
   };
 
   const reduceItem = (product, index) => {
+    console.log('reduce item:',product)
     if (initialQty === 1) {
       setInitialQty(0);
     } else {
       setInitialQty(initialQty - 1);
     }
     removeFromCart(product);
-
     // setInitialQty((prevQty) => Math.max(prevQty - 1, 0)); // Prevents negative quantity
   };
 
@@ -79,7 +80,7 @@ const CardProduct = ({
           {initialQty === 0 ? (
             <p
               onClick={() => {
-                addItem(product);
+                addItem(product.id);
               }}
             >
               Agregar
@@ -89,7 +90,7 @@ const CardProduct = ({
               <div>
                 <p
                   onClick={() => {
-                    reduceItem(product.id);
+                    reduceItem(product);
                   }}
                 >
                   {initialQty === 1 ? "🗑️" : "-"}
