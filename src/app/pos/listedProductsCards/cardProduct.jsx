@@ -16,17 +16,17 @@ const CardProduct = ({
 
   useEffect(() => {
     cartContent.forEach((cartProduct) => {
-      if (product.Product_id === cartProduct.Product_id) {
+      if (product.id === cartProduct.id) {
         if (cartProduct.Count >= 1) {
-          // console.log(
+          console.log(
           //   product.Product_id,
-          //   cartProduct.Product_id,
+            cartProduct.id,
           //   cartProduct.Count
-          // );
+          );
           setInitialQty(cartProduct.Count);
           console.log(
             "Product ID:",
-            product.Product_id,
+            product.id,
             "Product Qty:",
             cartProduct.Count,
             Date()
@@ -66,12 +66,12 @@ const CardProduct = ({
     <>
       <div className={`products-card ${!newOrder ? "disabled" : ""}`}>
         <img
-          src={product.Product_Img}
-          alt={product.Product_Desc}
+          src={product.product_image}
+          alt={product.product_description}
           onClick={openModal}
         />
         <p className="product-header">
-          {product.Product_Name} ${product.Product_Price}
+          {product.product_name} ${product.product_sell_price}
         </p>
         {/* <p className="product-details">{product.Product_Desc}</p> */}
         {/* <p className="product-price">$ {product.Product_Price}</p> */}
@@ -89,7 +89,7 @@ const CardProduct = ({
               <div>
                 <p
                   onClick={() => {
-                    reduceItem(product.Product_id);
+                    reduceItem(product.id);
                   }}
                 >
                   {initialQty === 1 ? "🗑️" : "-"}

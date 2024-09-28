@@ -15,18 +15,20 @@ const CartAddedProduct = ({ removeFromCart, products }) => {
   return (
     <div className="order-container">
       {/* {showDetailModal && <Modal closeModal={closeModal} item={selectedItem} />} */}
-      {showDetailModal && <Modal setShowDetailModal={setShowDetailModal} item={products}/>}
+      {showDetailModal && (
+        <Modal setShowDetailModal={setShowDetailModal} item={products} />
+      )}
       <div className="order-detail-container">
         <div className="order-detail-img-container">
-          <img src={products.Product_Img} alt="" />
+          <img src={products.product_image} alt="" />
         </div>
         <div className="order-detail-description-container">
           {products.Count > 1 ? (
             <div className="text-header">
-              {products.Product_Name} x {products.Count}
+              {products.product_name} x {products.Count}
             </div>
           ) : (
-            <div className="text-header">{products.Product_Name}</div>
+            <div className="text-header">{products.product_name}</div>
           )}
           {products.Count > 1 ? (
             <div
@@ -36,18 +38,18 @@ const CartAddedProduct = ({ removeFromCart, products }) => {
               Ver detalle del pedido
             </div>
           ) : (
-            <div className="text-description">{products.Product_Desc}</div>
+            <div className="text-description">
+              {products.product_description}
+            </div>
           )}
         </div>
         <div className="order-details-options-container">
           <div>
-            <p className="Price">$ {products.Product_Price}</p>
+            <p className="Price"> $ {products.product_sell_price * products.Count}
+            </p>
           </div>
           <div>
-            <p
-              className="remove"
-              onClick={() => reduceItem(products.Product_id)}
-            >
+            <p className="remove" onClick={() => reduceItem(products.id)}>
               Eliminar
             </p>
           </div>

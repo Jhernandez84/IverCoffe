@@ -32,6 +32,7 @@ const Modal = ({ setShowModal, itemData, NewRecord, setUpdateRecords }) => {
     product_id: itemData.id || null,
     product_name: itemData.product_name,
     product_description: itemData.product_description,
+    product_category: itemData.category || null,
     product_image: itemData.product_image || null,
     product_quantity: itemData.product_quantity || 0,
     product_cost_price: itemData.product_cost_price || 0,
@@ -120,6 +121,19 @@ const Modal = ({ setShowModal, itemData, NewRecord, setUpdateRecords }) => {
                 placeholder={newEntryData.product_image}
                 onChange={getNewEntryData}
               />
+            </div>
+            <div className="data_grouping">
+              <label htmlFor="product_category">Categoría</label>
+              <select
+                name="product_category"
+                id="product_category"
+                value={newEntryData.product_category}
+                onChange={getNewEntryData}
+              >
+                <option value="enabled">Habilitado</option>
+                <option value="pending">Pendiente</option>
+                <option value="soldout">Agotado</option>
+              </select>
             </div>
             <div className="data_grouping">
               <label htmlFor="product_quantity">Cantidad Disponible</label>
@@ -248,7 +262,7 @@ const Modal = ({ setShowModal, itemData, NewRecord, setUpdateRecords }) => {
               Guardar
             </p>
           )}
-          <p className="btn-modal" onClick={() => setShowModal(false)}>
+          <p className="btn-modal" onClick={() => handleCreateRecord()}>
             Duplicar
           </p>
           <p
