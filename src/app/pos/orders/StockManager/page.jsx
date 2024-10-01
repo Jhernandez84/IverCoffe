@@ -1,3 +1,5 @@
+'use client';
+
 import React, { Children, useEffect, useState } from "react";
 
 const StockManagerPage = () => {
