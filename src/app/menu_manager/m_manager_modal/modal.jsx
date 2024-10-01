@@ -33,6 +33,7 @@ const Modal = ({ setShowModal, itemData, NewRecord, setUpdateRecords }) => {
     product_name: itemData.product_name,
     product_description: itemData.product_description,
     product_category: itemData.category || null,
+    product_sub_category: itemData.product_sub_category || null,
     product_image: itemData.product_image || null,
     product_quantity: itemData.product_quantity || 0,
     product_cost_price: itemData.product_cost_price || 0,
@@ -128,6 +129,19 @@ const Modal = ({ setShowModal, itemData, NewRecord, setUpdateRecords }) => {
                 name="product_category"
                 id="product_category"
                 value={newEntryData.product_category}
+                onChange={getNewEntryData}
+              >
+                <option value="enabled">Habilitado</option>
+                <option value="pending">Pendiente</option>
+                <option value="soldout">Agotado</option>
+              </select>
+            </div>
+            <div className="data_grouping">
+              <label htmlFor="product_sub_category">Sub Categoría</label>
+              <select
+                name="product_sub_category"
+                id="product_sub_category"
+                value={newEntryData.product_sub_category}
                 onChange={getNewEntryData}
               >
                 <option value="enabled">Habilitado</option>

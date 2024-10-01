@@ -11,6 +11,7 @@ const CardProduct = ({
   removeFromCart,
   newOrder,
 }) => {
+
   const [initialQty, setInitialQty] = useState(0);
   const [isManualQty, setIsManualQty] = useState(false);
 
@@ -19,8 +20,8 @@ const CardProduct = ({
       if (product.id === cartProduct.id) {
         if (cartProduct.Count >= 1) {
           console.log(
-            product.id,
-            cartProduct.id,
+            "Producto agregado",product.id,
+            "Producto en el carro",cartProduct.id,
           //   cartProduct.Count
           );
           setInitialQty(cartProduct.Count);
@@ -80,7 +81,7 @@ const CardProduct = ({
           {initialQty === 0 ? (
             <p
               onClick={() => {
-                addItem(product.id);
+                addItem(product);
               }}
             >
               Agregar

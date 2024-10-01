@@ -28,7 +28,6 @@ const MenuManagerPage = () => {
       try {
         const data = await GetFireBaseData("CoffeProducts"); // Wait for the promise to resolve
         setMenu(data); // Set the resolved data to state
-        console.log(data);
       } catch (error) {
         console.error("Error fetching data:", error); // Handle any errors
       }

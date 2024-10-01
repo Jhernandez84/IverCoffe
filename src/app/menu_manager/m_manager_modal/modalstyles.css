@@ -101,6 +101,13 @@ select {
   /* margin: 5px; */
 }
 
+.data_grouping_2_add_new {
+  display: grid;
+  grid-template-columns: 20% 40% 40%;
+  gap: 10px;
+  /* margin: 5px; */
+}
+
 .checkbox,
 select {
   cursor: pointer;

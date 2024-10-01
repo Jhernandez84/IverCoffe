@@ -29,10 +29,10 @@ const POSComponent = ({ orderDetails, setOrderDetails }) => {
 
   const [ListProducts, setListProducts] = useState([]);
 
-  // useEffect(() => {
-  //   console.log("Cambió el item productos");
-  //   setProducts(ListProducts);
-  // }, [cartContent]);
+  useEffect(() => {
+    console.log("Cambió el item productos");
+    setProducts(ListProducts);
+  }, [cartContent]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -48,10 +48,14 @@ const POSComponent = ({ orderDetails, setOrderDetails }) => {
   }, [cartContent]);
 
   function calculateTotal() {
-    return cartContent?.reduce(
-      (total, item) => total + item.product_sell_price,
-      0
-    );
+    return cartContent?.reduce((total, item) => {
+      // console.log("Current item:", item);
+      // console.log("Intermediate total:", total);
+      // Add the product sell price to the total
+      const updatedTotal = total + item.product_sell_price;
+      // console.log("Updated total after adding:", updatedTotal);
+      return updatedTotal;
+    }, 0);
   }
 
   const addToCart = (prod) => {
@@ -128,7 +132,6 @@ const POSComponent = ({ orderDetails, setOrderDetails }) => {
       },
       authUser.email
     );
-
     // Proceso para limpiar el carrito e ingresar un nuevo pedido
     // Proceso para limpiar el carrito e ingresar un nuevo pedido
     setCartContent(null);
@@ -141,7 +144,7 @@ const POSComponent = ({ orderDetails, setOrderDetails }) => {
       (item) => item.Product_id === product.Product_id
     );
     if (existingProduct) {
-      existingProduct.Product_Price += product.prod;
+      existingProduct.product_sell_price += product.product_sell_price;
       existingProduct.Count += 1;
     } else {
       acc.push({ ...product, Count: 1 });

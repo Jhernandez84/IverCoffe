@@ -4,7 +4,9 @@ import "./styles.css";
 import Modal from "./modal/modal";
 
 const CartAddedProduct = ({ removeFromCart, products }) => {
-  console.log("productos en carrito", products.Count);
+
+  // console.log("productos en carrito", products.Count);
+  // console.log("productos en carrito", products);
 
   const reduceItem = (value) => {
     console.log('removing:', value)
