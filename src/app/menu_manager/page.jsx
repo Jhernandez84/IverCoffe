@@ -9,6 +9,7 @@ import {
 } from "@/Components/Firebase/DataManager/DataOperations";
 import Modal from "./m_manager_modal/modal";
 
+import "./styles.css";
 import "../page.module.css";
 import "../tableStyles.css";
 
@@ -64,7 +65,7 @@ const MenuManagerPage = () => {
 
   const handleSelectorChanges = (event) => {
     setSelectedValue(event.target.value);
-    console.log(event)
+    console.log(event);
   };
 
   return (
@@ -121,122 +122,91 @@ const MenuManagerPage = () => {
               <p>Lista general de menu</p>
             </div>
             <table>
-              <thead>
-                {/* <tr> */}
-                <th>Imagen</th>
-                <th>Ítem Nombre</th>
-                <th>Descripción</th>
-                <th>Disponible</th>
-                <th>¿Avisar Stock?</th>
-                <th>Stock Mínimo</th>
-                <th>Precio Costo</th>
-                <th>Precio de Venta</th>
-                <th>Estado</th>
-                <th colSpan={2}>Opciones</th>
-                {/* </tr> */}
+              <thead className="table-col-headers">
+                <tr>
+                  <th>Imagen</th>
+                  <th>Ítem Nombre</th>
+                  <th>Descripción</th>
+                  <th>Disponible</th>
+                  <th>¿Avisar Stock?</th>
+                  <th>Stock Mínimo</th>
+                  <th>Precio Costo</th>
+                  <th>Precio de Venta</th>
+                  <th>Estado</th>
+                  <th colSpan={2}>Opciones</th>
+                </tr>
               </thead>
-              <tbody>
-                {MenuList?.map((item, index) => {
-                  return (
-                    <tr key={index}>
-                      {/* <td
-                        onClick={() => {
-                          handleClickItem(item);
-                        }}
-                      >
-                        {item.product_status}
-                      </td> */}
-                      <td
-                        onClick={() => {
-                          handleClickItem(item);
-                        }}
-                      >
-                        <img src={item.product_image} alt="" />
-                      </td>
-                      <td
-                        onClick={() => {
-                          handleClickItem(item);
-                        }}
-                      >
-                        {item.product_name}
-                      </td>
-                      <td
-                        onClick={() => {
-                          handleClickItem(item);
-                        }}
-                      >
-                        {item.product_description}
-                      </td>
-                      <td>
-                        <input
-                          type="number"
-                          name=""
-                          id=""
-                          onBlur={() => {
-                            alert("alert");
-                          }}
-                          // value={item.cantidad}
-                          placeholder={item.product_quantity}
-                          style={{ maxWidth: "80px", minHeight: "24px" }} // Set the correct max-width here
-                        />
-                      </td>
-                      <td>
-                        <select name="" id="">
-                          <option value="1">Si</option>
-                          <option value="2">No</option>
-                        </select>
-                      </td>
-                      <td>{item.StockMinimo}</td>{" "}
-                      {/* agregar condición al valor del stock*/}
-                      <td>
-                        <input
-                          type="number"
-                          name=""
-                          id=""
-                          // value={item.cantidad}
-                          placeholder={item.product_cost_price}
-                          style={{ maxWidth: "80px", minHeight: "24px" }} // Set the correct max-width here
-                        />
-                      </td>
-                      <td>
-                        <input
-                          type="number"
-                          name=""
-                          id=""
-                          // value={item.cantidad}
-                          placeholder={item.product_sell_price}
-                          style={{ maxWidth: "80px", minHeight: "24px" }} // Set the correct max-width here
-                        />
-                      </td>
-                      <td>
-                        <select
-                          name=""
-                          id=""
-                          value={item.product_status}
-                          // onClick={() => handleQuickAmend(item)}
-                          onChange={()=> handleSelectorChanges}
-                        >
-                          <option value="enabled">Habilitado</option>
-                          <option value="pending">Pendiente</option>
-                          <option value="soldout">Agotado</option>
-                        </select>
-                      </td>
-                      <td
-                        className="btn-modal del-btn"
-                        onClick={() => handleQuickDelete(item.id)}
-                      >
-                        Eliminar
-                      </td>
-                      <td className="btn-modal del-btn">Duplicar</td>
-                    </tr>
-                  );
-                })}
-              </tbody>
             </table>
+            <div className="scrollable-table">
+              <table>
+                <tbody>
+                  {MenuList?.map((item, index) => {
+                    return (
+                      <tr key={index}>
+                        <td onClick={() => handleClickItem(item)}>
+                          <img src={item.product_image} alt="" />
+                        </td>
+                        <td onClick={() => handleClickItem(item)}>
+                          {item.product_name}
+                        </td>
+                        <td onClick={() => handleClickItem(item)}>
+                          {item.product_description}
+                        </td>
+                        <td>
+                          <input
+                            type="number"
+                            placeholder={item.product_quantity}
+                            style={{ maxWidth: "80px", minHeight: "24px" }}
+                            onBlur={() => alert("alert")}
+                          />
+                        </td>
+                        <td>
+                          <select>
+                            <option value="1">Si</option>
+                            <option value="2">No</option>
+                          </select>
+                        </td>
+                        <td>{item.StockMinimo}</td>
+                        <td>
+                          <input
+                            type="number"
+                            placeholder={item.product_cost_price}
+                            style={{ maxWidth: "80px", minHeight: "24px" }}
+                          />
+                        </td>
+                        <td>
+                          <input
+                            type="number"
+                            placeholder={item.product_sell_price}
+                            style={{ maxWidth: "80px", minHeight: "24px" }}
+                          />
+                        </td>
+                        <td>
+                          <select
+                            value={item.product_status}
+                            onChange={() => handleSelectorChanges}
+                          >
+                            <option value="enabled">Habilitado</option>
+                            <option value="pending">Pendiente</option>
+                            <option value="soldout">Agotado</option>
+                          </select>
+                        </td>
+                        <td
+                          onClick={() => handleQuickDelete(item.id)}
+                          className="btn-modal del-btn"
+                        >
+                          Eliminar
+                        </td>
+                        <td className="btn-modal del-btn">Duplicar</td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+            </div>
           </section>
         </section>
       </section>
-      {/* </section> */}
     </>
   );
 };

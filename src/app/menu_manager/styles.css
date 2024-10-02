@@ -1,0 +1,26 @@
+.table_container {
+  position: relative;
+}
+
+.scrollable-table {
+  display: block;
+  max-height: calc(100vh - 290px);
+  overflow-y: auto;
+  width: 100%;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table-col-headers {
+  height: 50px;
+}
+
+thead th {
+  position: sticky;
+  top: 0;
+  background-color: white;
+  z-index: 1;
+}
