@@ -35,7 +35,7 @@ const OrderManagerPage = ({ orderDetails, setOrderDetails }) => {
   useEffect(() => {
     const fetchOrders = async () => {
       try {
-        const DBEvento = "Coffe"; // Replace with the actual collection name
+        const DBEvento = "Orders"; // Replace with the actual collection name
         const data = await GetFireBaseDataAll(DBEvento);
         AddDataToLocalStorage("orders", data);
       } catch (error) {

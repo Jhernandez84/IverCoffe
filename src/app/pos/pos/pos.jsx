@@ -138,6 +138,7 @@ const POSComponent = ({ orderDetails, setOrderDetails }) => {
     // Proceso para limpiar el carrito e ingresar un nuevo pedido
     setCartContent(null);
     setNewOrder(false);
+    setProducts(products)
   };
 
   // acá comienza la sección que agrupa los pedidos por tipo de producto
@@ -212,21 +213,21 @@ const POSComponent = ({ orderDetails, setOrderDetails }) => {
               {new Intl.NumberFormat("es-CL", {
                 minimumFractionDigits: 0,
                 maximumFractionDigits: 0,
-              }).format(calculateTotal() / 1.19)}
+              }).format(calculateTotal() / 1.19 || 0)}
             </p>
             <p>
               IVA ${" "}
               {new Intl.NumberFormat("es-CL", {
                 minimumFractionDigits: 0,
                 maximumFractionDigits: 0,
-              }).format(calculateTotal() * 0.19)}
+              }).format(calculateTotal() * 0.19 || 0)}
             </p>
             <p>
               Total ${" "}
               {new Intl.NumberFormat("es-CL", {
                 minimumFractionDigits: 0,
                 maximumFractionDigits: 0,
-              }).format(calculateTotal())}
+              }).format(calculateTotal() || 0)}
             </p>
           </div>
           <div className="payments">

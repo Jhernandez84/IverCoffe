@@ -4,12 +4,10 @@ import "./styles.css";
 import Modal from "./modal/modal";
 
 const CartAddedProduct = ({ removeFromCart, products }) => {
-
   // console.log("productos en carrito", products.Count);
   // console.log("productos en carrito", products);
 
   const reduceItem = (value) => {
-    console.log('removing:', value)
     removeFromCart(value);
   };
 
@@ -48,7 +46,9 @@ const CartAddedProduct = ({ removeFromCart, products }) => {
         </div>
         <div className="order-details-options-container">
           <div>
-            <p className="Price"> $ {products.product_sell_price * products.Count}
+            <p className="Price">
+              {/* $ {products.product_sell_price * products.Count} */}${" "}
+              {products.product_sell_price}
             </p>
           </div>
           <div>
