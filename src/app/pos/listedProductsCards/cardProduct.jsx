@@ -11,33 +11,38 @@ const CardProduct = ({
   removeFromCart,
   newOrder,
 }) => {
-
   const [initialQty, setInitialQty] = useState(0);
   const [isManualQty, setIsManualQty] = useState(false);
 
-  useEffect(() => {
-    cartContent.forEach((cartProduct) => {
-      if (product.id === cartProduct.id) {
-        if (cartProduct.Count >= 1) {
-          console.log(
-            "Producto agregado",product.id,
-            "Producto en el carro",cartProduct.id,
-          //   cartProduct.Count
-          );
-          setInitialQty(cartProduct.Count);
-          console.log(
-            "Product ID:",
-            product.id,
-            "Product Qty:",
-            cartProduct.Count,
-            Date()
-          );
-        } else {
-          setInitialQty(0);
+  useEffect(
+    () => {
+      cartContent.forEach((cartProduct) => {
+        if (product.id === cartProduct.id) {
+          if (cartProduct.Count >= 1) {
+            console.log(
+              "Producto agregado",
+              product.id,
+              "Producto en el carro",
+              cartProduct.id
+              //   cartProduct.Count
+            );
+            setInitialQty(cartProduct.Count);
+            console.log(
+              "Product ID:",
+              product.id,
+              "Product Qty:",
+              cartProduct.Count,
+              Date()
+            );
+          } else {
+            setInitialQty(0);
+          }
         }
-      }
-    });
-  }, [cartContent, setInitialQty]);
+      });
+    },
+    [cartContent],
+    [initialQty]
+  );
 
   const enterManualQty = () => {
     setIsManualQty(true);
@@ -49,12 +54,13 @@ const CardProduct = ({
   };
 
   const addItem = (product) => {
-    console.log('agregando producto:', product)
+    console.log("agregando producto:", product);
     addToCart(product);
+    console.log(initialQty);
   };
 
   const reduceItem = (product, index) => {
-    console.log('reduce item:',product)
+    console.log("reduce item:", product);
     if (initialQty === 1) {
       setInitialQty(0);
     } else {
@@ -73,7 +79,7 @@ const CardProduct = ({
           onClick={openModal}
         />
         <p className="product-header">
-          {product.product_name} ${product.product_sell_price}
+          {product.product_name} ${parseFloat(product.product_sell_price)}
         </p>
         {/* <p className="product-details">{product.Product_Desc}</p> */}
         {/* <p className="product-price">$ {product.Product_Price}</p> */}

@@ -21,6 +21,8 @@ import Link from "next/link";
 // import "./styles.css";
 
 const POSComponent = ({ orderDetails, setOrderDetails }) => {
+  const [getDBdata, setgetDBData] = useState(false);
+
   const { authUser } = useContext(AuthContext);
   const { cartContent, setCartContent } = useContext(ProductContext);
   const [paymentMethod, setPaymentMethod] = useState(null);
@@ -30,9 +32,9 @@ const POSComponent = ({ orderDetails, setOrderDetails }) => {
   const [ListProducts, setListProducts] = useState([]);
 
   useEffect(() => {
-    console.log("Cambió el item productos");
+    console.log("Datos actualizados desde firebase");
     setProducts(ListProducts);
-  }, [cartContent]);
+  }, [getDBdata]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -45,14 +47,14 @@ const POSComponent = ({ orderDetails, setOrderDetails }) => {
       }
     };
     fetchData(); // Call the async function
-  }, [cartContent]);
+  }, []);
 
   function calculateTotal() {
     return cartContent?.reduce((total, item) => {
       // console.log("Current item:", item);
       // console.log("Intermediate total:", total);
       // Add the product sell price to the total
-      const updatedTotal = total + item.product_sell_price;
+      const updatedTotal = total + parseFloat(item.product_sell_price);
       // console.log("Updated total after adding:", updatedTotal);
       return updatedTotal;
     }, 0);
@@ -79,7 +81,7 @@ const POSComponent = ({ orderDetails, setOrderDetails }) => {
     setCartContent((prevCartContent) => {
       // Find all products with the given product ID
       const productIndexes = prevCartContent
-        .map((product, i) => (product.id === productId ? i : -1))
+        .map((product, i) => (product.id === productId.id ? i : -1))
         .filter((i) => i !== -1);
 
       // If index is not provided, remove the product with the highest index
@@ -140,11 +142,11 @@ const POSComponent = ({ orderDetails, setOrderDetails }) => {
 
   // acá comienza la sección que agrupa los pedidos por tipo de producto
   const groupedProducts = (cartContent || []).reduce((acc, product) => {
-    const existingProduct = acc.find(
-      (item) => item.Product_id === product.Product_id
-    );
+    const existingProduct = acc.find((item) => item.product_id === product.id);
     if (existingProduct) {
-      existingProduct.product_sell_price += product.product_sell_price;
+      existingProduct.product_sell_price =
+        parseFloat(existingProduct.product_sell_price) +
+        parseFloat(product.product_sell_price);
       existingProduct.Count += 1;
     } else {
       acc.push({ ...product, Count: 1 });
@@ -205,9 +207,27 @@ const POSComponent = ({ orderDetails, setOrderDetails }) => {
         </div>
         <div className="order-details-footer">
           <div className="summary">
-            <p>Subtotal $ {calculateTotal() / 1.19} </p>
-            <p>IVA $ {calculateTotal() * 0.19}</p>
-            <p>Total $ {calculateTotal()}</p>
+            <p>
+              Subtotal ${" "}
+              {new Intl.NumberFormat("es-CL", {
+                minimumFractionDigits: 0,
+                maximumFractionDigits: 0,
+              }).format(calculateTotal() / 1.19)}
+            </p>
+            <p>
+              IVA ${" "}
+              {new Intl.NumberFormat("es-CL", {
+                minimumFractionDigits: 0,
+                maximumFractionDigits: 0,
+              }).format(calculateTotal() * 0.19)}
+            </p>
+            <p>
+              Total ${" "}
+              {new Intl.NumberFormat("es-CL", {
+                minimumFractionDigits: 0,
+                maximumFractionDigits: 0,
+              }).format(calculateTotal())}
+            </p>
           </div>
           <div className="payments">
             <p onClick={() => setPaymentMethod("Transferencia")}>
