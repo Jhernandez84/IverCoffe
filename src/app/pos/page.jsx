@@ -111,9 +111,10 @@ const CoffeManager = () => {
           </div>
           <div className="NavMenu">
             {/* <div> */}
-            {Categoria.map((item) => {
+            {Categoria.map((item, index) => {
               return (
                 <p
+                  key={index}
                   className="NavItem"
                   onClick={() => {
                     setFilterValue(item.Category);
