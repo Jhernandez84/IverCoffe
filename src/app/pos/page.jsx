@@ -72,7 +72,8 @@ const CoffeManager = () => {
       orderId: await CreateRecord("Orders", {
         orderCustomerName: CustomerName,
         orderFullDate: new Date(),
-        orderStatus: { Status: "Entered", StatusTimeUpdated: new Date() },
+        // orderStatus: { Status: "Entered", StatusTimeUpdated: new Date() },
+        orderStatus: "received",
         orderPaymentStatus: "Pending",
         orderPaymentType: "null",
         orderLastUpdate: new Date(),
@@ -110,7 +111,6 @@ const CoffeManager = () => {
             Ingresar Orden
           </div>
           <div className="NavMenu">
-            {/* <div> */}
             {Categoria.map((item, index) => {
               return (
                 <p
@@ -124,7 +124,6 @@ const CoffeManager = () => {
                 </p>
               );
             })}
-            {/* </div> */}
           </div>
           <div className="SearchMenu">
             <input

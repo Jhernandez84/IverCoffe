@@ -34,12 +34,23 @@ const OrderManagerPage = () => {
 
   const [showDetailModal, setShowDetailModal] = useState(false);
 
+  const [filterValue, setFilterValue] = useState(null);
+
   useEffect(() => {
     const fetchOrders = async () => {
       try {
-        const DBEvento = "Orders"; // Replace with the actual collection name
-        const data = await GetFireBaseDataAll(DBEvento);
-        AddDataToLocalStorage("orders", data);
+        const DBEvento = "Orders"; // Replace with your actual collection name
+        const firebaseData = await GetFireBaseDataAll(DBEvento);
+        // Compare the number of records in local storage vs Firebase
+        const localOrders = GetDataFromLocalStorage("orders");
+        if (!localOrders || localOrders.length < firebaseData.length) {
+          // Update local storage if Firebase has more data
+          AddDataToLocalStorage("orders", firebaseData);
+          setOrders(firebaseData); // Update state with Firebase data
+          console.log("Fetched and saved new orders from Firebase");
+        } else {
+          console.log("Using local stored orders as they are up to date");
+        }
       } catch (error) {
         console.error("Error fetching orders:", error);
       } finally {
@@ -47,11 +58,11 @@ const OrderManagerPage = () => {
       }
     };
 
-    // console.log(GetDataFromLocalStorage("orders"));
     const LocalStoragedOrders = GetDataFromLocalStorage("orders");
-    setOrders(LocalStoragedOrders);
-    console.log("Ordenes almacenadas", LocalStoragedOrders);
-    fetchOrders();
+    setOrders(LocalStoragedOrders || []); // Set initial state from local storage if it exists
+    console.log("Loaded orders from local storage", LocalStoragedOrders);
+
+    fetchOrders(); // Fetch new data if needed
   }, []);
 
   console.log("detalle de la orden", mainOrderData);
@@ -65,6 +76,15 @@ const OrderManagerPage = () => {
     const date = new Date(timestamp);
     // return date.toLocaleString(undefined, options);
   };
+
+  const OrderStatus = [
+    { Categoty_Name: "Todos", Category: "" },
+    { Categoty_Name: "Nuevos", Category: "received" },
+    { Categoty_Name: "En Proceso", Category: "processing" },
+    { Categoty_Name: "Entregados", Category: "delivered" },
+  ];
+
+  console.log(filterValue)
 
   return (
     <>
@@ -84,7 +104,21 @@ const OrderManagerPage = () => {
           >
             Ingresar Orden
           </div>
-          <div className="NavMenu"></div>
+          <div className="NavMenu">
+            {OrderStatus.map((item, index) => {
+              return (
+                <p
+                  key={index}
+                  className="NavItem"
+                  onClick={() => {
+                    setFilterValue(item.Category);
+                  }}
+                >
+                  {item.Categoty_Name}
+                </p>
+              );
+            })}
+          </div>
           <div>Resumen de caja</div>
         </section>
         <section>
@@ -102,15 +136,20 @@ const OrderManagerPage = () => {
                   {loading ? (
                     <div>Loading...</div> // You can replace this with a loading spinner or any other loading indicator
                   ) : orders?.length > 0 ? (
-                    orders?.map((order, index) => (
-                      <OrdersCard
-                        key={index}
-                        orderDetail={order}
-                        setMainOrderData={setMainOrderData}
-                        setOrderMenuStatus={setOrderMenuStatus}
-                        setShowDetailModal={setShowDetailModal}
-                      />
-                    ))
+                    orders
+                      .filter((order) => {
+                        if (!filterValue) return true; // If no filterValue, return all orders
+                        return order.orderStatus === filterValue; // Adjust "someField" to the field you want to filter by
+                      })
+                      .map((order, index) => (
+                        <OrdersCard
+                          key={index}
+                          orderDetail={order}
+                          setMainOrderData={setMainOrderData}
+                          setOrderMenuStatus={setOrderMenuStatus}
+                          setShowDetailModal={setShowDetailModal}
+                        />
+                      ))
                   ) : (
                     <div>Al parecer aún no hay pedidos</div> // Message when there are no orders
                   )}
