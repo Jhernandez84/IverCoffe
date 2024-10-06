@@ -141,9 +141,11 @@ const Modal = ({ setShowModal, itemData, NewRecord, setUpdateRecords }) => {
                 value={newEntryData.product_category}
                 onChange={getNewEntryData}
               >
-                {Categories.map((item) => {
+                {Categories.map((item, index) => {
                   return (
-                    <option value={item.Category}>{item.Categoty_Name}</option>
+                    <option key={index} value={item.Category}>
+                      {item.Categoty_Name}
+                    </option>
                   );
                 })}
               </select>

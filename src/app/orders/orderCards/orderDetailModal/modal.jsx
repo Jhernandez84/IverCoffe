@@ -9,8 +9,6 @@ import {
 import "./modalstyles.css";
 
 const Modal = ({ setShowDetailModal, orderData }) => {
-  console.log(orderData);
-
   // const handleCreateRecord = () => {
   //   CreateRecord("CoffeProducts", newEntryData);
   //   setUpdateRecords((prevState) => !prevState); // Toggle true/false
@@ -96,7 +94,7 @@ const Modal = ({ setShowDetailModal, orderData }) => {
             <tbody>
               {orderData.orderDetails.map((detail, index) => {
                 return (
-                  <tr>
+                  <tr key={index}>
                     <td>
                       <img src={detail.product_image}></img>
                     </td>
