@@ -34,6 +34,11 @@ const CoffeManager = () => {
     "product_description",
   ]);
 
+  useEffect(() => {
+    console.log("calling full screen");
+    enterFullScreen();
+  }, []);
+
   const filterFields = [
     "product_sub_category",
     "product_category",
@@ -90,6 +95,22 @@ const CoffeManager = () => {
     setFilterField("");
     setFilterValue(e.target.value);
     console.log(filterValue);
+  };
+
+  const enterFullScreen = () => {
+    const elem = document.documentElement; // Full-screen the entire document
+    if (elem.requestFullscreen) {
+      elem.requestFullscreen();
+    } else if (elem.mozRequestFullScreen) {
+      // For Firefox
+      elem.mozRequestFullScreen();
+    } else if (elem.webkitRequestFullscreen) {
+      // For Chrome, Safari, Opera
+      elem.webkitRequestFullscreen();
+    } else if (elem.msRequestFullscreen) {
+      // For IE/Edge
+      elem.msRequestFullscreen();
+    }
   };
 
   return (
