@@ -24,7 +24,7 @@ const LogInPage = ({ authUser, signInWithGoogle }) => {
         </video> */}
         <div className="content">
           <div className="home-container">
-            <h1>Bienvenido a la Intranet de IverChile</h1>
+            <h1>Bienvenido al Coffee Manager de IverChile</h1>
             <section className="logIn-Container">
               <section className="logInSection" onClick={signInWithGoogle}>
                 <img
