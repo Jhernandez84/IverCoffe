@@ -23,12 +23,22 @@ const CoffeManager = () => {
   const { userThemePreference } = useContext(ThemeContext);
   const { authUser } = useContext(AuthContext);
   const { cartContent, setCartContent } = useContext(ProductContext);
-
   const [posViewer, setPosViewer] = useState("POS");
-
   const [newOrder, setNewOrder] = useState(false);
-
   const [products, setProducts] = useState([]);
+  const [filterValue, setFilterValue] = useState("confites");
+  const [filterField, setFilterField] = useState("product_category");
+
+  const Categoria = [
+    { Categoty_Name: "Todos", Category: "" },
+    { Categoty_Name: "Dulces", Category: "dulce" },
+    { Categoty_Name: "Salados", Category: "salado" },
+    { Categoty_Name: "Confites", Category: "confite" },
+    { Categoty_Name: "Comida", Category: "comida" },
+    { Categoty_Name: "Bebidas", Category: "bebidas" },
+    { Categoty_Name: "Pasteles", Category: "pasteleria" },
+    { Categoty_Name: "Lacteos", Category: "leche" },
+  ];
 
   const orderDefault = {
     orderId: null,
@@ -83,30 +93,26 @@ const CoffeManager = () => {
             Ingresar Orden
           </div>
           <div className="NavMenu">
-            <p
-              className="POS-nav-content Active"
-              onClick={() => setPosViewer("POS")}
-            >
-              POS Coffe
-            </p>
-            <p className="POS-nav-content" onClick={() => setPosViewer("OMP")}>
-              Gestión de órdenes
-            </p>
-            <p className="POS-nav-content" onClick={() => setPosViewer("PRO")}>
-              Menú-Admin
-            </p>
-            <p className="POS-nav-content" onClick={() => setPosViewer("INV")}>
-              Inventarios
-            </p>
-            <p className="POS-nav-content" onClick={() => setPosViewer("REP")}>
-              Reportes
-            </p>
+            {Categoria.map((item) => {
+              return (
+                <p
+                  onClick={() => {
+                    setFilterValue(item.Category);
+                  }}
+                >
+                  {item.Categoty_Name}
+                </p>
+              );
+            })}
+            <p>Buscar 🔍</p>
           </div>
           <div>Resumen de caja</div>
         </section>
         {/* Acá corté el código del POS */}
         {posViewer === "POS" ? (
           <POSComponent
+            filterValue={filterValue}
+            filterField={filterField}
             products={products}
             orderDetails={orderDetails}
             setOrderDetails={setOrderDetails}
@@ -115,7 +121,7 @@ const CoffeManager = () => {
         ) : (
           []
         )}
-        {posViewer === "OMP" ? (
+        {/* {posViewer === "OMP" ? (
           <OrderManagerPage
             orderDetails={orderDetails}
             setOrderDetails={setOrderDetails}
@@ -124,7 +130,7 @@ const CoffeManager = () => {
           []
         )}
         {posViewer === "PRO" ? <MenuManagerPage /> : []}
-        {posViewer === "INV" ? <StockManagerPage /> : []}
+        {posViewer === "INV" ? <StockManagerPage /> : []} */}
       </section>
     </>
   );

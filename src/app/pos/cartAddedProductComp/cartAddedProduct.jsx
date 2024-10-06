@@ -7,6 +7,7 @@ const CartAddedProduct = ({ removeFromCart, products }) => {
   // console.log("productos en carrito", products.Count);
   // console.log("productos en carrito", products);
 
+ 
   const reduceItem = (value) => {
     removeFromCart(value);
   };

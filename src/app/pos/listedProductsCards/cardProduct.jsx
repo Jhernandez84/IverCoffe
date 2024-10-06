@@ -18,7 +18,7 @@ const CardProduct = ({
     () => {
       cartContent.forEach((cartProduct) => {
         if (product.id === cartProduct.id) {
-          if (cartProduct.Count >= 1) {
+          if (cartProduct.Count > 0) {
             console.log(
               "Producto agregado",
               product.id,
@@ -61,12 +61,12 @@ const CardProduct = ({
 
   const reduceItem = (product, index) => {
     console.log("reduce item:", product);
+    removeFromCart(product);
     if (initialQty === 1) {
       setInitialQty(0);
     } else {
       setInitialQty(initialQty - 1);
     }
-    removeFromCart(product);
     // setInitialQty((prevQty) => Math.max(prevQty - 1, 0)); // Prevents negative quantity
   };
 

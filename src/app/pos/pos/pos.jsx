@@ -7,6 +7,11 @@ import { AuthContext } from "@/Context/UserContext/UserContext";
 import { ProductContext } from "@/Context/ProductContext/ProductContext";
 import CardProduct from "../listedProductsCards/cardProduct";
 import CartAddedProduct from "../cartAddedProductComp/cartAddedProduct";
+import {
+  AddDataToLocalStorage,
+  RemoveDataFromLocalStorage,
+  GetDataFromLocalStorage,
+} from "../../../Components/Firebase/DataManager/LocalStorage";
 
 import { GetFireBaseData } from "@/Components/Firebase/DataManager/DataOperations";
 
@@ -20,7 +25,12 @@ import Link from "next/link";
 
 // import "./styles.css";
 
-const POSComponent = ({ orderDetails, setOrderDetails }) => {
+const POSComponent = ({
+  orderDetails,
+  setOrderDetails,
+  filterValue,
+  filterField,
+}) => {
   const [getDBdata, setgetDBData] = useState(false);
 
   const { authUser } = useContext(AuthContext);
@@ -28,18 +38,23 @@ const POSComponent = ({ orderDetails, setOrderDetails }) => {
   const [paymentMethod, setPaymentMethod] = useState(null);
   const [newOrder, setNewOrder] = useState(false);
   const [products, setProducts] = useState([]);
-
   const [ListProducts, setListProducts] = useState([]);
+
+  console.log(filterValue);
+  console.log(filterField);
 
   useEffect(() => {
     console.log("Datos actualizados desde firebase");
     setProducts(ListProducts);
   }, [getDBdata]);
 
+  // descarga la información de la nube y la pasa a BD local.
+  //
   useEffect(() => {
     const fetchData = async () => {
       try {
         const data = await GetFireBaseData("CoffeProducts"); // Wait for the promise to resolve
+        AddDataToLocalStorage("fbProducts", data);
         setProducts(data); // Set the resolved data to state
         console.log("Productos Creados:", data);
       } catch (error) {
@@ -98,7 +113,6 @@ const POSComponent = ({ orderDetails, setOrderDetails }) => {
         newCartContent.splice(productIndexes[index], 1);
         return newCartContent;
       }
-
       return prevCartContent;
     });
   };
@@ -138,7 +152,6 @@ const POSComponent = ({ orderDetails, setOrderDetails }) => {
     // Proceso para limpiar el carrito e ingresar un nuevo pedido
     setCartContent(null);
     setNewOrder(false);
-    setProducts(products)
   };
 
   // acá comienza la sección que agrupa los pedidos por tipo de producto
@@ -159,20 +172,32 @@ const POSComponent = ({ orderDetails, setOrderDetails }) => {
     <section className="coffe-manager-body-container">
       <section className="coffe-manager-body-products-navigation">
         <div className="menu-list">
-          {products.map((product, index) => {
-            return (
-              <CardProduct
-                key={index}
-                product={product}
-                openModal={openModal}
-                addToCart={addToCart}
-                newOrder={newOrder}
-                // updateCart={updateCart}
-                cartContent={groupedProducts}
-                removeFromCart={removeFromCart}
-              />
-            );
-          })}
+          {products
+            .filter((product) => {
+              // If no filter value is entered, return all products
+              if (!filterValue) return true;
+              // Filter based on a given field, e.g., 'product_name'
+              if (filterField && product[filterField]) {
+                return product[filterField]
+                  .toString() // Convert to string in case of numbers
+                  .toLowerCase()
+                  .includes(filterValue.toLowerCase());
+              }
+              return false; // If field doesn't exist, exclude the product
+            })
+            .map((product, index) => {
+              return (
+                <CardProduct
+                  key={index}
+                  product={product}
+                  openModal={openModal}
+                  addToCart={addToCart}
+                  newOrder={newOrder}
+                  cartContent={groupedProducts}
+                  removeFromCart={removeFromCart}
+                />
+              );
+            })}
         </div>
       </section>
       <div className="coffe-manager-body-order-details-container">
