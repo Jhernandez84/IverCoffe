@@ -37,6 +37,7 @@ const MenuManagerPage = () => {
   }, [updateRecords]);
 
   const handleClickItem = (item) => {
+    console.log("seleccionó el item: ", item);
     setItemData(item);
     setShowModal(true);
     setIsNewRecord(false);
@@ -127,7 +128,8 @@ const MenuManagerPage = () => {
                   <th>Imagen</th>
                   <th>Ítem Nombre</th>
                   <th>Descripción</th>
-                  <th>Disponible</th>
+                  <th>Categoría</th>
+                  {/* <th>Disponible</th> */}
                   <th>¿Avisar Stock?</th>
                   <th>Stock Mínimo</th>
                   <th>Precio Costo</th>
@@ -151,6 +153,9 @@ const MenuManagerPage = () => {
                         </td>
                         <td onClick={() => handleClickItem(item)}>
                           {item.product_description}
+                        </td>
+                        <td onClick={() => handleClickItem(item)}>
+                          {item.product_category}
                         </td>
                         <td>
                           <input

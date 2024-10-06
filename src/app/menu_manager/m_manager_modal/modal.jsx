@@ -32,7 +32,7 @@ const Modal = ({ setShowModal, itemData, NewRecord, setUpdateRecords }) => {
     product_id: itemData.id || null,
     product_name: itemData.product_name,
     product_description: itemData.product_description,
-    product_category: itemData.category || null,
+    product_category: itemData.product_category || null,
     product_sub_category: itemData.product_sub_category || null,
     product_image: itemData.product_image || null,
     product_quantity: itemData.product_quantity || 0,
@@ -42,8 +42,18 @@ const Modal = ({ setShowModal, itemData, NewRecord, setUpdateRecords }) => {
     product_min_stock: itemData.product_min_stock || 0,
     product_allow_neg_qty: itemData.product_allow_neg_qty || null,
     product_max_neg_qty: itemData.product_max_neg_qty || 0,
-    product_status: itemData.product_status || 'enabled',
+    product_status: itemData.product_status || "enabled",
   };
+
+  const Categories = [
+    { Categoty_Name: "Todos", Category: "" },
+    { Categoty_Name: "Promociones", Category: "promocion" },
+    { Categoty_Name: "Confites", Category: "confites" },
+    { Categoty_Name: "Comida", Category: "comida" },
+    { Categoty_Name: "Bebidas", Category: "bebestibles" },
+    { Categoty_Name: "Pasteles", Category: "pasteleria" },
+    { Categoty_Name: "Lacteos", Category: "leche" },
+  ];
 
   const [newEntryData, setNewEntryData] = useState(NewDataFields);
   console.log(newEntryData);
@@ -131,9 +141,11 @@ const Modal = ({ setShowModal, itemData, NewRecord, setUpdateRecords }) => {
                 value={newEntryData.product_category}
                 onChange={getNewEntryData}
               >
-                <option value="enabled">Habilitado</option>
-                <option value="pending">Pendiente</option>
-                <option value="soldout">Agotado</option>
+                {Categories.map((item) => {
+                  return (
+                    <option value={item.Category}>{item.Categoty_Name}</option>
+                  );
+                })}
               </select>
             </div>
             <div className="data_grouping">
@@ -281,7 +293,7 @@ const Modal = ({ setShowModal, itemData, NewRecord, setUpdateRecords }) => {
           </p>
           <p
             className="btn-modal"
-            onClick={()=> handleDeleteRecord(newEntryData.product_id)}
+            onClick={() => handleDeleteRecord(newEntryData.product_id)}
             // onClick={() => handleDeleteRecord(newEntryData.product_id)}
           >
             Eliminar

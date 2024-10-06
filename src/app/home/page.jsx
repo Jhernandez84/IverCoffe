@@ -8,13 +8,13 @@ import { Hedvig_Letters_Sans } from "next/font/google";
 const LogInPage = ({ authUser, signInWithGoogle }) => {
   // Use object destructuring to receive props
 
-  const UrlBg = "https://nttdata-solutions.com/wp-content/usermedia/artificial-intelligence-technology-2-1530x750.jpg";
+  const UrlBg =
+    "https://nttdata-solutions.com/wp-content/usermedia/artificial-intelligence-technology-2-1530x750.jpg";
 
   return (
     <>
       <div className="videoContainer">
         {/* <img src={UrlBg} alt="" /> */}
-
         {/* <video src="/blue.mov" className="videoBg" autoPlay muted loop playsInline>
           <source
             // src="public/blue.mov"

@@ -30,6 +30,7 @@ const POSComponent = ({
   setOrderDetails,
   filterValue,
   filterField,
+  filterFields,
 }) => {
   const [getDBdata, setgetDBData] = useState(false);
 
@@ -39,9 +40,6 @@ const POSComponent = ({
   const [newOrder, setNewOrder] = useState(false);
   const [products, setProducts] = useState([]);
   const [ListProducts, setListProducts] = useState([]);
-
-  console.log(filterValue);
-  console.log(filterField);
 
   useEffect(() => {
     console.log("Datos actualizados desde firebase");
@@ -176,14 +174,18 @@ const POSComponent = ({
             .filter((product) => {
               // If no filter value is entered, return all products
               if (!filterValue) return true;
-              // Filter based on a given field, e.g., 'product_name'
-              if (filterField && product[filterField]) {
-                return product[filterField]
-                  .toString() // Convert to string in case of numbers
-                  .toLowerCase()
-                  .includes(filterValue.toLowerCase());
-              }
-              return false; // If field doesn't exist, exclude the product
+
+              // Check if any of the specified fields contain the filter value
+              return filterFields.some((field) => {
+                // Ensure the field exists and contains the filter value (case-insensitive)
+                if (product[field]) {
+                  return product[field]
+                    .toString() // Convert the field value to a string in case of numbers
+                    .toLowerCase()
+                    .includes(filterValue.toLowerCase());
+                }
+                return false;
+              });
             })
             .map((product, index) => {
               return (

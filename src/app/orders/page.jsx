@@ -10,6 +10,7 @@ import { GetMainOrdersData } from "@/Components/Firebase/DataManager/DataOperati
 import { GetFireBaseDataAll } from "@/Components/Firebase/DataManager/DataOperations";
 
 import OrdersCard from "./orderCards/orderCards";
+import Modal from "./orderCards/orderDetailModal/modal";
 
 import { UpdateRecord } from "@/Components/Firebase/DataManager/DataOperations";
 import { updateProductStatus } from "@/Components/Firebase/DataManager/DataOperations";
@@ -21,7 +22,8 @@ import {
 // import "./styles.css";
 import "../page.module.css";
 
-const OrderManagerPage = ({ orderDetails, setOrderDetails }) => {
+// const OrderManagerPage = ({ orderDetails, setOrderDetails }) => {
+const OrderManagerPage = () => {
   const { userThemePreference } = useContext(ThemeContext);
   const { authUser } = useContext(AuthContext);
 
@@ -30,7 +32,7 @@ const OrderManagerPage = ({ orderDetails, setOrderDetails }) => {
   const [mainOrderData, setMainOrderData] = useState(null);
   const [orderMenuStatus, setOrderMenuStatus] = useState(0);
 
-  console.log("detalle de la orden", orderDetails);
+  const [showDetailModal, setShowDetailModal] = useState(false);
 
   useEffect(() => {
     const fetchOrders = async () => {
@@ -52,12 +54,12 @@ const OrderManagerPage = ({ orderDetails, setOrderDetails }) => {
     fetchOrders();
   }, []);
 
+  console.log("detalle de la orden", mainOrderData);
+
   const HandleDeliveredStatus = (id, productStatus) => {
     console.log(mainOrderData.id);
     updateProductStatus("Coffe", mainOrderData.id, id, productStatus);
   };
-
-  console.log(authUser);
 
   const convertTimestampToDate = (timestamp) => {
     const date = new Date(timestamp);
@@ -82,50 +84,37 @@ const OrderManagerPage = ({ orderDetails, setOrderDetails }) => {
           >
             Ingresar Orden
           </div>
-          <div className="NavMenu">
-            <p
-              className="POS-nav-content Active"
-              onClick={() => setPosViewer("POS")}
-            >
-              POS Coffe
-            </p>
-            <p className="POS-nav-content" onClick={() => setPosViewer("OMP")}>
-              Gestión de órdenes
-            </p>
-            <p className="POS-nav-content" onClick={() => setPosViewer("PRO")}>
-              Menú-Admin
-            </p>
-            <p className="POS-nav-content" onClick={() => setPosViewer("INV")}>
-              Inventarios
-            </p>
-            <p className="POS-nav-content" onClick={() => setPosViewer("REP")}>
-              Reportes
-            </p>
-          </div>
+          <div className="NavMenu"></div>
           <div>Resumen de caja</div>
         </section>
         <section>
           <>
             {/* <h1>Administrador de ventas Coffe</h1> */}
             <section className="coffe-manager-body-container">
+              {showDetailModal && (
+                <Modal
+                  setShowDetailModal={setShowDetailModal}
+                  orderData={mainOrderData}
+                />
+              )}
               <section className="coffe-manager-body-products-navigation">
-                  <div className="orders-container">
-                    {loading ? (
-                      <div>Loading...</div> // You can replace this with a loading spinner or any other loading indicator
-                    ) : orders.length > 0 ? (
-                      orders?.map((order, index) => (
-                        <OrdersCard
-                          key={index}
-                          orders={order}
-                          setOrderDetails={setOrderDetails}
-                          setMainOrderData={setMainOrderData}
-                          setOrderMenuStatus={setOrderMenuStatus}
-                        />
-                      ))
-                    ) : (
-                      <div>No orders available</div> // Message when there are no orders
-                    )}
-                  </div>
+                <div className="orders-container">
+                  {loading ? (
+                    <div>Loading...</div> // You can replace this with a loading spinner or any other loading indicator
+                  ) : orders?.length > 0 ? (
+                    orders?.map((order, index) => (
+                      <OrdersCard
+                        key={index}
+                        orderDetail={order}
+                        setMainOrderData={setMainOrderData}
+                        setOrderMenuStatus={setOrderMenuStatus}
+                        setShowDetailModal={setShowDetailModal}
+                      />
+                    ))
+                  ) : (
+                    <div>Al parecer aún no hay pedidos</div> // Message when there are no orders
+                  )}
+                </div>
               </section>
 
               <div className="coffe-manager-body-order-details-container">
@@ -163,8 +152,8 @@ const OrderManagerPage = ({ orderDetails, setOrderDetails }) => {
                         </tr>
                       </thead>
                       <tbody>
-                        {orderDetails && orderDetails.length > 0 ? (
-                          orderDetails.map((details, index) => (
+                        {orders && orders.length > 0 ? (
+                          orders.map((details, index) => (
                             <tr className="tr-container" key={index}>
                               <td>
                                 <img
@@ -210,6 +199,6 @@ const OrderManagerPage = ({ orderDetails, setOrderDetails }) => {
       </section>
     </>
   );
-}
+};
 
-export default OrderManagerPage
+export default OrderManagerPage;

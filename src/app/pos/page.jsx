@@ -26,16 +26,27 @@ const CoffeManager = () => {
   const [posViewer, setPosViewer] = useState("POS");
   const [newOrder, setNewOrder] = useState(false);
   const [products, setProducts] = useState([]);
-  const [filterValue, setFilterValue] = useState("confites");
-  const [filterField, setFilterField] = useState("product_category");
+  const [filterValue, setFilterValue] = useState(null);
+  const [filterField, setFilterField] = useState([
+    "product_sub_category",
+    "product_category",
+    "product_name",
+    "product_description",
+  ]);
+
+  const filterFields = [
+    "product_sub_category",
+    "product_category",
+    "product_name",
+    "product_description",
+  ]; // Fields to search
 
   const Categoria = [
     { Categoty_Name: "Todos", Category: "" },
-    { Categoty_Name: "Dulces", Category: "dulce" },
-    { Categoty_Name: "Salados", Category: "salado" },
-    { Categoty_Name: "Confites", Category: "confite" },
+    { Categoty_Name: "Promociones", Category: "promocion" },
+    { Categoty_Name: "Confites", Category: "confites" },
     { Categoty_Name: "Comida", Category: "comida" },
-    { Categoty_Name: "Bebidas", Category: "bebidas" },
+    { Categoty_Name: "Bebidas", Category: "bebestibles" },
     { Categoty_Name: "Pasteles", Category: "pasteleria" },
     { Categoty_Name: "Lacteos", Category: "leche" },
   ];
@@ -74,6 +85,12 @@ const CoffeManager = () => {
     console.log(newOrder);
   };
 
+  const handleSearchProduct = (e) => {
+    setFilterField("");
+    setFilterValue(e.target.value);
+    console.log(filterValue);
+  };
+
   return (
     <>
       <section
@@ -93,9 +110,11 @@ const CoffeManager = () => {
             Ingresar Orden
           </div>
           <div className="NavMenu">
+            {/* <div> */}
             {Categoria.map((item) => {
               return (
                 <p
+                  className="NavItem"
                   onClick={() => {
                     setFilterValue(item.Category);
                   }}
@@ -104,15 +123,27 @@ const CoffeManager = () => {
                 </p>
               );
             })}
-            <p>Buscar 🔍</p>
+            {/* </div> */}
           </div>
-          <div>Resumen de caja</div>
+          <div className="SearchMenu">
+            <input
+              className="search_input"
+              type="text"
+              placeholder={"Buscar..."}
+              onChange={handleSearchProduct}
+              onClick={() => {
+                setFilterValue(null);
+              }}
+            />
+            <p>🔍</p>
+          </div>
         </section>
         {/* Acá corté el código del POS */}
         {posViewer === "POS" ? (
           <POSComponent
             filterValue={filterValue}
             filterField={filterField}
+            filterFields={filterFields}
             products={products}
             orderDetails={orderDetails}
             setOrderDetails={setOrderDetails}

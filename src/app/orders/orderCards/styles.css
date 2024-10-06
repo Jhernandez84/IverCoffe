@@ -14,15 +14,20 @@
   margin-top: -15px;
 }
 
-.orderCard-container .order-header .TextHeader{
+.orderCard-container .order-header .TextHeader {
   font-size: medium;
+  padding-bottom: 5px;
+  /* border-bottom: 5px; */
+  border-bottom: solid 2px;
+  border-color: white;
+  margin-bottom: 10px;
 }
 
-.orderCard-container .order-header .TextClientLabel{
+.orderCard-container .order-header .TextClientLabel {
   font-size: smaller;
 }
 
-.orderCard-container .order-header .TextProductsLabel{
+.orderCard-container .order-header .TextProductsLabel {
   font-size: smaller;
 }
 

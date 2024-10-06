@@ -42,9 +42,25 @@
 }
 
 .coffemanager-header .NavMenu {
+  align-items: center;
   display: flex;
   flex-direction: row;
   gap: 15px;
+  padding: 0 5px 0 px;
+}
+
+.coffemanager-header .NavMenu .NavItem {
+  /* width: 50px; */
+  transition: 0.3s;
+}
+
+.coffemanager-header .NavMenu .NavItem:hover {
+  cursor: pointer;
+  /* border: solid 1px; */
+  border-radius: 25px;
+  background-color: var(--primary-bg-strong-color-dark);
+  padding: 5px 10px 5px 10px;
+  transition: 0.3s;
 }
 
 .coffemanager-header .NavMenu .NavItem.Active {
@@ -56,6 +72,28 @@
   border: solid 1px;
   padding: 8px;
   margin: 0;
+}
+
+.coffemanager-header .SearchMenu {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 5px;
+}
+
+.coffemanager-header .SearchMenu .search_input {
+  align-self: center;
+  background-color: var(--primary-bg-header-color-dark);
+  height: 25px;
+  width: 60px;
+  border: none;
+  color: white;
+  transition: 0.3s;
+}
+
+.coffemanager-header .SearchMenu .search_input:hover {
+  width: 150px;
+  transition: 0.3s;
 }
 
 .coffe-manager-body-container {
@@ -136,7 +174,6 @@
 .order-details-header .details {
   display: grid;
   grid-template-columns: 35% 65%;
-
   border-radius: 10px;
   background-color: var(--primary-bg-header-color-dark);
   margin: 5px;
