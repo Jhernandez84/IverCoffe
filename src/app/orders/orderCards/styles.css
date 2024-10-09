@@ -6,7 +6,8 @@
   border: solid 0.5px;
   border-radius: 10px;
   padding: 5px;
-  height: 150px;
+  max-height: 150px;
+  max-width: 300px;
 }
 
 .orderCard-container .order-header {

@@ -21,6 +21,7 @@ import {
 
 // import "./styles.css";
 import "../page.module.css";
+import "./styles.css";
 
 // const OrderManagerPage = ({ orderDetails, setOrderDetails }) => {
 const OrderManagerPage = () => {
@@ -84,7 +85,7 @@ const OrderManagerPage = () => {
     { Categoty_Name: "Entregados", Category: "delivered" },
   ];
 
-  console.log(filterValue)
+  console.log(filterValue);
 
   return (
     <>
@@ -121,120 +122,40 @@ const OrderManagerPage = () => {
           </div>
           <div>Resumen de caja</div>
         </section>
-        <section>
-          <>
-            {/* <h1>Administrador de ventas Coffe</h1> */}
-            <section className="coffe-manager-body-container">
-              {showDetailModal && (
-                <Modal
-                  setShowDetailModal={setShowDetailModal}
-                  orderData={mainOrderData}
-                />
+        <>
+          {/* <h1>Administrador de ventas Coffe</h1> */}
+          <section className="coffe-manager-body-container-full">
+            {showDetailModal && (
+              <Modal
+                setShowDetailModal={setShowDetailModal}
+                orderData={mainOrderData}
+              />
+            )}
+            {/* <section className="coffe-manager-body-products-navigation"> */}
+            <section className="orders-container-full">
+              {loading ? (
+                <div>Loading...</div> // You can replace this with a loading spinner or any other loading indicator
+              ) : orders?.length > 0 ? (
+                orders
+                  .filter((order) => {
+                    if (!filterValue) return true; // If no filterValue, return all orders
+                    return order.orderStatus === filterValue; // Adjust "someField" to the field you want to filter by
+                  })
+                  .map((order, index) => (
+                    <OrdersCard
+                      key={index}
+                      orderDetail={order}
+                      setMainOrderData={setMainOrderData}
+                      setOrderMenuStatus={setOrderMenuStatus}
+                      setShowDetailModal={setShowDetailModal}
+                    />
+                  ))
+              ) : (
+                <div>Al parecer aún no hay pedidos</div> // Message when there are no orders
               )}
-              <section className="coffe-manager-body-products-navigation">
-                <div className="orders-container">
-                  {loading ? (
-                    <div>Loading...</div> // You can replace this with a loading spinner or any other loading indicator
-                  ) : orders?.length > 0 ? (
-                    orders
-                      .filter((order) => {
-                        if (!filterValue) return true; // If no filterValue, return all orders
-                        return order.orderStatus === filterValue; // Adjust "someField" to the field you want to filter by
-                      })
-                      .map((order, index) => (
-                        <OrdersCard
-                          key={index}
-                          orderDetail={order}
-                          setMainOrderData={setMainOrderData}
-                          setOrderMenuStatus={setOrderMenuStatus}
-                          setShowDetailModal={setShowDetailModal}
-                        />
-                      ))
-                  ) : (
-                    <div>Al parecer aún no hay pedidos</div> // Message when there are no orders
-                  )}
-                </div>
-              </section>
-
-              <div className="coffe-manager-body-order-details-container">
-                <div className="order-details-header">
-                  {/* <div className="text">
-          <p>Detalle de la orden</p>
-        </div> */}
-                  <div className="details">
-                    <div>
-                      <div>
-                        <p className="orderFinder">Orden:</p>
-                      </div>
-                      {/* <p>Hora Ingreso: {mainOrderData?.id}</p> */}
-                      <p>Hora Ingreso:</p>
-                      {/* <p>Estado: {mainOrderData?.orderStatus}</p> */}
-                      <p>Estado: </p>
-                    </div>
-                    <div>
-                      <p>{mainOrderData?.id}</p>
-                    </div>
-                    <div>{/* <p>'14-07-2024'</p> */}</div>
-                  </div>
-                  <div>
-                    <div className="details-values"></div>
-                  </div>
-                </div>
-                <div className="products-invoice-details">
-                  <div className="orders-list">
-                    <table>
-                      <thead>
-                        <tr>
-                          <td>Img</td>
-                          <td>Producto</td>
-                          <td>Preparado?</td>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {orders && orders.length > 0 ? (
-                          orders.map((details, index) => (
-                            <tr className="tr-container" key={index}>
-                              <td>
-                                <img
-                                  className="td-image"
-                                  src={details.Product_Img}
-                                  alt={details.Product_Name}
-                                />
-                              </td>
-                              <td>
-                                <p>{details.Product_Name}</p>
-                              </td>
-                              <input
-                                type="checkbox"
-                                id={details.Product_index}
-                                defaultChecked={
-                                  details.Product_Status === "Prepared"
-                                }
-                                onClick={() =>
-                                  HandleDeliveredStatus(
-                                    details.Product_index,
-                                    details.Product_Status === "Prepared"
-                                      ? "Ordered"
-                                      : "Prepared"
-                                  )
-                                }
-                              />
-                            </tr>
-                          ))
-                        ) : (
-                          <tr>
-                            <td colSpan="3">No order details available</td>
-                          </tr>
-                        )}
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
-                <div className="order-details-footer"></div>
-              </div>
             </section>
-          </>
-        </section>
+          </section>
+        </>
       </section>
     </>
   );

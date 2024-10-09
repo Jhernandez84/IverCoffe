@@ -33,7 +33,7 @@ const OrdersCard = ({
         onClick={() => HandleOrderSelected(orderDetail)}
       >
         <section className="order-header">
-          <p className="TextHeader">Cliente:{orderCustomerName}</p>
+          <p className="TextHeader">Cliente: {orderCustomerName}</p>
           <p className="TextClientLabel">Nº Orden: {id}</p>
           <p className="TextProductsLabel"> Productos: </p>
           <p className="TextProductsLabel"> Estado: {orderPaymentStatus}</p>

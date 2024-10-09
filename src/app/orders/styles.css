@@ -23,7 +23,7 @@
 .db-left-container-redes img {
   border-radius: 5px;
   width: 40px;
-  height: 70px;  
+  height: 70px;
 }
 
 .db-left-container-redes div {
@@ -64,4 +64,14 @@
   display: flex;
   flex-direction: row;
   justify-content: center;
+}
+
+.coffe-manager-body-container-full .orders-container-full {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* Creates 4 equal columns */
+  grid-template-rows: auto; /* Allows rows to automatically adjust based on content */
+  gap: 10px; /* Optional: Adds space between grid items */
+  justify-content: space-between; /* Ensures items stretch to fill each column */
+  overflow: scroll;
+  transition: all, 0.3s;
 }
