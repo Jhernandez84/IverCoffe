@@ -1,6 +1,6 @@
-import React, { useEffect } from "react";
-import { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../orderCards/styles.css";
+import Modal from "./orderDetailModal/modal";
 
 const OrdersCard = ({
   orderDetail,
@@ -17,7 +17,7 @@ const OrdersCard = ({
     orderDetails,
   } = orderDetail;
 
-  console.log("Detalle de la orden", orderDetail.orderDetails);
+  const [showModal, setShowModal] = useState(false);
 
   const HandleOrderSelected = (value) => {
     setShowDetailModal(true);
@@ -28,10 +28,14 @@ const OrdersCard = ({
   return (
     <>
       {/* <div className={`products-card ${!newOrder ? "disabled" : ""}`}> */}
-      <div
-        className="orderCard-container"
-        onClick={() => HandleOrderSelected(orderDetail)}
-      >
+      {showModal && (
+        <Modal
+          setShowDetailModal={setShowModal}
+          orderId={id}
+          orderData={orderDetail}
+        />
+      )}
+      <div className="orderCard-container" onClick={() => setShowModal(true)}>
         <section className="order-header">
           <p className="TextHeader">Cliente: {orderCustomerName}</p>
           <p className="TextClientLabel">Nº Orden: {id}</p>

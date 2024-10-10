@@ -31,3 +31,4 @@ export const auth = getAuth(app)
 export const provider = new GoogleAuthProvider();
 
 //  debo ir a la consola de firebase y habilitar la autenticación de google
+

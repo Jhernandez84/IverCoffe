@@ -1,85 +1,46 @@
 "use client";
 
 import { useState, useCallback, useEffect } from "react";
-import {
-  CreateRecord,
-  UpdateRecord,
-  DeleteRecord,
-} from "@/Components/Firebase/DataManager/DataOperations";
+
+import { updateProductStatus } from "./dbhelper";
+import { UpdateRecord } from "@/Components/Firebase/DataManager/DataOperations";
+
 import "./modalstyles.css";
 
-const Modal = ({ setShowDetailModal, orderData }) => {
-  // const handleCreateRecord = () => {
-  //   CreateRecord("CoffeProducts", newEntryData);
-  //   setUpdateRecords((prevState) => !prevState); // Toggle true/false
-  //   setShowModal(false);
-  // };
+const Modal = ({ setShowDetailModal, orderId, orderData }) => {
+  const [checkedState, setCheckedState] = useState(
+    new Array(orderData.orderDetails.length).fill(false)
+  );
 
-  // const handleSaveChanges = (id) => {
-  //   // console.log(newEntryData, id);
-  //   UpdateRecord("CoffeProducts", id, newEntryData, "fakeuser");
-  //   setUpdateRecords((prevState) => !prevState); // Toggle true/false
-  //   setShowModal(false);
-  // };
+  const handleCheckboxChange = (index) => {
+    // Toggle checkbox value for the corresponding row
+    const updatedCheckedState = checkedState.map((item, idx) =>
+      idx === index ? !item : item
+    );
+    setCheckedState(updatedCheckedState);
+  };
 
-  // const handleDeleteRecord = (id) => {
-  //   DeleteRecord("CoffeProducts", id);
-  //   setUpdateRecords((prevState) => !prevState); // Toggle true/false
-  //   setShowModal(false);
-  // };
+  console.log("Detalle de la orden", orderId, orderData.orderDetails);
 
-  // const NewDataFields = {
-  //   product_id: itemData.id || null,
-  //   product_name: itemData.product_name,
-  //   product_description: itemData.product_description,
-  //   product_category: itemData.product_category || null,
-  //   product_sub_category: itemData.product_sub_category || null,
-  //   product_image: itemData.product_image || null,
-  //   product_quantity: itemData.product_quantity || 0,
-  //   product_cost_price: itemData.product_cost_price || 0,
-  //   product_sell_price: itemData.product_sell_price || 0,
-  //   product_alrt_min_stock: itemData.product_alrt_min_stock || null,
-  //   product_min_stock: itemData.product_min_stock || 0,
-  //   product_allow_neg_qty: itemData.product_allow_neg_qty || null,
-  //   product_max_neg_qty: itemData.product_max_neg_qty || 0,
-  //   product_status: itemData.product_status || "enabled",
-  // };
+  const updt_Record = (detail) => {
+    UpdateRecord("Orders", orderId, detail, "me");
+  };
 
-  // const [newEntryData, setNewEntryData] = useState(NewDataFields);
-  // console.log(newEntryData);
-
-  // const getNewEntryData = useCallback(({ target }) => {
-  //   const { name, type, value, checked } = target;
-
-  //   if (type === "checkbox") {
-  //     // Handle boolean checkbox toggle
-  //     setNewEntryData((prevState) => ({
-  //       ...prevState,
-  //       [name]: checked, // Set to the current checked state
-  //     }));
-  //   } else {
-  //     // Handle regular input fields
-  //     setNewEntryData((prevState) => ({
-  //       ...prevState,
-  //       [name]: value,
-  //     }));
-  //   }
-  // }, []);
-
-  // const handleBooleanToggle = (fieldName) => {
-  //   setNewEntryData((prevState) => ({
-  //     ...prevState,
-  //     [fieldName]: !prevState[fieldName], // Toggle boolean field
-  //   }));
-  // };
+  const handleChangeOrderStatus = (status, index) => {
+    if (status === "ready") {
+      // Update the product status to 'pending'
+      updateProductStatus("DBIverChile", orderData, index, "pending");
+    } else {
+      // Handle other statuses (you can replace "shipped" with whatever status you want)
+      updateProductStatus("DBIverChile", orderData, index, "ready");
+    }
+  };
 
   return (
-    // El modal tendrá 3 filas para guardar datos 10,80,10
     <div className="modal-overlay">
       <div className="modal">
         <section className="modal-header-section">
           Detalle de la orden de: {orderData.orderCustomerName}
-          {/* {newEntryData.image ? <img src={newEntryData.image} alt="" /> : []} */}
         </section>
         <section className="modal-body-section">
           <table>
@@ -96,14 +57,32 @@ const Modal = ({ setShowDetailModal, orderData }) => {
                 return (
                   <tr key={index}>
                     <td>
-                      <img src={detail.product_image}></img>
+                      <img
+                        src={detail.product_image}
+                        alt={detail.product_name}
+                      ></img>
                     </td>
                     <td>{detail.product_name}</td>
                     <td>
-                      <img src={detail.product_image}></img>
+                      <img
+                        src={detail.product_image}
+                        alt={detail.product_name}
+                      ></img>
                     </td>
                     <td>
-                      <input type="checkbox" checked name="" id="" />
+                      <div className="container">
+                        <input
+                          type="checkbox"
+                          className="checkbox"
+                          id={`checkbox-${index}`}
+                          checked={detail.order_item_status}
+                          // onChange={() => handleCheckboxChange(index)}
+                          onChange={() => updt_Record(detail.order_item_status)}
+                        />
+                        <label className="switch" htmlFor={`checkbox-${index}`}>
+                          <span className="slider"></span>
+                        </label>
+                      </div>
                     </td>
                   </tr>
                 );
@@ -116,7 +95,7 @@ const Modal = ({ setShowDetailModal, orderData }) => {
           {/* {newEntryData.image ? <img src={newEntryData.image} alt="" /> : []} */}
         </section>
         <section className="modal-footer-section">
-          <p
+          {/* <p
             className="btn-modal"
             onClick={() => handleSaveChanges(newEntryData.product_id)}
           >
@@ -131,7 +110,7 @@ const Modal = ({ setShowDetailModal, orderData }) => {
             // onClick={() => handleDeleteRecord(newEntryData.product_id)}
           >
             Eliminar
-          </p>
+          </p> */}
           <p className="btn-modal" onClick={() => setShowDetailModal(false)}>
             Salir
           </p>

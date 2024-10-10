@@ -6,9 +6,6 @@ import { ThemeContext } from "@/Context/ThemeContext/ThemeContext";
 import { AuthContext } from "@/Context/UserContext/UserContext";
 import { ProductContext } from "@/Context/ProductContext/ProductContext";
 import POSComponent from "./pos/pos";
-import OrderManagerPage from "./orders/OrderManager";
-// import ReportingPage from "./reports/page";
-import StockManagerPage from "./orders/StockManager/page";
 import MenuManagerPage from "../menu_manager/page";
 import Modal from "./modal/modal";
 import {
@@ -72,6 +69,8 @@ const CoffeManager = () => {
     return `${hours}:${minutes}:${seconds}`;
   }
 
+  const [showModal, setShowModal] = useState(false);
+
   const CreateNewOrder = async (CustomerName) => {
     setOrderDetails({
       orderId: await CreateRecord("Orders", {
@@ -98,19 +97,19 @@ const CoffeManager = () => {
   };
 
   const enterFullScreen = () => {
-    const elem = document.documentElement; // Full-screen the entire document
-    if (elem.requestFullscreen) {
-      elem.requestFullscreen();
-    } else if (elem.mozRequestFullScreen) {
-      // For Firefox
-      elem.mozRequestFullScreen();
-    } else if (elem.webkitRequestFullscreen) {
-      // For Chrome, Safari, Opera
-      elem.webkitRequestFullscreen();
-    } else if (elem.msRequestFullscreen) {
-      // For IE/Edge
-      elem.msRequestFullscreen();
-    }
+    // const elem = document.documentElement; // Full-screen the entire document
+    // if (elem.requestFullscreen) {
+    //   elem.requestFullscreen();
+    // } else if (elem.mozRequestFullScreen) {
+    //   // For Firefox
+    //   elem.mozRequestFullScreen();
+    // } else if (elem.webkitRequestFullscreen) {
+    //   // For Chrome, Safari, Opera
+    //   elem.webkitRequestFullscreen();
+    // } else if (elem.msRequestFullscreen) {
+    //   // For IE/Edge
+    //   elem.msRequestFullscreen();
+    // }
   };
 
   return (
@@ -126,11 +125,12 @@ const CoffeManager = () => {
           <div
             className="NewOrderEntry"
             onClick={() => {
-              CreateNewOrder("Jonathan Hernández");
+              setShowModal(true);
             }}
           >
             Ingresar Orden
           </div>
+
           <div className="NavMenu">
             {Categoria.map((item, index) => {
               return (
@@ -159,30 +159,19 @@ const CoffeManager = () => {
             <p>🔍</p>
           </div>
         </section>
-        {/* Acá corté el código del POS */}
-        {posViewer === "POS" ? (
-          <POSComponent
-            filterValue={filterValue}
-            filterField={filterField}
-            filterFields={filterFields}
-            products={products}
-            orderDetails={orderDetails}
-            setOrderDetails={setOrderDetails}
-            cartContent={cartContent}
-          />
-        ) : (
-          []
+        {showModal && (
+          <Modal setShowModal={setShowModal} CreateNewOrder={CreateNewOrder} />
         )}
-        {/* {posViewer === "OMP" ? (
-          <OrderManagerPage
-            orderDetails={orderDetails}
-            setOrderDetails={setOrderDetails}
-          />
-        ) : (
-          []
-        )}
-        {posViewer === "PRO" ? <MenuManagerPage /> : []}
-        {posViewer === "INV" ? <StockManagerPage /> : []} */}
+
+        <POSComponent
+          filterValue={filterValue}
+          filterField={filterField}
+          filterFields={filterFields}
+          products={products}
+          orderDetails={orderDetails}
+          setOrderDetails={setOrderDetails}
+          cartContent={cartContent}
+        />
       </section>
     </>
   );

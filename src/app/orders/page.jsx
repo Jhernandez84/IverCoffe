@@ -44,7 +44,7 @@ const OrderManagerPage = () => {
         const firebaseData = await GetFireBaseDataAll(DBEvento);
         // Compare the number of records in local storage vs Firebase
         const localOrders = GetDataFromLocalStorage("orders");
-        if (!localOrders || localOrders.length < firebaseData.length) {
+        if (!localOrders || localOrders.length !== firebaseData.length) {
           // Update local storage if Firebase has more data
           AddDataToLocalStorage("orders", firebaseData);
           setOrders(firebaseData); // Update state with Firebase data
@@ -125,12 +125,6 @@ const OrderManagerPage = () => {
         <>
           {/* <h1>Administrador de ventas Coffe</h1> */}
           <section className="coffe-manager-body-container-full">
-            {showDetailModal && (
-              <Modal
-                setShowDetailModal={setShowDetailModal}
-                orderData={mainOrderData}
-              />
-            )}
             {/* <section className="coffe-manager-body-products-navigation"> */}
             <section className="orders-container-full">
               {loading ? (

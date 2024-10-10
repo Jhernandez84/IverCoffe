@@ -1,8 +1,7 @@
 "use client";
 
-import { db } from "@/Components/Firebase/firebase";
 import { doc, getDoc, updateDoc } from "firebase/firestore";
-
+import { db } from "@/Components/Firebase/firebase";
 
 // Esta consulta obtiene los valores guardados
 export const GetFireBaseData = async (DBEvento) => {
@@ -18,11 +17,10 @@ export const GetFireBaseData = async (DBEvento) => {
       throw new Error(`Sin registros para el evento: ${DBEvento}`);
     }
 
-    const records = querySnapshot.docs
-      .map((doc) => ({
-        id: doc.id,
-        ...doc.data(),
-      }))
+    const records = querySnapshot.docs.map((doc) => ({
+      id: doc.id,
+      ...doc.data(),
+    }));
     //   .filter((record) => record.EventoEstado !== "eliminado");
 
     // records.sort((a, b) => a.Rut.localeCompare(b.Rut));
