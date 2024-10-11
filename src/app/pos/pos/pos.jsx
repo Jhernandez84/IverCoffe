@@ -134,6 +134,10 @@ const POSComponent = ({
     // setAddNewRecord(false);
   };
 
+  const printBoucher = () => {
+    window.print();
+  };
+
   const ConfirmOrder = () => {
     UpdateRecord(
       "Orders",
@@ -150,6 +154,7 @@ const POSComponent = ({
     // Proceso para limpiar el carrito e ingresar un nuevo pedido
     setCartContent(null);
     setNewOrder(false);
+    printBoucher();
   };
 
   // acá comienza la sección que agrupa los pedidos por tipo de producto
@@ -214,9 +219,9 @@ const POSComponent = ({
               <p>Retira:</p>
             </div>
             <div className="details-values">
-              <p>{orderDetails.orderId}</p>
-              <p>{orderDetails.orderDate}</p>
-              <p>{orderDetails.orderCustomerName}</p>
+              <p>{orderDetails?.orderId}</p>
+              <p>{orderDetails?.orderDate}</p>
+              <p>{orderDetails?.orderCustomerName}</p>
             </div>
           </div>
         </div>

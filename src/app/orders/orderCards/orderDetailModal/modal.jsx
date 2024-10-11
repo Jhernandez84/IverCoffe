@@ -2,7 +2,7 @@
 
 import { useState, useCallback, useEffect } from "react";
 
-import { updateProductStatus } from "./dbhelper";
+import { updateProductStatus } from "@/Components/Firebase/DataManager/DataOperations";
 import { UpdateRecord } from "@/Components/Firebase/DataManager/DataOperations";
 
 import "./modalstyles.css";
@@ -20,19 +20,14 @@ const Modal = ({ setShowDetailModal, orderId, orderData }) => {
     setCheckedState(updatedCheckedState);
   };
 
-  console.log("Detalle de la orden", orderId, orderData.orderDetails);
-
-  const updt_Record = (detail) => {
-    UpdateRecord("Orders", orderId, detail, "me");
-  };
-
   const handleChangeOrderStatus = (status, index) => {
+    console.log(status, index);
     if (status === "ready") {
       // Update the product status to 'pending'
-      updateProductStatus("DBIverChile", orderData, index, "pending");
+      updateProductStatus("Orders", orderId, index, "pending");
     } else {
       // Handle other statuses (you can replace "shipped" with whatever status you want)
-      updateProductStatus("DBIverChile", orderData, index, "ready");
+      updateProductStatus("Orders", orderId, index, "ready");
     }
   };
 
@@ -77,7 +72,12 @@ const Modal = ({ setShowDetailModal, orderId, orderData }) => {
                           id={`checkbox-${index}`}
                           checked={detail.order_item_status}
                           // onChange={() => handleCheckboxChange(index)}
-                          onChange={() => updt_Record(detail.order_item_status)}
+                          onChange={() =>
+                            handleChangeOrderStatus(
+                              detail.order_item_status,
+                              index
+                            )
+                          }
                         />
                         <label className="switch" htmlFor={`checkbox-${index}`}>
                           <span className="slider"></span>

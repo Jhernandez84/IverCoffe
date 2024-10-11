@@ -264,6 +264,17 @@ export const updateProductStatus = async (
   newStatus
   // userWhoUpdates
 ) => {
+  console.log(
+    "Collection Name",
+    collectionName,
+    "Orden",
+    orderId,
+    "Indice",
+    productIndex,
+    "Estado",
+    newStatus
+  );
+
   try {
     // Reference to the specific document
     const orderRef = doc(db, collectionName, orderId);

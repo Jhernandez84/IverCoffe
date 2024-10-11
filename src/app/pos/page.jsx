@@ -53,42 +53,9 @@ const CoffeManager = () => {
     { Categoty_Name: "Lacteos", Category: "leche" },
   ];
 
-  const orderDefault = {
-    orderId: null,
-    orderCustomerName: null,
-    orderDate: null,
-    orderDetail: cartContent,
-  };
-  const [orderDetails, setOrderDetails] = useState(orderDefault);
-
-  function extractTime() {
-    const date = new Date();
-    const hours = date.getHours().toString().padStart(2, "0");
-    const minutes = date.getMinutes().toString().padStart(2, "0");
-    const seconds = date.getSeconds().toString().padStart(2, "0");
-    return `${hours}:${minutes}:${seconds}`;
-  }
+  const [orderDetails, setOrderDetails] = useState(null);
 
   const [showModal, setShowModal] = useState(false);
-
-  const CreateNewOrder = async (CustomerName) => {
-    setOrderDetails({
-      orderId: await CreateRecord("Orders", {
-        orderCustomerName: CustomerName,
-        orderFullDate: new Date(),
-        // orderStatus: { Status: "Entered", StatusTimeUpdated: new Date() },
-        orderStatus: "received",
-        orderPaymentStatus: "Pending",
-        orderPaymentType: "null",
-        orderLastUpdate: new Date(),
-        orderDetails: "",
-      }),
-      orderCustomerName: CustomerName,
-      orderDate: extractTime(),
-    });
-    setNewOrder(true);
-    console.log(newOrder);
-  };
 
   const handleSearchProduct = (e) => {
     setFilterField("");
@@ -160,7 +127,12 @@ const CoffeManager = () => {
           </div>
         </section>
         {showModal && (
-          <Modal setShowModal={setShowModal} CreateNewOrder={CreateNewOrder} />
+          <Modal
+            setShowModal={setShowModal}
+            setNewOrder={setNewOrder}
+            cartContent={cartContent}
+            setOrderDetails={setOrderDetails}
+          />
         )}
 
         <POSComponent
