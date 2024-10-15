@@ -17,7 +17,7 @@
   border-radius: 25px;
   position: relative;
   min-width: 40%;
-  min-height: 45%;
+  min-height: 55%;
   z-index: 10000; /* Ensure the modal appears above all other elements */
 }
 

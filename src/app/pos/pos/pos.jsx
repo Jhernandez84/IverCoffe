@@ -5,7 +5,7 @@ import { useContext } from "react";
 import { ThemeContext } from "@/Context/ThemeContext/ThemeContext";
 import { AuthContext } from "@/Context/UserContext/UserContext";
 import { ProductContext } from "@/Context/ProductContext/ProductContext";
-import CardProduct from "../listedProductsCards/cardProduct";
+import CardProduct from "../CardProducts/cardProduct";
 import CartAddedProduct from "../cartAddedProductComp/cartAddedProduct";
 import {
   AddDataToLocalStorage,
@@ -38,6 +38,7 @@ const POSComponent = ({
   const { cartContent, setCartContent } = useContext(ProductContext);
   const [paymentMethod, setPaymentMethod] = useState(null);
   const [newOrder, setNewOrder] = useState(false);
+  const [items, setItems] = useState([]);
   const [products, setProducts] = useState([]);
   const [ListProducts, setListProducts] = useState([]);
 
@@ -143,7 +144,7 @@ const POSComponent = ({
       "Orders",
       orderDetails.orderId,
       {
-        orderDetails: cartContent,
+        orderDetails: groupedProducts, //cambié cartContent por este valor
         orderPaymentType: paymentMethod,
         orderPaymentStatus: "Completed",
         orderStatus: { Status: "Preparing", StatusTimeUpdated: new Date() },
@@ -154,22 +155,31 @@ const POSComponent = ({
     // Proceso para limpiar el carrito e ingresar un nuevo pedido
     setCartContent(null);
     setNewOrder(false);
-    printBoucher();
+    // printBoucher();
   };
 
   // acá comienza la sección que agrupa los pedidos por tipo de producto
   const groupedProducts = (cartContent || []).reduce((acc, product) => {
-    const existingProduct = acc.find((item) => item.product_id === product.id);
+    const existingProduct = acc.find(
+      (item) => item.product_id === product.product_id
+    );
     if (existingProduct) {
       existingProduct.product_sell_price =
         parseFloat(existingProduct.product_sell_price) +
         parseFloat(product.product_sell_price);
       existingProduct.Count += 1;
     } else {
-      acc.push({ ...product, Count: 1 });
+      acc.push({
+        product_id: product.product_id,
+        product_name: product.product_name,
+        product_sell_price: product.product_sell_price,
+        Count: 1,
+      });
     }
     return acc;
   }, []);
+
+  console.log("productos agrupados ", groupedProducts);
 
   return (
     <section className="coffe-manager-body-container">
@@ -179,7 +189,6 @@ const POSComponent = ({
             .filter((product) => {
               // If no filter value is entered, return all products
               if (!filterValue) return true;
-
               // Check if any of the specified fields contain the filter value
               return filterFields.some((field) => {
                 // Ensure the field exists and contains the filter value (case-insensitive)
@@ -200,7 +209,8 @@ const POSComponent = ({
                   openModal={openModal}
                   addToCart={addToCart}
                   newOrder={newOrder}
-                  cartContent={groupedProducts}
+                  cartContent={cartContent}
+                  groupedProducts={groupedProducts}
                   removeFromCart={removeFromCart}
                 />
               );

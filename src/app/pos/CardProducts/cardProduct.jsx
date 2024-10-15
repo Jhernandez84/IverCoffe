@@ -5,6 +5,7 @@ import "./styles.css";
 const CardProduct = ({
   product,
   cartContent,
+  groupedProducts,
   openModal,
   addToCart,
   updateCart,
@@ -16,22 +17,21 @@ const CardProduct = ({
 
   useEffect(
     () => {
-      cartContent.forEach((cartProduct) => {
-        if (product.id === cartProduct.id) {
-          if (cartProduct.Count > 0) {
+      groupedProducts.forEach((groupedProducts) => {
+        if (product.id === groupedProducts.product_id) {
+          if (groupedProducts.Count > 0) {
             console.log(
               "Producto agregado",
               product.id,
               "Producto en el carro",
-              cartProduct.id
-              //   cartProduct.Count
+              groupedProducts //   cartProduct.Count
             );
-            setInitialQty(cartProduct.Count);
+            setInitialQty(groupedProducts.Count);
             console.log(
               "Product ID:",
               product.id,
               "Product Qty:",
-              cartProduct.Count,
+              groupedProducts.Count,
               Date()
             );
           } else {

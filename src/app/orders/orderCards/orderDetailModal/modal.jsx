@@ -58,12 +58,7 @@ const Modal = ({ setShowDetailModal, orderId, orderData }) => {
                       ></img>
                     </td>
                     <td>{detail.product_name}</td>
-                    <td>
-                      <img
-                        src={detail.product_image}
-                        alt={detail.product_name}
-                      ></img>
-                    </td>
+                    <td>{detail.count}</td>
                     <td>
                       <div className="container">
                         <input
