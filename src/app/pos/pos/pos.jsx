@@ -173,6 +173,7 @@ const POSComponent = ({
         product_id: product.product_id,
         product_name: product.product_name,
         product_sell_price: product.product_sell_price,
+        product_image:product.product_image,
         Count: 1,
       });
     }

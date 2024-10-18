@@ -44,14 +44,14 @@ const OrderManagerPage = () => {
         const firebaseData = await GetFireBaseDataAll(DBEvento);
         // Compare the number of records in local storage vs Firebase
         const localOrders = GetDataFromLocalStorage("orders");
-        if (!localOrders || localOrders.length !== firebaseData.length) {
+        // if (!localOrders || localOrders.length !== firebaseData.length) {
           // Update local storage if Firebase has more data
           AddDataToLocalStorage("orders", firebaseData);
           setOrders(firebaseData); // Update state with Firebase data
           console.log("Fetched and saved new orders from Firebase");
-        } else {
+        // } else {
           console.log("Using local stored orders as they are up to date");
-        }
+        // }
       } catch (error) {
         console.error("Error fetching orders:", error);
       } finally {

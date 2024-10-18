@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useCallback, useEffect } from "react";
-
+import { GetDataFromLocalStorage } from "@/Components/Firebase/DataManager/LocalStorage";
 import { updateProductStatus } from "@/Components/Firebase/DataManager/DataOperations";
 import { UpdateRecord } from "@/Components/Firebase/DataManager/DataOperations";
 
@@ -12,22 +12,62 @@ const Modal = ({ setShowDetailModal, orderId, orderData }) => {
     new Array(orderData.orderDetails.length).fill(false)
   );
 
-  const handleCheckboxChange = (index) => {
-    // Toggle checkbox value for the corresponding row
-    const updatedCheckedState = checkedState.map((item, idx) =>
-      idx === index ? !item : item
+  const [orderDetailsss, setOrderDetails] = useState([]);
+
+  useEffect(() => {
+    const OrderItems = GetDataFromLocalStorage("orders");
+
+    if (OrderItems) {
+      // Find the order with the given orderId
+      const order = OrderItems.find((order) => order.id === orderId);
+      // Set the orderDetails state if the order is found
+      if (order) {
+        setOrderDetails(order.orderDetails || []);
+      } else {
+        console.log("Order not found!");
+      }
+    }
+  }, []);
+
+  const updateOrderItemStatus = (orderId, itemIndex) => {
+    // Retrieve the current orders from local storage
+    const LocalStoragedOrders = GetDataFromLocalStorage("orders");
+    let orders = LocalStoragedOrders || [];
+
+    // Find the order with the given orderId
+    orders = orders.map((order) => {
+      if (order.id === orderId) {
+        // Ensure the index is valid
+        if (order.orderDetails && order.orderDetails[itemIndex]) {
+          // Update 'order_item_status' from 'ready' to 'pending' for the item at the given index
+          if (order.orderDetails[itemIndex].order_item_status === "ready") {
+            order.orderDetails[itemIndex].order_item_status = "pending";
+          } else {
+            order.orderDetails[itemIndex].order_item_status = "ready";
+          }
+        }
+      }
+      return order; // Return the updated order
+    });
+
+    // Save the updated orders back to local storage
+    localStorage.setItem("orders", JSON.stringify(orders));
+
+    console.log(
+      `Order item at index ${itemIndex} in order ${orderId} updated from 'ready' to 'pending'.`
     );
-    setCheckedState(updatedCheckedState);
   };
 
+  // Example usage
   const handleChangeOrderStatus = (status, index) => {
-    console.log(status, index);
     if (status === "ready") {
       // Update the product status to 'pending'
       updateProductStatus("Orders", orderId, index, "pending");
+      updateOrderItemStatus(orderId, index);
     } else {
       // Handle other statuses (you can replace "shipped" with whatever status you want)
       updateProductStatus("Orders", orderId, index, "ready");
+      updateOrderItemStatus(orderId, index); // Update the item at index 2
     }
   };
 
@@ -58,7 +98,7 @@ const Modal = ({ setShowDetailModal, orderId, orderData }) => {
                       ></img>
                     </td>
                     <td>{detail.product_name}</td>
-                    <td>{detail.count}</td>
+                    <td>{detail.Count}</td>
                     <td>
                       <div className="container">
                         <input
@@ -90,22 +130,12 @@ const Modal = ({ setShowDetailModal, orderId, orderData }) => {
           {/* {newEntryData.image ? <img src={newEntryData.image} alt="" /> : []} */}
         </section>
         <section className="modal-footer-section">
-          {/* <p
-            className="btn-modal"
-            onClick={() => handleSaveChanges(newEntryData.product_id)}
-          >
-            Guardar
-          </p>
-          <p className="btn-modal" onClick={() => handleCreateRecord()}>
-            Duplicar
-          </p>
           <p
             className="btn-modal"
             onClick={() => handleDeleteRecord(newEntryData.product_id)}
-            // onClick={() => handleDeleteRecord(newEntryData.product_id)}
           >
-            Eliminar
-          </p> */}
+            Cancelar Pedido
+          </p>
           <p className="btn-modal" onClick={() => setShowDetailModal(false)}>
             Salir
           </p>

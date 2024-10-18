@@ -287,7 +287,7 @@ export const updateProductStatus = async (
       // Check if productIndex is valid
       if (productIndex >= 0 && productIndex < orderDetails.length) {
         // Update the Product_Status for the specified product index
-        orderDetails[productIndex].Product_Status = newStatus;
+        orderDetails[productIndex].order_item_status = newStatus;
 
         // Update the document with the new orderDetails array and update metadata
         const newData = {
