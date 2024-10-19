@@ -12,9 +12,9 @@ const Modal = ({ setShowDetailModal, orderId, orderData }) => {
     new Array(orderData.orderDetails.length).fill(false)
   );
 
-  const [orderDetailsss, setOrderDetails] = useState([]);
+  const [orderDetailsLS, setOrderDetails] = useState([]);
 
-  useEffect(() => {
+  const getOrderLS = () => {
     const OrderItems = GetDataFromLocalStorage("orders");
 
     if (OrderItems) {
@@ -27,6 +27,10 @@ const Modal = ({ setShowDetailModal, orderId, orderData }) => {
         console.log("Order not found!");
       }
     }
+  };
+
+  useEffect(() => {
+    getOrderLS();
   }, []);
 
   const updateOrderItemStatus = (orderId, itemIndex) => {
@@ -40,10 +44,10 @@ const Modal = ({ setShowDetailModal, orderId, orderData }) => {
         // Ensure the index is valid
         if (order.orderDetails && order.orderDetails[itemIndex]) {
           // Update 'order_item_status' from 'ready' to 'pending' for the item at the given index
-          if (order.orderDetails[itemIndex].order_item_status === "ready") {
-            order.orderDetails[itemIndex].order_item_status = "pending";
+          if (order.orderDetails[itemIndex].order_item_status === true) {
+            order.orderDetails[itemIndex].order_item_status = false;
           } else {
-            order.orderDetails[itemIndex].order_item_status = "ready";
+            order.orderDetails[itemIndex].order_item_status = true;
           }
         }
       }
@@ -60,13 +64,14 @@ const Modal = ({ setShowDetailModal, orderId, orderData }) => {
 
   // Example usage
   const handleChangeOrderStatus = (status, index) => {
-    if (status === "ready") {
+    console.log(status);
+    if (status === true) {
       // Update the product status to 'pending'
-      updateProductStatus("Orders", orderId, index, "pending");
+      updateProductStatus("Orders", orderId, index, false);
       updateOrderItemStatus(orderId, index);
     } else {
       // Handle other statuses (you can replace "shipped" with whatever status you want)
-      updateProductStatus("Orders", orderId, index, "ready");
+      updateProductStatus("Orders", orderId, index, true);
       updateOrderItemStatus(orderId, index); // Update the item at index 2
     }
   };
@@ -84,11 +89,11 @@ const Modal = ({ setShowDetailModal, orderId, orderData }) => {
                 <th>Imagen</th>
                 <th>Producto</th>
                 <th>Cantidad</th>
-                <th>Estado</th>
+                <th>Ok?</th>
               </tr>
             </thead>
             <tbody>
-              {orderData.orderDetails.map((detail, index) => {
+              {orderDetailsLS.map((detail, index) => {
                 return (
                   <tr key={index}>
                     <td>
@@ -107,15 +112,15 @@ const Modal = ({ setShowDetailModal, orderId, orderData }) => {
                           id={`checkbox-${index}`}
                           checked={detail.order_item_status}
                           // onChange={() => handleCheckboxChange(index)}
-                          onChange={() =>
+                          onChange={() => {
                             handleChangeOrderStatus(
                               detail.order_item_status,
                               index
-                            )
-                          }
+                            );
+                            getOrderLS();
+                          }}
                         />
                         <label className="switch" htmlFor={`checkbox-${index}`}>
-                          <span className="slider"></span>
                         </label>
                       </div>
                     </td>

@@ -33,17 +33,23 @@ const OrdersCard = ({
     // Find the order with the given order ID
     const order = orders.find((order) => order.id === orderId);
 
-    if (order) {
-      // Sum the 'Count' field in the found order's orderDetails
-      const totalCount = order.orderDetails.reduce(
-        (acc, item) => acc + (item.Count || 0),
-        0
-      );
-      return totalCount;
-    } else {
+    if (!order) {
       console.log("Order not found!");
-      return 0;
+      return 0; // Return 0 if order not found
     }
+
+    // Ensure that orderDetails is an array before using reduce
+    const orderDetails = Array.isArray(order.orderDetails)
+      ? order.orderDetails
+      : [];
+
+    // Sum the 'Count' field in the orderDetails array
+    const totalCount = orderDetails.reduce(
+      (acc, item) => acc + (item.Count || 0),
+      0
+    );
+
+    return totalCount;
   };
 
   const getTotalReadyCountForOrderId = (orderId) => {
@@ -53,19 +59,22 @@ const OrdersCard = ({
     // Find the order with the given order ID
     const order = orders.find((order) => order.id === orderId);
 
-    if (order) {
-      // Filter and sum the 'Count' field for items with 'order_item_status' === 'ready'
-      const readyCount = order.orderDetails.reduce((acc, item) => {
-        return item.order_item_status === "ready"
-          ? acc + (item.Count || 0)
-          : acc;
-      }, 0);
-
-      return readyCount;
-    } else {
+    if (!order) {
       console.log("Order not found!");
-      return 0;
+      return 0; // Return 0 if order not found
     }
+
+    // Ensure orderDetails is an array before using reduce
+    const orderDetails = Array.isArray(order.orderDetails)
+      ? order.orderDetails
+      : [];
+
+    // Filter and sum the 'Count' field for items with 'order_item_status' === 'ready'
+    const readyCount = orderDetails.reduce((acc, item) => {
+      return item.order_item_status === true ? acc + (item.Count || 0) : acc;
+    }, 0);
+
+    return readyCount;
   };
 
   const PercentageDone = (id) => {

@@ -147,7 +147,9 @@ const POSComponent = ({
         orderDetails: groupedProducts, //cambié cartContent por este valor
         orderPaymentType: paymentMethod,
         orderPaymentStatus: "Completed",
-        orderStatus: { Status: "Preparing", StatusTimeUpdated: new Date() },
+        orderStatusOpen: true,
+        orderStatusCompleted: false,
+        orderStatusCanceled: false,
       },
       authUser.email
     );
@@ -173,7 +175,8 @@ const POSComponent = ({
         product_id: product.product_id,
         product_name: product.product_name,
         product_sell_price: product.product_sell_price,
-        product_image:product.product_image,
+        product_image: product.product_image,
+        order_item_status: false,
         Count: 1,
       });
     }
